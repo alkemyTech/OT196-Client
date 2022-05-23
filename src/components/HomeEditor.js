@@ -3,6 +3,16 @@ import { Formik, Form as FormikForm, useField } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormControl, Alert, Container, Form, FloatingLabel } from 'react-bootstrap'
 import Swal from 'sweetalert2'
+import axios from 'axios'
+
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 
 const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 const slideImageRequest = Yup.mixed()
@@ -78,14 +88,42 @@ export function HomeEditor(){
         validationSchema={HomeSchema}
         validateOnBlur={false}
         onSubmit={async (values, { setSubmitting }) => {
-          await new Promise(r => setTimeout(r, 500));
-          console.log(JSON.stringify(values, null, 2))
-          Swal.fire({
-            title: 'Saved!',
-            text: 'Home page has been edited successfully.',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          })
+          var { welcomeText, slide1Text, slide2Text, slide3Text } = values
+          var slide1Image = await getBase64(values.slide1Data)
+          var slide2Image = await getBase64(values.slide2Data)
+          var slide3Image = await getBase64(values.slide3Data)
+          try{
+            axios({
+              method: "PUT",
+              url: "http://localhost:3001/test/edithome", //endpoint to edithome
+              data: {welcomeText, slide1Text, slide2Text, slide3Text, slide1Image, slide2Image, slide3Image}
+            })
+              .then(response => {
+                Swal.fire({
+                  title: 'Saved!',
+                  text: 'Home page has been edited successfully.',
+                  icon: 'success',
+                  confirmButtonText: 'Ok'
+                })
+              })
+              .catch(error => {
+                console.log(error)
+                Swal.fire({
+                  title: 'Error!',
+                  text: error.response.statusText || "Error on submit form!",
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                })
+              }); 
+          }
+          catch(e){
+            Swal.fire({
+              title: 'Error!',
+              text: "Error on submit form!",
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
           setSubmitting(false);
         }}
         >
