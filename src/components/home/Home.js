@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { exampleNewsData } from '../news/exampleNewsData'
 import NewsCard from '../news/NewsCard'
 import WelcomeTitle from './WelcomeTitle'
-
+import SliderComponent from '../../features/sliderComponent/SliderComponent'
 
 export default function Home() {
 
@@ -20,7 +20,9 @@ export default function Home() {
 
   return (
     <div className="container-fluid">
-      {/* Aqui iria el Slider */}
+      <div className="container-fluid">
+        <SliderComponent />
+      </div>
       <WelcomeTitle text={data.welcome} />
       <div className="news-container">
         <div className="news-title my-4 py-4">
@@ -37,7 +39,7 @@ export default function Home() {
             : null}
         </div>
       </div>
-      <div className="all-news-button p-4">
+      <div className="all-news-button  my-4 py-4">
         <Button variant="outline-info">See all news</Button>
       </div>
     </div>
