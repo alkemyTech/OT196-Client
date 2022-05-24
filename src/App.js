@@ -5,6 +5,7 @@ import './App.css';
 import Header from './Components/header';
 import { Route, Routes } from 'react-router-dom';
 import NoMatchRoute from './Components/noMatchRoute';
+import Login from './Components/Login';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
       <Routes>
         <Route index element = { <Counter /> } /> 
+        <Route path='/login' element = { <Login /> } /> 
         <Route path='*' element = { <NoMatchRoute /> } /> 
       </Routes>
    
