@@ -14,7 +14,7 @@ export default function Header(){
                     alt="logo" 
                     style={{maxHeight: '6em', marginRight: '2rem'}}
                     />
-                   <Navbar.Brand href="#">Inicio </Navbar.Brand>
+                   <Navbar.Brand href="/">Inicio </Navbar.Brand>
                     <Nav className="me-auto">
                     <Nav.Link href="#">Sobre Nosotros </Nav.Link>
                     <Nav.Link href="#">Nuestro equipo  </Nav.Link>
