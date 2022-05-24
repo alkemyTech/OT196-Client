@@ -27,7 +27,7 @@ function Backoffice() {
   // fake user to test
   const fakeRoleId = 1;
 
-  let usersCards = [
+  let availableFeatures = [
     { icon: <FaRegNewspaper className={iconSize} />, text: "Novedades" },
     { icon: <FaTasks className={iconSize} />, text: "Actividades" },
     { icon: <FaRegListAlt className={iconSize} />, text: "Categorías" },
@@ -39,19 +39,19 @@ function Backoffice() {
   //  Boolean that returns the role from the user
   const isAdmin = () => {
     // Considering the roleId 1 is Admin
-    return fakeRoleId === 1 ? true : false;
+    return fakeRoleId === 1;
   };
 
   //  Change the Card's array for the admin
   React.useEffect(() => {
     if (isAdmin()) {
-      usersCards.push(
+      availableFeatures.push(
         { icon: <FaUsers className={iconSize} />, text: "Usuarios" },
         { icon: <FaUserTie className={iconSize} />, text: "Miembros" }
       );
     }
-    setCardsArr(usersCards);
-  }, [usersCards]);
+    setCardsArr(availableFeatures);
+  }, [availableFeatures]);
 
   return (
     <Container>
