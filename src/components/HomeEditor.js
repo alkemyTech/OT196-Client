@@ -3,9 +3,8 @@ import { Formik, Form as FormikForm, useField } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormControl, Alert, Container, Form, FloatingLabel } from 'react-bootstrap'
 import Swal from 'sweetalert2'
-import axios from 'axios'
 
-function getBase64(file) {
+const getBase64 = function (file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -16,23 +15,23 @@ function getBase64(file) {
 
 const IMAGE_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 const slideImageRequest = Yup.mixed()
-.required('Slide image is required.')
+.required('Debes completar este campo.')
 .test(
   'fileFormat',
-  'Unsupported file type',
+  'Tipo de archivo no permitido.',
   (value) => value === null || (value && IMAGE_FORMATS.includes(value.type))
 )
 
 const slideRequest = Yup.string()
-.min(20, 'Must have 20 characters.')
-.max(500, 'Slide text is too long. (Max 500)')
-.required('Slide text is required.')
+.min(10, 'El texto del slide debe tener al menos 10 caracteres.')
+.max(500, 'El texto del slide es muy largo. (Max 500)')
+.required('Debes completar este campo.')
 
 const HomeSchema = Yup.object().shape({
     welcomeText: Yup.string()
-        .min(20, 'Must have 20 characters.')
-        .max(2000, 'Welcome text is too long. (Max 2000)')
-        .required('Welcome text is required.'),
+        .min(20, 'El texto de bienvenida debe tener al menos 20 caracteres.')
+        .max(2000, 'El texto de bienvenida es muy largo. (Max 2000)')
+        .required('Debes completar este campo.'),
     slide1Text: slideRequest,
     slide2Text: slideRequest,
     slide3Text: slideRequest,
@@ -92,34 +91,22 @@ export function HomeEditor(){
           var slide1Image = await getBase64(values.slide1Data)
           var slide2Image = await getBase64(values.slide2Data)
           var slide3Image = await getBase64(values.slide3Data)
+          // eslint-disable-next-line no-unused-vars
+          const submitData = {welcomeText, slide1Text, slide2Text, slide3Text, slide1Image, slide2Image, slide3Image} 
+          // submitData could be used to make http request
           try{
-            axios({
-              method: "PUT",
-              url: "http://localhost:3001/test/edithome", //endpoint to edithome
-              data: {welcomeText, slide1Text, slide2Text, slide3Text, slide1Image, slide2Image, slide3Image}
+            Swal.fire({
+              title: 'Guardado!',
+              html: 'La pagina de inicio ha sido editada.<br/>',
+              icon: 'success',
+              confirmButtonText: 'Ok'
             })
-              .then(response => {
-                Swal.fire({
-                  title: 'Saved!',
-                  text: 'Home page has been edited successfully.',
-                  icon: 'success',
-                  confirmButtonText: 'Ok'
-                })
-              })
-              .catch(error => {
-                console.log(error)
-                Swal.fire({
-                  title: 'Error!',
-                  text: error.response.statusText || "Error on submit form!",
-                  icon: 'error',
-                  confirmButtonText: 'Ok'
-                })
-              }); 
+            
           }
           catch(e){
             Swal.fire({
               title: 'Error!',
-              text: "Error on submit form!",
+              text: "Error al enviar el formulario!",
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -134,46 +121,36 @@ export function HomeEditor(){
         errors
         }) => (
         <Container className="mt-2"> 
-            <h2>Edit: Home page</h2>
+            <h2>Editar: Página de inicio</h2>
             <FormikForm noValidate onSubmit={handleSubmit}>
                 <TextAreaEdit
-                label="Welcome text"
+                label="Texto de bienvenida"
                 name="welcomeText"
                 />
+
                 <InputEdit
-                label="Text for 1st slide."
+                label="Texto del 1er slide"
                 name="slide1Text"
                 />
-
-                <input type="file" className="form-control mt-2" onChange={(e) => {setFieldValue("slide1Data", e.currentTarget.files[0])}}/>
-                <div className="invalid-feedback">
-                  Please select a valid state.
-                </div>
-                {errors.slide1Data && touched.slide1Data ? <p className="text-danger">{errors.slide1Data}</p> : null}
+                <input type="file" className="form-control mt-2" accept="image/*" onChange={(e) => {setFieldValue("slide1Data", e.currentTarget.files[0])}}/>
+                {errors.slide1Data && touched.slide1Data ? <Alert variant="danger">{errors.slide1Data}</Alert> : null}
+                
                 <InputEdit
-                label="Text for 2nd slide."
+                label="Texto del 2do slide"
                 name="slide2Text"
                 />
-
-                <input type="file" className="form-control mt-2" onChange={(e) => {setFieldValue("slide2Data", e.currentTarget.files[0])}}/>
-                <div className="invalid-feedback">
-                  Please select a valid state.
-                </div>
-                {errors.slide2Data && touched.slide2Data? <p className="text-danger">{errors.slide2Data}</p> : null}
+                <input type="file" className="form-control mt-2" accept="image/*" onChange={(e) => {setFieldValue("slide2Data", e.currentTarget.files[0])}}/>
+                {errors.slide2Data && touched.slide2Data? <Alert variant="danger">{errors.slide2Data}</Alert> : null}
 
                 <InputEdit
-                label="Text for 3st slide."
+                label="Texto del 3er slide"
                 name="slide3Text"
                 />
-
-                <input type="file" className="form-control mt-2" onChange={(e) => {setFieldValue("slide3Data", e.currentTarget.files[0])}}/>
-                <div className="invalid-feedback">
-                  Please select a valid state.
-                </div>
-                {errors.slide3Data && touched.slide3Data? <p className="text-danger">{errors.slide3Data}</p> : null}
+                <input type="file" className="form-control mt-2" accept="image/*" onChange={(e) => {setFieldValue("slide3Data", e.currentTarget.files[0])}}/>
+                {errors.slide3Data && touched.slide3Data? <Alert variant="danger">{errors.slide3Data}</Alert> : null}
 
                 <div className="d-grid gap-2">
-                <Button className="mt-5" variant="outline-primary" size="lg" type="submit">Submit form</Button>
+                <Button className="mt-5" variant="outline-primary" size="lg" type="submit">Guardar cambios</Button>
                 </div>
             </FormikForm>
         </Container>
