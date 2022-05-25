@@ -1,30 +1,30 @@
 import React from 'react'
 import { useFormik } from "formik"
 import { Button } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { submitUserData } from '../app/actions'
 import { useSelector } from 'react-redux'
-import axios from 'axios'
+import { isMyUserLogged, submitUserData } from '../app/slice'
+import { useDispatch } from 'react-redux'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 export default function Login(){
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const res =  useSelector(state=> state.rootreducer)
+    const res =  useSelector(submitUserData)
 
-
-    // const handleSubmitUserData = (user)=> {
-    //     dispatch(submitUserData(user))
-       
-    //    console.log(res)
-        
-    // }
-
-    const REACT_APP_BACKEND = `http://localhost3001`
-
-    const handleSubmitUserData = async (user)=> {
-       const res = await axios.post(`${REACT_APP_BACKEND}/auth/login`, user)
-       
-       console.log(res)
-        
+    const handleSubmitUserData =  (user)=> {
+        dispatch(isMyUserLogged(user))
+        console.log(res)
+        const apiResponse = res.payload.USER_LOGIN.isUserLogged
+        if(apiResponse){
+            navigate('/')
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Datos Incorrectos',
+                text: 'Email o contraseña incorrectos',
+              })
+        }
     }
     
     const formik = useFormik({
@@ -45,7 +45,6 @@ export default function Login(){
 
             return errors
         },
-        //onSubmit: values => console.log(values) //aqui capturo los datos del formulario
         onSubmit: values => handleSubmitUserData(values)
     })
 
