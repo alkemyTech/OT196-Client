@@ -49,47 +49,47 @@ export default function Formcontact() {
         >
         {( {errors} ) => (
 			    <Form>
-				    <div class='form-inline'>
-					    <label class="sr-only" htmlFor="name">Nombre</label>
+				    <div className='form-inline'>
+					    <label className="sr-only" htmlFor="name">Nombre</label>
 					    <Field
-                class="form-control"
+                className="form-control"
 					    	type="text"
 					     	name="name"
 					    	placeholder="Ej: Samuel Jackson"
 					    	id="name"
 					    />
               <ErrorMessage name='name' component={() => (
-                <div class="alert alert-danger">{errors.name}</div>
+                <div className="alert alert-danger">{errors.name}</div>
               )}/>
 				    </div>
-				    <div class='form-group'>
-					    <label class="sr-only" htmlFor="email">Email de contacto</label>
+				    <div className='form-group'>
+					    <label className="sr-only" htmlFor="email">Email de contacto</label>
 					    <Field
-                class="form-control"
+                className="form-control"
 					    	type="text"
 					    	name="email"
 					    	placeholder="Ej: Samuel_Jackson@gmail.com"
 					    	id="email"
 				  	  />
               <ErrorMessage name='email' component={() => (
-                <div class="alert alert-danger">{errors.email}</div>
+                <div className="alert alert-danger">{errors.email}</div>
               )}/>
 			  	  </div>
-            <div class='form-group'>
-              <label class="sr-only">Mensaje</label>
+            <div className='form-group'>
+              <label className="sr-only">Mensaje</label>
               <Field
-                class="form-control"
+                className="form-control"
                 as='textarea'
                 name="message"
                 placeholder="Escribe tu mensaje aqui"
                 id="message"
               />
               <ErrorMessage name='message' component={() => (
-                <div class="alert alert-danger">{errors.message}</div>
+                <div className="alert alert-danger">{errors.message}</div>
               )}/>
             </div>
             <br/>
-				    <button class="btn btn-outline-dark" type="submit">Enviar</button>
+				    <button className="btn btn-outline-dark" type="submit">Enviar</button>
             {wasSent ? <div>Enviado con éxito</div> : ''}
 			    </Form>
         )}
