@@ -14,19 +14,22 @@ const loginSlice = createSlice({
     }
 })
 
-const REACT_APP_BACKEND = `http://localhost3001`
+const REACT_APP_BACKEND = `http://localhost3000`
 
 const isMyUserLogged = (user)=> {
     return async (dispatch)=> {
         try {
-           const response = await axios.post(`${REACT_APP_BACKEND}/auth/login`, user)          
+          const response = await axios.post(`${REACT_APP_BACKEND}/auth/login`, user)          
           dispatch(submitUserData(response.data))
 
         } catch (error) {
             console.log(error)
-        }
-      
+        }      
     }
+}
+
+export const deleteUser = async(email)=> {
+    await axios.delete(`${REACT_APP_BACKEND}/users/user/${email}`)
 }
 
 export  { loginSlice, isMyUserLogged }
