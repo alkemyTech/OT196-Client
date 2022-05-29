@@ -1,6 +1,6 @@
 import React from "react";
 import {Row} from "react-bootstrap";
-import  NewCard from "./NewCard"
+import  NewsCard from "./NewsCard"
 
 const apiData = [
   {
@@ -63,9 +63,9 @@ const apiData = [
 export default function ShowNews() {
   return (
     <>
-      <Row xs={1} sm={2} md={2} xl={4} className="g-4">
+      <Row xs={1} sm={2} md={2} xl={3} className="g-4">
             {apiData.map((e)=>(
-              <NewCard key={e.id} newData={e}/>
+              <NewsCard key={e.id} newData={e}/>
             ))}
         </Row>
     </>

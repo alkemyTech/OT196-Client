@@ -9,7 +9,7 @@ const formatDate = { weekday: 'short', year: 'numeric', month: 'numeric', day: '
 const firstToUpper = (str) => {return str.charAt(0).toUpperCase() + str.slice(1)}
 const dateFormat = (str) => {var date = new Date(str).toLocaleDateString('es-AR', formatDate);return firstToUpper(date)}
 
-export default function NewCard(props){
+export default function NewsCard(props){
     const {id, image, name, createdAt, type} = props.newData
     return(
         <Col>
