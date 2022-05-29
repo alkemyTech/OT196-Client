@@ -1,7 +1,7 @@
 import React from 'react'
 import {Row, Card, Col} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FaRegClock, FaScroll } from "react-icons/fa";
+import { FaRegClock, FaList } from "react-icons/fa";
 
 const fixImageFit = {objectFit: "cover"}
 const formatDate = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
@@ -17,7 +17,7 @@ export default function NewCard(props){
                 <Card border="primary" className="h-100">
                     <Row className="g-0 flex-fill">
                     <Col xs={5}>
-                        <div className="h-100 ratio ratio-1x1"><Card.Img className="img-fluid rounded-start" variant="top" src={image} style={fixImageFit}/></div>
+                        <div className="h-100 ratio ratio-1x1"><Card.Img variant="top" src={image} style={fixImageFit}/></div>
                     </Col>
                     <Col xs={7}>
                         <Card.Body className="d-flex flex-column">
@@ -27,7 +27,7 @@ export default function NewCard(props){
                     </Row>
                     <Card.Footer className="d-flex justify-content-between">
                     <small className="text-muted"><span className="align-top me-2"><FaRegClock/></span> {dateFormat(createdAt)}</small>
-                    <small className="text-muted"><span className="align-top me-2"><FaScroll/></span>{firstToUpper(type)}</small>
+                    <small className="text-muted"><span className="align-top me-2"><FaList/></span>{firstToUpper(type)}</small>
                     </Card.Footer>
                 </Card>
             </Link>
