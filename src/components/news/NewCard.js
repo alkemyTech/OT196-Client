@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { FaRegClock, FaList } from "react-icons/fa";
 
 const fixImageFit = {objectFit: "cover"}
+const fitTextStyle = {display: "-webkit-box", webkitLineClamp: "5", webkitBoxOrient: "vertical", overflow: "hidden"} // Allow to correct fit the text and add ellipsis
 const formatDate = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
-const formatTitle = (str) => {return str.length > 50 ? str.slice(0,50)+"..." : str}
 const firstToUpper = (str) => {return str.charAt(0).toUpperCase() + str.slice(1)}
 const dateFormat = (str) => {var date = new Date(str).toLocaleDateString('es-AR', formatDate);return firstToUpper(date)}
 
@@ -15,13 +15,13 @@ export default function NewCard(props){
         <Col>
             <Link to={`/news/${id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                 <Card border="primary" className="h-100">
-                    <Row className="g-0 flex-fill">
+                    <Row className="g-0 flex-fill flex-nowrap overflow-hidden" style={{maxHeight: "150px"}}>
                     <Col xs={5}>
                         <div className="h-100 ratio ratio-1x1"><Card.Img variant="top" src={image} style={fixImageFit}/></div>
                     </Col>
                     <Col xs={7}>
                         <Card.Body className="d-flex flex-column">
-                        <Card.Title>{formatTitle(name)}</Card.Title>
+                        <Card.Title style={fitTextStyle}>{(name)}</Card.Title>
                         </Card.Body> 
                     </Col>
                     </Row>
