@@ -38,7 +38,7 @@ const apiData = [
   },
   {
     id: 4,
-    name: "Otro titulo demo un poco mas largo que los demas",
+    name: "Otro titulo demo un poco mas largo que los demas muy largo demasiado pero ya supero los limites de lo permitido asi que tenemos problemas",
     content:
       "Pellentesque in laoreet tellus. Sed est magna, rutrum ut porta non, ornare vitae nibh.",
     categoryId: 1,
