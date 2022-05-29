@@ -1,6 +1,6 @@
 import React from "react";
 import {Row} from "react-bootstrap";
-import  NewsCard from "./NewsCard"
+import  NewsCard from "./NewsBox"
 
 const apiData = [
   {
