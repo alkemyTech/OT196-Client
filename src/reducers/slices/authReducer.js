@@ -23,14 +23,14 @@ const authSlice = createSlice({
     initialState: authState,
     reducers: {
         logIn: {
-            reducer:(state, action) => {
-            state.authData.name = action.payload.name;
-            state.authData.lastName = action.payload.lastName;
-            state.authData.email = action.payload.email;
-            state.authData.userRole = action.payload.userRole;            
-            state.authData.isAuthenticated = true;
-            state.isError = false;
-            state.message = 'Successfully logged';
+            reducer: (state, action) => {
+                state.authData.name = action.payload.name;
+                state.authData.lastName = action.payload.lastName;
+                state.authData.email = action.payload.email;
+                state.authData.userRole = action.payload.userRole;
+                state.authData.isAuthenticated = true;
+                state.isError = false;
+                state.message = 'Successfully logged';
             },
             prepare: (name, lastName, email, userRole) => {
                 return {
@@ -57,7 +57,7 @@ const authSlice = createSlice({
 
 // Export actions && reducers
 
-export const { logIn, logOut, logError } = authSlice.actions;
+export const { logIn, logOut } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
 

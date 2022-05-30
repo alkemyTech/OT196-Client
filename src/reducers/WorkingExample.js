@@ -10,17 +10,23 @@ function WorkingExample() {
     // Dispatch logIn and logOut depending on state.isAuthenticated.
     const dispatch = useDispatch();
 
-    function handleClick() {
-        dispatch(!state.authData.isAuthenticated ? logIn(state.authData.isAuthenticated) : logOut(!state.authData.isAuthenticated));
-        console.log(state.authData.isAuthenticated);
+    function handleClick(e) {
+        e.preventDefault();
+
+        dispatch(
+            !state.authData.isAuthenticated? 
+            logIn(state.authData.isAuthenticated) 
+            : 
+            logOut(!state.authData.isAuthenticated));
     }
     
-    // Click event to dispatch logIn and logOut.
+    // Click event to dispatch logIn and logOut for the example
     return (
         <div className="App">
             <header className="App-header">
-                <button onClick={handleClick}>LogIn or LogOut?</button>
-                {state.message}
+                <button onClick={handleClick}>LogIn / LogOut</button><hr/>
+                {state.message}<hr/>
+                {`isAuthenticated?  ${state.authData.isAuthenticated.toString()}`}
             </header>
         </div>
     );
