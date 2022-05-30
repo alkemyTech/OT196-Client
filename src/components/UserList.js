@@ -1,6 +1,8 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 
+import CustomModal from "./CustomModal";
+
 import { FaTrashAlt } from "react-icons/fa";
 
 // fake user (admin role) to test
@@ -26,6 +28,23 @@ const UserList = () => {
     }
   };
 
+  const updateProfile = async (input, property) => {
+    try {
+      // fetch url (api) with update
+
+      // fake update:
+      if (property === "firstName") {
+        console.log("New first name going to DB ", input);
+      } else if (property === "lastName") {
+        console.log("New last name going to DB ", input);
+      } else if (property === "email") {
+        console.log("New email going to DB ", input);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   React.useEffect(() => {
     getUsers();
   }, []);
@@ -46,14 +65,41 @@ const UserList = () => {
           {list &&
             list.map((user) => (
               <tr>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
-                <td>{user.email}</td>
-                <td>Edit</td>
+                <td>
+                  {user.firstName}{" "}
+                  <CustomModal
+                    text={"Edit first name"}
+                    item={user.firstName}
+                    btnLabel={"Edit"}
+                    onSubmitData={updateProfile}
+                    property={"firstName"}
+                  />
+                </td>
+                <td>
+                  {user.lastName}{" "}
+                  <CustomModal
+                    text={"Edit last name"}
+                    item={user.lastName}
+                    btnLabel={"Edit"}
+                    onSubmitData={updateProfile}
+                    property={"lastName"}
+                  />
+                </td>
+                <td>
+                  {user.email}{" "}
+                  <CustomModal
+                    text={"Edit email"}
+                    item={user.email}
+                    btnLabel={"Edit"}
+                    onSubmitData={updateProfile}
+                    property={"email"}
+                    inputClass="email"
+                  />
+                </td>
+                <td></td>
                 <td>
                   <Button
                     variant="danger"
-                    // swap the console.log to a function that deletes the user from the DB
                     onClick={() => console.log("DELETED")}
                   >
                     <FaTrashAlt /> Delete
