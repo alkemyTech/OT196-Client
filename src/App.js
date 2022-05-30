@@ -7,12 +7,15 @@ function App() {
   
   // Get state from store with useSelector and useDispatch.
   const state = useSelector(state => state.auth); // State with the name 'auth'
+
   const dispatch = useDispatch();
 
   // Dispatch logIn and logOut depending on state.isAuthenticated.
 
   function handleClick() {
-    dispatch(!state.isAuthenticated?logIn(!state.isAuthenticated): logOut(!state.isAuthenticated));
+    dispatch(!state.authData.isAuthenticated?logIn(state.authData.isAuthenticated): logOut(!state.authData.isAuthenticated));
+    console.log(state.authData.isAuthenticated);
+    
   }
 
   // Click event to dispatch logIn and logOut.
