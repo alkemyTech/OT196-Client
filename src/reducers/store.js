@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit"; // Use Create Action to condense Create actions and actions in one place.
-import { authReducer } from './slices/login';
+import { configureStore } from "@reduxjs/toolkit"; 
+import { authReducer } from './slices/authReducer';
 
 
 export default configureStore({
