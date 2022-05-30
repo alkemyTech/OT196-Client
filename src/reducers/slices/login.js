@@ -16,7 +16,7 @@ const authState = {
     message: '',
 };
 
-// Create Reducer,Actions and action's creators.
+// Create Reducer,Actions and action's creators with custom parameters
 
 const authSlice = createSlice({
     name: "auth",
@@ -43,19 +43,21 @@ const authSlice = createSlice({
                 };
             },
         },
-        // logOut: (state) => {
-        //     state.authData.name = null;
-        //     state.authData.isAuthenticated = false;
-        //     state.isError = false;
-        //     state.message = 'Successfully logged out';
-        // },
+        logOut: (state) => {
+            state.authData.name = null;
+            state.authData.lastName = null;
+            state.authData.email = null;
+            state.authData.userRole = null;
+            state.authData.isAuthenticated = false;
+            state.isError = false;
+            state.message = 'Successfully logged out';
+        },
     },
 });
 
 // Export actions && reducers
 
 export const { logIn, logOut, logError } = authSlice.actions;
-console.log(logIn('Juan', 'Perez', 'pedrobraude@gmail.com', 'ADMIN'))
 
 export const authReducer = authSlice.reducer;
 
