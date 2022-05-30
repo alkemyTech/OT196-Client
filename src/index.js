@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store,{persistor} from './app/store';
+import store from './reducers/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import PersistGate from 'react-persist/integration/react';
 
 ReactDOM.render(
   <React.StrictMode>

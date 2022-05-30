@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { logIn, logOut } from './app/store';
+import { logIn, logOut } from './reducers/slices/login';
 
 function App() {
   
