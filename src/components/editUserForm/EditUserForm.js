@@ -3,33 +3,32 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 
 export default function EditUserForm() {
 
-  const [user, setUser] = useState() 
+  const [user, setUser] = useState()
 
   const REACT_APP_BACKEND = `http://localhost:3001`
-  
-  axios 
-  .get(`${REACT_APP_BACKEND}/users`) 
-  .then(res => {
-      setUser(res.data)
-  })
-  
-  function submitHandler(e){
 
-  }
-
-  console.log(user)
+  useEffect( () => {    
+    async function getUsers(){
+      const res = await axios
+        .get(`${REACT_APP_BACKEND}/users`)
+        .then(res => {
+          setUser(res.data)})
+    }
+    getUsers()
+  },[REACT_APP_BACKEND])
 
   
 
 
+      
 
-  
+
   return (
     <Form >
       {/* <Form.Group className="mb-3" controlId="formBasicSelect">
@@ -40,7 +39,7 @@ export default function EditUserForm() {
           <option value="3">{users[2].name}</option>
         </Form.Select>
       </Form.Group> */}
-      <Form.Group className="mb-3 "  controlId="formBasicName">
+      <Form.Group className="mb-3 " controlId="formBasicName">
         <Form.Label>Name</Form.Label>
         <Form.Control className='text-center' type="text" placeholder="Ingresá tu nombre" />
       </Form.Group>
@@ -55,7 +54,7 @@ export default function EditUserForm() {
         <Form.Control className='text-center' type="text" placeholder="Elegí tu rol" />
       </Form.Group>
 
-      <Button variant="primary" type="submit" onClick={submitHandler}>
+      <Button variant="primary" type="submit" >
         Actualizar
       </Button>
     </Form>
