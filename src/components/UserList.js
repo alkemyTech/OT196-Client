@@ -45,32 +45,35 @@ const UserList = () => {
     }
   };
 
+  const editBtn = "Edit";
+  //   starting point for the value that will be unique key for each child in the list
+  let rowId = 0;
+
   React.useEffect(() => {
     getUsers();
   }, []);
 
   return (
     <>
-      <Table borderless hover>
+      <Table borderless hover responsive>
         <thead>
           <tr>
             <th>First name</th>
             <th>Last name</th>
             <th>Email</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           {list &&
             list.map((user) => (
-              <tr>
+              <tr key={rowId++}>
                 <td>
                   {user.firstName}{" "}
                   <CustomModal
                     text={"Edit first name"}
                     item={user.firstName}
-                    btnLabel={"Edit"}
+                    btnLabel={editBtn}
                     onSubmitData={updateProfile}
                     property={"firstName"}
                   />
@@ -80,7 +83,7 @@ const UserList = () => {
                   <CustomModal
                     text={"Edit last name"}
                     item={user.lastName}
-                    btnLabel={"Edit"}
+                    btnLabel={editBtn}
                     onSubmitData={updateProfile}
                     property={"lastName"}
                   />
@@ -90,13 +93,12 @@ const UserList = () => {
                   <CustomModal
                     text={"Edit email"}
                     item={user.email}
-                    btnLabel={"Edit"}
+                    btnLabel={editBtn}
                     onSubmitData={updateProfile}
                     property={"email"}
                     inputClass="email"
                   />
                 </td>
-                <td></td>
                 <td>
                   <Button
                     variant="danger"
