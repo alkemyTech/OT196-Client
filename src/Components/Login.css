@@ -1,0 +1,46 @@
+html{
+    
+}
+
+.login{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 80%;
+    height: 10%;
+}
+
+.img-hands{
+    height: 100%;
+    width: 100%; 
+    max-height: 85vh;
+}
+
+.input{
+    border-radius: 8px;
+    margin: 0.5rem;
+    height: 3rem;
+
+}
+
+.btn-login{
+    background-color: red;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    
+}
+
+.registro-login{
+    color: red; 
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.section-1-login{
+    margin-top: 15%;
+}
+
+.span-login{
+    margin-top: 30%;
+    font-size: 1.3em;
+    font-family: Arial, Helvetica, sans-serif;
+}

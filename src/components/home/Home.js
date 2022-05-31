@@ -20,10 +20,10 @@ export default function Home() {
 
   return (
     <div className="container-fluid">
+      <WelcomeTitle text={data.welcome} />
       <div className="container-fluid">
         <SliderComponent />
       </div>
-      <WelcomeTitle text={data.welcome} />
       <div className="news-container">
         <div className="news-title my-4 py-4">
 
