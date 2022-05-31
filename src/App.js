@@ -5,17 +5,17 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
-import Home from './components/home/Home';
+import Home from './Components/home/Home';
 import Header from './Components/header';
 import Login from './Components/Login';
-import Footer from './components/footer/Footer';
+import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
 
 function App() {
   return (
     <div className="App">
       
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <Header />
         <Routes>
           <Route index element = { <Home /> } /> 
@@ -23,7 +23,7 @@ function App() {
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </div>
   );
 }
