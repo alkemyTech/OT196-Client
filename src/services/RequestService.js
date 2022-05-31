@@ -2,24 +2,38 @@ import axios from "axios"
 
 async function getRequest(link) {
 
-  const jwtToken = window.localStorage.getItem("token")
+  let jwtToken = ''
+  let header = null
+
+  if(window.localStorage.getItem("token")) {
+    jwtToken = window.localStorage.getItem("token")
+    header = { Authorization: `Bearer ${jwtToken}` }
+  }
 
   let response = await axios.get(link, {
-    headers: { Authorization: `Bearer ${jwtToken}` }
+    headers: header
   })
 
   return response.data
 }
 
 async function postRequest(link, values) {
-  const jwtToken = window.localStorage.getItem("token")
+  
+  let jwtToken = ''
+  let header = null
+  
+  if(window.localStorage.getItem("token")) {
+    jwtToken = window.localStorage.getItem("token")
+    header = { Authorization: `Bearer ${jwtToken}` }
+  }
+
   let response = await axios.post(
     link,
     {
       ...values,
       token: jwtToken
     }, {
-    headers: { Authorization: `Bearer ${jwtToken}` }
+    headers: header,
   }
   )
   return response.data
