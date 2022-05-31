@@ -1,11 +1,20 @@
 import React from 'react'
 import { useFormik } from "formik"
 import { Button } from "react-bootstrap"
+import './EditOrganizationData.css'
+import Swal from 'sweetalert2'
+import { useDispatch } from 'react-redux'
+import { submitUpdateDataOrganization } from '../../app/slice'
 
 export default function EditOrganizationData(){
+    const dispatch = useDispatch()
 
-    const handleSubmitData = (data)=> {       
-        console.log(data)
+    const handleSubmitData = (data)=> {         
+         dispatch(submitUpdateDataOrganization(data))
+         Swal.fire({
+            icon: 'success',
+            text: 'la base de datos se ha actualizado con éxito'
+        })
     }
 
     const formik = useFormik({
@@ -27,10 +36,10 @@ export default function EditOrganizationData(){
     })
 
     return(
-        <section> 
+        <section className='editOrganizationData_main'> 
             <h1> A continuacion puedes editar el nombre y el logo de la organización: </h1>
             <form onSubmit={formik.handleSubmit} 
-            style={{border: 'solid 1px black'}}
+            className='editOrganizationData_container'            
             >
                
                 <input name="name"
@@ -39,8 +48,8 @@ export default function EditOrganizationData(){
                 onBlur={formik.handleBlur} 
                 onChange={formik.handleChange}
                 value= {formik.values.name}   
-                key={1}      
-                style={{width: '80%'}} 
+                key={1}
+                className='editOrganizationData_input'            
                 /> <br/> 
                 {formik.errors.name ? <div style={{color: 'red'}}> {formik.errors.name} </div> : null}
                 <label>  </label>                
@@ -50,8 +59,8 @@ export default function EditOrganizationData(){
                 onBlur={formik.handleBlur} 
                 onChange={formik.handleChange}
                 value= {formik.values.imagen} 
-                key={2}  
-                style={{width: '80%'}}         
+                key={2}     
+                className='editOrganizationData_input'           
                 /> <br/>
                 {formik.errors.imagen ? <div style={{color: 'red'}}> {formik.errors.imagen} </div> : null}
                 <Button  

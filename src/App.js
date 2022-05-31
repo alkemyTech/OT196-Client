@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter,
+  //BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -10,6 +10,7 @@ import Header from './Components/header';
 import Login from './Components/Login';
 import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
+import EditOrganizationData from './Components/editOrganizationData/EditOrganizationData';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
+          <Route path= '/backoffice/edit-organization' element = { <EditOrganizationData /> } />
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>

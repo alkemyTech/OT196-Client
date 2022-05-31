@@ -29,8 +29,19 @@ const isMyUserLogged = (user)=> {
     }
 }
 
+const submitUpdateDataOrganization = (dataOrganization)=> {
+    return dispatch=> {
+        try {
+            //aqui va la conexion cuando el endpoint este listo 
+            console.log(dataOrganization)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 
-export  { loginSlice, isMyUserLogged }
+
+export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
 export const { submitUserData } = loginSlice.actions
 export default loginSlice.reducer

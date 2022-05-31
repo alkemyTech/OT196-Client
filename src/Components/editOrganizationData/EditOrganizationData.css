@@ -1,0 +1,18 @@
+.editOrganizationData_main{
+    height: 25rem;
+}
+.editOrganizationData_container{
+    border: solid 2px black;
+    width: 50%;
+    margin-left: 25%;
+    height: 50%;
+    box-shadow: 1px 2px 5px rgb(0, 0 , 0, 0.3);
+    color: black;
+    background-color: rgb(227, 229, 229);
+    margin-top: 5em;
+}
+.editOrganizationData_input{
+    margin: 1rem;
+    width: 80%;
+}
+
