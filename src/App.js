@@ -5,16 +5,24 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
+import Header from './Components/header';
+import Login from './Components/Login';
 import Footer from './components/footer/Footer';
+import NoMatchRoute from './Components/noMatchRoute';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
-
+    <div className="App">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route index element = { <Counter /> } /> 
+          <Route path='/login' element = { <Login /> } /> 
+          <Route path='*' element = { <NoMatchRoute /> } /> 
+        </Routes>
+        <Footer/>
+      </BrowserRouter>
+    </div>
   );
 }
 
