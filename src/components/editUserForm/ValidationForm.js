@@ -7,6 +7,6 @@ export default function Validation(state,setState,event){
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    }
+    } 
     setState(true);
-}
+  }

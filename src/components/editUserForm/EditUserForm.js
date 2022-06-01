@@ -5,9 +5,8 @@ import axios from 'axios'
 import Validation from './ValidationForm'
 import { useState, useEffect } from "react";
 
-
 export default function EditUserForm() {
-
+  // States for validation
   const [validated, setValidated] = useState(false);
 
   // States for Get User and for the Inputs.
@@ -21,22 +20,6 @@ export default function EditUserForm() {
   // Temporary Backend PORT
   const REACT_APP_BACKEND = `http://localhost:3001`
 
-  // Axios Get User
-
-  useEffect(() => {
-    async function getUsers() {
-      // eslint-disable-next-line
-      const res = await axios
-        .get(`${REACT_APP_BACKEND}/users/2`)
-        .then(res => {
-          return (res.data)
-        })
-        .then(response => { setUser(response) })
-    }
-    getUsers()
-
-  }, [REACT_APP_BACKEND])
-
   // Inputs updates
   function handleChange(e) {
     e.preventDefault()
@@ -48,28 +31,40 @@ export default function EditUserForm() {
       }
     })
   }
-
-  // PUT && Submit Handler
-
+  // PUT && Submit Handler. For test put a number instead of :id
   function onSubmit(event) {
     event.preventDefault()
-    if (validated === false) {
+  
       Validation(validated,setValidated,event) // Validation Form
-    } else {
-      axios
-        .put(`${REACT_APP_BACKEND}/users/2`, { firstName: userData.firstName, lastName: userData.lastName, roleId: userData.roleId })
-        .then(res => {
-          console.log('success')
-        })
-        .catch((error) => { console.log(error) })
+      
+        axios
+          //  PENDING EXACT ROUTER BY  OT196-91 OR OT196-129
+          .put(`${REACT_APP_BACKEND}/users/1`, { firstName: userData.firstName, lastName: userData.lastName, roleId: userData.roleId })
+          .then(res => {
+            console.log('success')
+          })
+          .catch((error) => { console.log(error) })
+      
 
-    }
-    
-    
   }
 
+  // Example GET User for placeholders. For test put a number instead of :id
+    useEffect(() => {
+      async function getUsers() {
+        // eslint-disable-next-line
+        const res = await axios
+          .get(`${REACT_APP_BACKEND}/users/2`)
+          .then(res => {
+            return (res.data)
+          })
+          .then(response => { setUser(response) })
+      }
+      getUsers()
+  
+    }, [REACT_APP_BACKEND])
+  
   return (
-    <Form noValidate validated={validated} onSubmit={onSubmit}>
+    <Form  className= 'm-4 p-4 border' noValidate validated={validated} onSubmit={onSubmit}>
       <Form.Group className="mb-3 " controlId="formBasicName">
         <Form.Label>Name</Form.Label>
         <Form.Control
