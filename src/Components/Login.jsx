@@ -16,7 +16,7 @@ export default function Login(){
 
     const handleSubmitUserData =  (user)=> {
         dispatch(isMyUserLogged(user))
-        console.log(res)
+        console.log(111, res)
         const apiResponse = res.payload.USER_LOGIN.isUserLogged
         if(apiResponse){
             navigate('/')

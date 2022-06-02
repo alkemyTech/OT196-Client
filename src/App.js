@@ -1,23 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import './App.css';
+import Home from './components/home/Home';
 import Header from './Components/header';
-import { Route, Routes } from 'react-router-dom';
-import NoMatchRoute from './Components/noMatchRoute';
 import Login from './Components/Login';
+import Footer from './components/footer/Footer';
+import NoMatchRoute from './Components/noMatchRoute';
 
 function App() {
   return (
     <div className="App">
-       <Header />
-
-      <Routes>
-        <Route index element = { <Counter /> } /> 
-        <Route path='/login' element = { <Login /> } /> 
-        <Route path='*' element = { <NoMatchRoute /> } /> 
-      </Routes>
-   
+      
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route index element = { <Home /> } /> 
+          <Route path='/login' element = { <Login /> } /> 
+          <Route path='*' element = { <NoMatchRoute /> } /> 
+        </Routes>
+        <Footer/>
+      </BrowserRouter>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function Header(){
 
 
     return(
-        <React.Fragment> 
+        <> 
                
                <Navbar bg="light" variant="ligth" style={{ boxShadow: '1px 2px 5px rgb(0, 0 , 0, 0.3)', color: 'black'}}>
                     <Container>
@@ -43,6 +43,6 @@ export default function Header(){
                     </Nav>
                     </Container>
                 </Navbar>
-        </React.Fragment>
+        </>
     )
 }
