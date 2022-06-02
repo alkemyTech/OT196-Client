@@ -10,6 +10,7 @@ import Header from './Components/header';
 import Login from './Components/Login';
 import Footer from './components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
+import ScreenTestimonials from './pages/ScreenTestimony';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
-          <Route path='*' element = { <NoMatchRoute /> } /> 
+          <Route path='*' element = { <NoMatchRoute /> } />
+          <Route path='/backoffice/testimonials' element = { <ScreenTestimonials /> } />
         </Routes>
         <Footer/>
       </BrowserRouter>
