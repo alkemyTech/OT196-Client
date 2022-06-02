@@ -1,4 +1,6 @@
 import React from 'react';
+import './App.css';
+import WorkingExample from './reducers/WorkingExample';
 import {
   BrowserRouter,
   Routes,
@@ -12,9 +14,11 @@ import Footer from './components/footer/Footer';
 import NoMatchRoute from './components/noMatchRoute';
 
 function App() {
+  
   return (
     <div className="App">      
       {/* <BrowserRouter> */}
+<WorkingExample />
         <Header />
         <Routes>
           <Route index element = { <Home /> } /> 
