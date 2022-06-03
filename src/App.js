@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import {
   BrowserRouter,
   Routes,
@@ -10,12 +11,14 @@ import Header from './Components/header';
 import Login from './Components/Login';
 import EditUserForm from './components/editUserForm/EditUserForm';
 import Footer from './components/footer/Footer';
-import NoMatchRoute from './Components/noMatchRoute';
+import NoMatchRoute from './components/noMatchRoute';
 
 
 function App() {
+  
   return (
     <div className="App">      
+      {/* <BrowserRouter> */}
         <Header />
         <Routes>
           <Route path="/" element = { <Home /> } /> 
@@ -24,7 +27,7 @@ function App() {
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>
-
+      {/* </BrowserRouter> */}
     </div>
   );
 }
