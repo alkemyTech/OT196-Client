@@ -10,7 +10,7 @@ export default function EditOrganizationData(){
     const dispatch = useDispatch()
 
     const handleSubmitData = (data)=> {         
-         dispatch(submitUpdateDataOrganization(data))
+         const result = dispatch(submitUpdateDataOrganization(data))
          Swal.fire({
             icon: 'success',
             text: 'la base de datos se ha actualizado con éxito'
