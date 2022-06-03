@@ -26,7 +26,6 @@ function App() {
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
           <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
-          <Route path = 'activities/activitiescheck' element = { <ActForm /> } />
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { errorAlert } from "../setupAlerts";
 
 const ActForm = ({activitiesObject}) => {
@@ -80,7 +80,7 @@ const ActForm = ({activitiesObject}) => {
                     />
                     <label className="sr-only">Contenido</label>
                     <CKEditor
-                     //   editor={ ClassicEditor }
+                        editor={ ClassicEditor }
                         data={content}
                         id='content'
                         onChange={handleCkeditorState}
@@ -92,4 +92,4 @@ const ActForm = ({activitiesObject}) => {
     )    
 }
 
-// export default ActForm;
+ export default ActForm;
