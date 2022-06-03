@@ -1,5 +1,8 @@
 import React from 'react';
-import {  
+import './App.css';
+import WorkingExample from './reducers/WorkingExample';
+import {
+  BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -11,16 +14,19 @@ import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
 import ActivityList from './Components/activities/ActivityList';
 
+
 function App() {
+  
   return (
-    <div className="App">
-      
+    <div className="App">      
       {/* <BrowserRouter> */}
+{/* <WorkingExample /> */}
         <Header />
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
           <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
+          <Route path = 'activities/activitiescheck' element = { <ActForm /> } />
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>

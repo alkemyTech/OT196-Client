@@ -4,13 +4,13 @@ import './ActivityList.css'
 import ActivityCard from './ActivityCard'
 
 export default function ActivityList(){
-   const activitiesToShow = hardcodeActivities
-   // const activitiesToShow = undefined
+  const activitiesToShow = hardcodeActivities
+    // const activitiesToShow = []
 
     return(
         <div className='container_main'>
             {
-                activitiesToShow ?
+                activitiesToShow.length ?
                 activitiesToShow.map(x=> {
                     return <ActivityCard  
                     key={x.id}
