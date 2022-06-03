@@ -3,17 +3,17 @@ import { FaTimes, FaRegEdit } from "react-icons/fa";
 
 const ScreenTestimonials = () => {
     /* THE FOLLOWING COMMENTED LINES ARE THE CALLBACK FOR TESTIMONIALS, UNCOMMENT AND COMPLETE ONCE THE ENDPOINT IS CREATED */
-
+    
     // const url = "http://localhost:3000/";
     // const [testimonials, setTestimonials] = useState();
-    // const fetchApi = async () => {
-    //   const response = await fetch(url);
+    // const axiosApi = async () => {
+    //   const response = await axios(url);
     //   const responseJSON = await response.json();
     //   setTestimonials(responseJSON);
     // };
 
     // useEffect(() => {
-    //     fetchApi().catch(null);
+    //     axiosApi().catch(null);
     // }, [testimonials]);
 
     //This array simulate the database, dont forget delete it later...
