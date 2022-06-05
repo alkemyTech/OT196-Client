@@ -12,6 +12,7 @@ import Login from './Components/Login';
 import EditUserForm from './components/editUserForm/EditUserForm';
 import Footer from './components/footer/Footer';
 import NoMatchRoute from './components/noMatchRoute';
+import ContactForm from './components/formContact'
 
 
 function App() {
@@ -23,8 +24,9 @@ function App() {
         <Routes>
           <Route path="/" element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
+          <Route path='/form' element = { <ContactForm /> } /> 
           <Route path='/edit-user-form' element = { <EditUserForm /> } /> 
-          <Route path='*' element = { <NoMatchRoute /> } /> 
+          {/* <Route path='*' element = { <NoMatchRoute /> } />  */}
         </Routes>
         <Footer/>
       {/* </BrowserRouter> */}

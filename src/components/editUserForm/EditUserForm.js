@@ -39,7 +39,7 @@ export default function EditUserForm() {
       
         axios
           //  PENDING EXACT ROUTER BY  OT196-91 OR OT196-129
-          .put(`${REACT_APP_BACKEND}/users/1`, { firstName: userData.firstName, lastName: userData.lastName, roleId: userData.roleId })
+          .put(`${REACT_APP_BACKEND}/users/:id`, { firstName: userData.firstName, lastName: userData.lastName, roleId: userData.roleId })
           .then(res => {
             console.log('success')
           })
@@ -53,7 +53,7 @@ export default function EditUserForm() {
       async function getUsers() {
         // eslint-disable-next-line
         const res = await axios
-          .get(`${REACT_APP_BACKEND}/users/2`)
+          .get(`${REACT_APP_BACKEND}/users/:id`)
           .then(res => {
             return (res.data)
           })
