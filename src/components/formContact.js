@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.css';
+import {axios} from 'axios';
 
 
 export default function Formcontact() {
+  // Temporary Backend PORT
+  const REACT_APP_BACKEND = `http://localhost:3001`
+
   const [wasSent, setWasSent] = useState(false);
   const contactSchema = yup.object().shape({
     name: yup.string()
@@ -34,9 +38,18 @@ export default function Formcontact() {
         //Validación del schema creado con yup
         validationSchema= {contactSchema}
 
-        //Función para enviar los valores al endpoint(cuando este exista)
+                //Función para enviar los valores al endpoint(cuando este exista)
         onSubmit={(values, actions) => {
           setWasSent(true)
+          try {
+            axios.post(`${REACT_APP_BACKEND}/contacts`, {
+              name: values.name,
+              email: values.email,
+              message: values.message
+            })            
+          } catch (error) {
+            console.log(error)
+          }
           setTimeout(() => setWasSent(false), 5000)
           actions.resetForm({
             values: {
