@@ -12,6 +12,7 @@ import Header from './Components/header';
 import Login from './Components/Login';
 import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
+import ContactList from './Components/contactList';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
+          <Route path=' /backoffice/contacts' element = { <ContactList /> } />
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>
