@@ -7,22 +7,25 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
-import Home from './components/home/Home';
-import Header from './components/header';
-import Login from './components/Login';
-import Footer from './components/footer/Footer';
-import NoMatchRoute from './components/noMatchRoute';
+import Home from './Components/home/Home';
+import Header from './Components/header';
+import Login from './Components/Login';
+import Footer from './Components/footer/Footer';
+import NoMatchRoute from './Components/noMatchRoute';
+import ActivityList from './Components/activities/ActivityList';
+
 
 function App() {
   
   return (
     <div className="App">      
       {/* <BrowserRouter> */}
-<WorkingExample />
+{/* <WorkingExample /> */}
         <Header />
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
+          <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>
