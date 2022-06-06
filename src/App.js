@@ -2,19 +2,18 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./Components/home/Home";
-import Header from "./Components/header";
-import Login from "./Components/Login";
-import Footer from "./Components/footer/Footer";
-import NoMatchRoute from "./Components/noMatchRoute";
-import ActivityList from "./Components/activities/ActivityList";
+import Home from "./components/home/Home";
+import Header from "./components/header";
+import Login from "./components/Login";
+import Footer from "./components/footer/Footer";
+import NoMatchRoute from "./components/noMatchRoute";
+import ActivityList from "./components/activities/ActivityList";
 import ActivityDetails from "./pages/ActivityDetails";
 
 function App() {
   return (
     <div className="App">
       {/* <BrowserRouter> */}
-      {/* <WorkingExample /> */}
       <Header />
       <Routes>
         <Route index element={<Home />} />
