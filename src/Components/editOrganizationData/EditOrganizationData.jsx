@@ -5,16 +5,24 @@ import './EditOrganizationData.css'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux'
 import { submitUpdateDataOrganization } from '../../app/slice'
+import axios, { AxiosError } from 'axios'
 
 export default function EditOrganizationData(){
     const dispatch = useDispatch()
 
-    const handleSubmitData = (data)=> {         
-         const result = dispatch(submitUpdateDataOrganization(data))
-         Swal.fire({
+    const handleSubmitData =  (data)=> {    
+        dispatch(submitUpdateDataOrganization(data))
+       .then(()=> {          
+            Swal.fire({
             icon: 'success',
             text: 'la base de datos se ha actualizado con éxito'
         })
+       }).catch(()=> {
+             Swal.fire({
+                icon: 'error',
+                text: 'Error en la peticion HTTP'
+               }) 
+       })
     }
 
     const formik = useFormik({

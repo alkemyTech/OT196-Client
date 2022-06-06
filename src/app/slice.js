@@ -27,13 +27,12 @@ const isMyUserLogged = (user)=> {
     }
 }
 
-const submitUpdateDataOrganization = (dataOrganization)=> {
-    return dispatch=> {
+const submitUpdateDataOrganization =  (dataOrganization)=> {
+    return async dispatch=> {
         try {
-            //aqui va la conexion cuando el endpoint este listo 
-            console.log(dataOrganization)
+            //aqui va la conexion cuando el endpoint este listo       
         } catch (error) {
-            console.log(error)
+            throw new Error(error)            
         }
     }
 }
