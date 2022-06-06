@@ -4,8 +4,7 @@ import './ActivityList.css'
 import ActivityCard from './ActivityCard'
 
 export default function ActivityList(){
-//   const activitiesToShow = hardcodeActivities
-const activitiesToShow = undefined
+  const activitiesToShow = hardcodeActivities
 
     return(
         <div className='container_main'>
