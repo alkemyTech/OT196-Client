@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">      
       {/* <BrowserRouter> */}
-{/* <WorkingExample /> */}
+<WorkingExample />
         <Header />
         <Routes>
           <Route index element = { <Home /> } /> 
