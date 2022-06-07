@@ -13,7 +13,7 @@ export default function NewsCard(props){
     const {id, image, name, createdAt, type} = props.newData
     return(
         <Col>
-            <Link to={`/news/${id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+            <Link to={`/novedades/${id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                 <Card border="primary" className="h-100">
                     <Row className="g-0 flex-fill flex-nowrap overflow-hidden" style={{maxHeight: "150px"}}>
                     <Col xs={5}>
