@@ -8,37 +8,63 @@ import { editTestimonialForm, submitTestimonialForm } from "../../app/slice";
 import Swal from "sweetalert2";
 
 export default function TestimonialForm({ existingTestimony }){
+    //FOR USING THE HOOK USEDISPATCH IN THE BELOW 
     const dispatch = useDispatch()
 
+    //WITH THIS STATES YOU CAN CAPTURE THE DATA OF THE NAME OF THE TESTIMONIAL AUTHOR, THE CONTENT AND IMAGE
     const [name, setName] = useState('');
     const [content, setContent] = useState('');
+    const [img, setImg] = useState('')
 
+    //FUNCTION FOR CAPTURE THE NAME IN THE LOCAL STATE 
     const handleName = (e) => {
         const target = e.target.value       
         setName(target);
     }
     
+    //FUNTION FOR CAPTURE THE CONTENT IN THE LOCAL STATE 
     const handleCkeditorState = (event, editor) =>{
         const data = editor.getData();
         setContent(data);
     }
 
+    //FUNCTION FOR CAPTURE THE IMAGE IN THE LOCAL STATE 
+    const handleImg = (e) => {
+        const target = e.target.value       
+        setImg(target);
+    }
+
+    //FUNCTION FOR CALLING THE ACTION FOR CONNECT WITH THE BACKEND 
+    //THIS FUNCTION CALL ONE OR OTHER ENDPOINT IF THE CASE IS EDIT AN 
+    //EXISTING TESTIMONIAL OR IS NEW 
     const handleSubmit = e=> {
-        e.preventDefault()
-        try {
+        e.preventDefault()      
             !existingTestimony ? 
-            dispatch(submitTestimonialForm({name, content}))
-            : 
-            dispatch(editTestimonialForm( {name, content, id: existingTestimony.id} ))
-            .then(x=> {
+            dispatch(submitTestimonialForm({ name, content, img }))
+            .then(()=> {
                 Swal.fire({
                     icon: 'sucess',
-                    text: `${x} too cool`,
+                    text: `Has modificado con éxito la base de datos`,
+                })
+            }).catch(()=> {
+                 Swal.fire({
+                icon: 'error',
+                text: `Error en la petición HTTP`,
                 })
             })
-        } catch (error) {
-            console.log(error)
-        }
+            : 
+           dispatch(editTestimonialForm( { name, content, img, id: existingTestimony.id } ))
+            .then(()=> {
+                Swal.fire({
+                    icon: 'sucess',
+                    text: `Has modificado con éxito la base de datos`,
+                })
+            }).catch(()=> {
+                 Swal.fire({
+                icon: 'error',
+                text: `Error en la petición HTTP`,
+                })
+            })      
     }
 
     return(
@@ -46,11 +72,11 @@ export default function TestimonialForm({ existingTestimony }){
                 <form className='form-inline col-6'>
                     <label className="sr-only">Nombre</label>
                     <input
-                        type='text'
-                        className="form-control"
+                        type='text'                        
                         id='name'
                         onChange={handleName}
                         value={name}
+                        placeholder='Escribe tu nombre'
                     />
                     <label className="sr-only">Contenido</label>
                     <CKEditor
@@ -59,6 +85,13 @@ export default function TestimonialForm({ existingTestimony }){
                         id='content'
                         onChange={handleCkeditorState}
                     />
+                    <input
+                    type='text'                  
+                        id='img'
+                        onChange={handleImg}
+                        value={img}
+                        placeholder='Escribe la URL de tu imagen'
+                        />
                     <button onClick={handleSubmit} className="btn btn-primary" type="submit">Enviar</button>
                     
                 </form>

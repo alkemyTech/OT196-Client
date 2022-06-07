@@ -37,24 +37,24 @@ export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID
     }    
 }
 
+//FUNCTION FOR EDIT A TESTIMONIAL EXISTING 
 export const editTestimonialForm = (existingTestimony)=> {
     return async function(dispatch){
         try {
-          //  await axios.patch(`${REACT_APP_BACKEND}/testimonials/${existingTestimony.id}`)
-          console.log('estoy mandando a llamar a ', `${REACT_APP_BACKEND}/testimonials/${existingTestimony.id}`)
+           await axios.patch(`${REACT_APP_BACKEND}/testimonials/${existingTestimony.id}`, existingTestimony)
         } catch (error) {
-            console.log(error)
+            throw new Error(error)
         }
     }
 }
 
+//FUNCTION FOR CREATE A NEW TESTIMONIAL 
 export const submitTestimonialForm = (testimony)=> {
 return async function(dispatch){
     try {
-        // await axios.post(`${REACT_APP_BACKEND}/testimonials`, testimony)
-        console.log('estoy mandando a llamar a ',  `${REACT_APP_BACKEND}/testimonials con ${testimony}`)
+       await axios.post(`${REACT_APP_BACKEND}/testimonials`, testimony)
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 }

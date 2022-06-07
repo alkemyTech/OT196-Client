@@ -12,14 +12,8 @@ import Header from './Components/header';
 import Login from './Components/Login';
 import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
-import TestimonialForm from './Components/Testimonials/TestimonialForm';
 
 function App() {
-  const existingTestimony = {
-    name: 'mi testimonio ', 
-    content: 'mi contenido ', 
-    id: 12,
-  }
 
   return (
     <div className="App">      
@@ -29,10 +23,7 @@ function App() {
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
-          <Route path='*' element = { <NoMatchRoute /> } /> 
-          <Route path='/element/testimonial' element = { <TestimonialForm 
-          existingTestimony={existingTestimony}
-          /> } />
+          <Route path='*' element = { <NoMatchRoute /> } />       
         </Routes>
         <Footer/>
       {/* </BrowserRouter> */}
