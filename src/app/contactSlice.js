@@ -21,7 +21,9 @@ const contactSlice = createSlice({
 export const getContacts = ()=> {
     return async function(dispatch){
         try {
-          const response = await axios(`${REACT_APP_BACKEND_URL}/users/`)
+             //YOU MUST UPDATE THE ROUTE FOR GET THE DATA, 
+             //FOR TEST THE FEATURE I USE THE GET USERS ENDPOINT 
+          const response = await axios(`${REACT_APP_BACKEND_URL}/users/`)         
           dispatch(loadContacts(response.data))
         } catch (error) {
             console.log(error)
