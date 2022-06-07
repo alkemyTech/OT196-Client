@@ -1,65 +1,48 @@
-import React from "react";
-import { FaTimes, FaRegEdit } from "react-icons/fa";
+import axios from "axios";
+import React, { useState, useEffect} from "react";
+import TestimonyItem from "../components/itemTestimonials";
 
 const ScreenTestimonials = () => {
-    /* THE FOLLOWING COMMENTED LINES ARE THE CALLBACK FOR TESTIMONIALS, UNCOMMENT AND COMPLETE ONCE THE ENDPOINT IS CREATED */
-    
-    // const url = "http://localhost:3000/";
-    // const [testimonials, setTestimonials] = useState();
-    // const axiosApi = async () => {
-    //   const response = await axios(url);
-    //   const responseJSON = await response.json();
-    //   setTestimonials(responseJSON);
-    // };
+    const url = "http://localhost:3000/testimonials";
+    const [testimonials, setTestimonials] = useState();
+    const jwtExample = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o';
+  
+    //Callback for testimonials data
+    const axiosApi = async () => {
+        const response = await axios.get(url,{ headers: {
+            Authorization: "Bearer " + jwtExample,
+        }});
+        setTestimonials(response.data);
+    };
+  
+    //React hook for update page data
+    useEffect(() => {
+        axiosApi()
+    }, []);
 
-    // useEffect(() => {
-    //     axiosApi().catch(null);
-    // }, [testimonials]);
-
-    //This array simulate the database, dont forget delete it later...
-    let testimonials = [
-         "Testimonio 1",
-          "Testimonio 2",
-           "Testimonio 3",
-            "Testimonio 4",
-             "Testimonio 5"
-    ];
-
-    return(
-        <div className="container mb-5">
-            <h1 className="sr-only m-5">
-                Lista de Testimonios
-            </h1>
-            <div className="list-group">
-                {!testimonials? 
-                <div class="d-flex align-items-center">
-                    <strong>Loading...</strong>
-                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
-                </div>
-                : 
-                testimonials
-                    .map((testimony, index) => {
-                        return (
-                            <div className="list-group-item d-flex justify-content-between">
-                                <button className="btn btn-dark">
-                                    Editar <FaRegEdit/> 
-                                </button>
-                                <div
-                                key={index}
-                                className='sr-only mt-2'
-                                >
-                                    {testimony} 
-                                </div>
-                                <button className="btn btn-danger">
-                                    <FaTimes/> Borrar 
-                                </button>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="container-fluid mb-5">
+      <h1 className="sr-only m-4">Lista de Testimonios</h1>
+      <div className="list-group">
+        {!testimonials ? (
+          <div className="d-flex justify-content-center">
+            <strong className="">Loading...</strong>
+            <div
+              className="d-flex ms-3 spinner-border"
+              role="status"
+              aria-hidden="true"
+            ></div>
+          </div>
+        ) : (
+          testimonials.map((testimony) => {
+            return (
+              <TestimonyItem axiosApi={axiosApi} key={testimony.id} testimony={testimony} />
+            );
+          })
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default ScreenTestimonials;

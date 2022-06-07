@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import Footer from './components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
 import ScreenTestimonials from './pages/ScreenTestimony';
+import ScreenContact from './pages/screenContact';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/login' element = { <Login /> } /> 
           <Route path='*' element = { <NoMatchRoute /> } />
           <Route path='/backoffice/testimonials' element = { <ScreenTestimonials /> } />
+          <Route path='/contact' element= { <ScreenContact /> }/>
         </Routes>
         <Footer/>
       </BrowserRouter>
