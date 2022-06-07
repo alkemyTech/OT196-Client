@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import USER_LOGIN from './slice'
-import CONTACTS from './contactSlice'
+// import authReducer from '../reducers/slices/authReducer'
+import contactSlice from './contactSlice';
 
 
 export default configureStore({
-  reducer: {
-    counter: counterReducer,
+  reducer: {    
     USER_LOGIN,   
-    CONTACTS,
+    contacts: contactSlice,
+    // authReducer
   },
 });

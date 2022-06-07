@@ -4,11 +4,11 @@ import { getContacts, loadContacts } from '../app/contactSlice'
 
 export default function ContactList(){
     const dispatch = useDispatch()    
-    const contacts = useSelector(loadContacts)
+    const contacts = useSelector(state=> state.contacts)
     useEffect(()=> {
         dispatch(getContacts())
     }, [])
-    console.log(contacts.payload)
+    console.log(contacts)
 
     return(
         <div>
