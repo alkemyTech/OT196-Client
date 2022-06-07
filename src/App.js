@@ -13,6 +13,8 @@ import Login from './Components/Login';
 import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
 import EditOrganizationData from './Components/editOrganizationData/EditOrganizationData';
+import ActivityList from './Components/activities/ActivityList';
+
 
 function App() {
   
@@ -25,6 +27,7 @@ function App() {
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
           <Route path= '/backoffice/edit-organization' element = { <EditOrganizationData /> } />
+          <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>
