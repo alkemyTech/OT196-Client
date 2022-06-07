@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
-          <Route path=' /backoffice/contacts' element = { <ContactList /> } />
+          <Route path='/backoffice/contacts' element = { <ContactList /> } />
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>

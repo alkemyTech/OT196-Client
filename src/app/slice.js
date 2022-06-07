@@ -14,7 +14,7 @@ const loginSlice = createSlice({
     }
 })
 
-const REACT_APP_BACKEND = `http://localhost:3000`
+const { REACT_APP_BACKEND } = process.env
 
 const isMyUserLogged = (user)=> {
     return async (dispatch)=> {
