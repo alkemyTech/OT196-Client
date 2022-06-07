@@ -1,7 +1,7 @@
 import React from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { errorAlert } from "../../setupAlerts";
+import { errorAlert, successAlert } from "../../setupAlerts";
 import { Form, Image } from "react-bootstrap";
 
 const NewsForm = ({ newsObject }) => {
@@ -73,12 +73,11 @@ const NewsForm = ({ newsObject }) => {
           const error = (res && res.message) || res.status;
           return Promise.reject(error);
         }
+        successAlert();
       });
     } catch (error) {
-      const iconError = "error";
-      const titleError = "There was an error!";
-      const msgError = error;
-      errorAlert(iconError, titleError, msgError);
+      errorAlert();
+      console.error(error);
     }
   };
 
