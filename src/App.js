@@ -12,19 +12,22 @@ import Header from './Components/header';
 import Login from './Components/Login';
 import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
+import ActivityList from './Components/activities/ActivityList';
 import ContactList from './Components/contactList';
+
 
 function App() {
   
   return (
-    <div className="App">
-      
+    <div className="App">      
       {/* <BrowserRouter> */}
+{/* <WorkingExample /> */}
         <Header />
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
-          <Route path='/backoffice/contacts' element = { <ContactList /> } />
+          <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
+          <Route path='/backoffice/contacts' element = { <ContactList /> } /> 
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>
