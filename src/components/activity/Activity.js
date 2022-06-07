@@ -1,8 +1,7 @@
 import React from "react";
-
 import { useParams } from "react-router-dom";
-
 import { Image, Col, Row } from "react-bootstrap";
+import { VscError } from "react-icons/vsc";
 
 const Activity = () => {
   const [activity, setActivity] = React.useState(null);
@@ -28,7 +27,7 @@ const Activity = () => {
       {activity ? (
         <>
           <h3 className="mb-3">{activity.name}</h3>
-          <Row>
+          <Row className="mb-3">
             <Col xs={12} sm={6} className="d-flex justify-content-center">
               <Image
                 fluid
@@ -42,14 +41,22 @@ const Activity = () => {
               sm={6}
               className="d-flex align-items-center justify-content-center"
             >
-              <p className="mb-5">{activity.content}</p>
+              <p className="mb-5" style={{ fontSize: "1.3rem" }}>
+                {activity.content}
+              </p>
             </Col>
           </Row>
         </>
       ) : (
-        <>
-          <h3>ERROR</h3>
-        </>
+        <Row className="d-flex align-items-center justify-content-center mb-3">
+          <Col className="p-0 m-0">
+            <VscError color="red" size="5em" />
+            <div style={{ color: "red", fontSize: "3em" }}>ERROR</div>
+            <p style={{ fontSize: "2em" }}>
+              No se pudo encontrar la actividad seleccionada.
+            </p>
+          </Col>
+        </Row>
       )}
     </>
   );
