@@ -14,7 +14,8 @@ export default function ShowNews() {
       setNews(data)
       setIsLoading(false)
     } catch (err) {
-      setResMessage(`Error al cargar los datos: ${err.response.data.error || err.message}`)
+      var errorMessage = err.response?.data?.error || err.message
+      setResMessage(`Error al cargar los datos: ${errorMessage}`)
     }
   };
 
