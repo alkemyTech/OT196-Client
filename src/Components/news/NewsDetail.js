@@ -28,7 +28,7 @@ export default function NewsDetail(props) {
                         <Card.Img variant="top" className="mx-auto" style={{objectFit: "cover", maxHeight: "50%", maxWidth: "50%"}} src={newsData.image}/>
                         <Card.Body>
                         <Card.Title className="my-5"><h2>{newsData.name}</h2></Card.Title>
-                        <Card.Text className="text-start fs-6 w-75 mx-auto lh-lg">
+                        <Card.Text className="text-start fs-6 mx-auto lh-lg">
                             {newsData.content}
                         </Card.Text>
                         </Card.Body>
