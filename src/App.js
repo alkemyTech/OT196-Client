@@ -19,13 +19,13 @@ import ListNews from './pages/ListNews'
 function App() {
   
   return (
-    <div className="App">      
-        <Header />
+    <div className="App">    
+        <Header/>
         <Routes>
           <Route index element = { <Home /> } /> 
           <Route path='/login' element = { <Login /> } /> 
-          <Route path='/news/' element = { <ListNews /> } /> 
-          <Route path='/news/:id' element = { <ViewNews /> } /> 
+          <Route path='/novedades/' element = { <ListNews /> } /> 
+          <Route path='/novedades/:id' element = { <ViewNews /> } /> 
           <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
