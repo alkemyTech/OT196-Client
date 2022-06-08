@@ -7,7 +7,6 @@ import { useNavigate, useLocation } from "react-router-dom"
 export default function Header(props) {
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(location)
 
     return (
         <>
