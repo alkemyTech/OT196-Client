@@ -27,6 +27,16 @@ const isMyUserLogged = (user)=> {
     }
 }
 
+const submitUpdateDataOrganization =  (dataOrganization)=> {
+    return async dispatch=> {
+        try {
+            //aqui va la conexion cuando el endpoint este listo       
+        } catch (error) {
+            throw new Error(error)            
+        }
+    }
+}
+
 export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID 
     return async function(dispatch){
         try {
@@ -59,6 +69,6 @@ return async function(dispatch){
 }
 }
 
-export  { loginSlice, isMyUserLogged }
+export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
 export const { submitUserData } = loginSlice.actions
 export default loginSlice.reducer

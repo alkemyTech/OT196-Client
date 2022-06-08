@@ -12,9 +12,9 @@ export default function TestimonialForm({ existingTestimony }){
     const dispatch = useDispatch()
 
     //WITH THIS STATES YOU CAN CAPTURE THE DATA OF THE NAME OF THE TESTIMONIAL AUTHOR, THE CONTENT AND IMAGE
-    const [name, setName] = useState('');
-    const [content, setContent] = useState('');
-    const [img, setImg] = useState('')
+    const [name, setName] = useState(existingTestimony ? existingTestimony.name : '');
+    const [content, setContent] = useState(existingTestimony ? existingTestimony.content : '');
+    const [img, setImg] = useState(existingTestimony ? existingTestimony.img : '')
 
     //FUNCTION FOR CAPTURE THE NAME IN THE LOCAL STATE 
     const handleName = (e) => {
@@ -40,7 +40,8 @@ export default function TestimonialForm({ existingTestimony }){
     const handleSubmit = e=> {
         e.preventDefault()      
             !existingTestimony ? 
-            dispatch(submitTestimonialForm({ name, content, img }))
+            //dispatch(submitTestimonialForm({ name, content, img }))
+            console.log({name, content,img})
             .then(()=> {
                 Swal.fire({
                     icon: 'sucess',
@@ -53,7 +54,8 @@ export default function TestimonialForm({ existingTestimony }){
                 })
             })
             : 
-           dispatch(editTestimonialForm( { name, content, img, id: existingTestimony.id } ))
+           //dispatch(editTestimonialForm( { name, content, img, id: existingTestimony.id } ))         
+           console.log({ name, content, img })
             .then(()=> {
                 Swal.fire({
                     icon: 'sucess',
@@ -69,6 +71,35 @@ export default function TestimonialForm({ existingTestimony }){
 
     return(
         <div className='d-flex justify-content-center'>
+            {
+                existingTestimony ? 
+                <form className='form-inline col-6'>
+                    <label className="sr-only">Nombre</label>
+                    <input
+                        type='text'                        
+                        id='name'
+                        onChange={handleName}
+                        value={name}                    
+                    />
+                    <label className="sr-only">Contenido</label>
+                    <br/> 
+                    <CKEditor
+                        editor={ ClassicEditor }
+                        data={content}
+                        id='content'
+                        onChange={handleCkeditorState}                     
+                    />
+                    <input
+                    type='text'                  
+                        id='img'
+                        onChange={handleImg}
+                        value={img}                      
+                       // placeholder={existingTestimony.img}
+                        />
+                    <button onClick={handleSubmit} className="btn btn-primary" type="submit">Enviar</button>
+                    
+                </form> 
+                :            
                 <form className='form-inline col-6'>
                     <label className="sr-only">Nombre</label>
                     <input
@@ -95,6 +126,7 @@ export default function TestimonialForm({ existingTestimony }){
                     <button onClick={handleSubmit} className="btn btn-primary" type="submit">Enviar</button>
                     
                 </form>
+                }
         </div>
     )    
 }
