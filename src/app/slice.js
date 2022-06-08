@@ -14,23 +14,40 @@ const loginSlice = createSlice({
     }
 })
 
-const REACT_APP_BACKEND = ` http://localhost:3000`
+const REACT_APP_BACKEND = `http://localhost:3000`
 
 const isMyUserLogged = (user)=> {
     return async (dispatch)=> {
         try {
           const response = await axios.post(`${REACT_APP_BACKEND}/auth/login`, user) 
-          console.log(response)         
           dispatch(submitUserData(response.data))
-
         } catch (error) {
             console.log(error)
         }      
     }
 }
 
+const submitUpdateDataOrganization =  (dataOrganization)=> {
+    return async dispatch=> {
+        try {
+            //aqui va la conexion cuando el endpoint este listo       
+        } catch (error) {
+            throw new Error(error)            
+        }
+    }
+}
+
+export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID 
+    return async function(dispatch){
+        try {
+             await axios.delete(`${REACT_APP_BACKEND}/users/user/${id}`)
+        } catch (error) {
+            console.log(error)
+        }         
+    }    
+}
 
 
-export  { loginSlice, isMyUserLogged }
+export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
 export const { submitUserData } = loginSlice.actions
 export default loginSlice.reducer
