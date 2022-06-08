@@ -19,9 +19,9 @@ import ActivityList from './Components/activities/ActivityList';
 import CreateUser from './components/register/CreateUser'
 import ShowNews from './components/news/ShowNews';
 import Formcontact from './components/formContact';
+import ActivityDetails from "./pages/ActivityDetails";
 
 function App() {
-  
   return (
     <div className="App">
       
@@ -41,6 +41,7 @@ function App() {
           <Route path='/backoffice/testimonials' element = { <ScreenTestimonials /> } />
           <Route path='/contact' element= { <ScreenContact /> }/>
           <Route path='*' element = { <NoMatchRoute /> } /> 
+          <Route path="/actividades/:id" element={<ActivityDetails />} />
         </Routes>
         <Footer/>
       {/* </BrowserRouter> */}
