@@ -49,7 +49,7 @@ function App() {
           <Route path='/backoffice/testimonials' element = { <ScreenTestimonials /> } />
           <Route path='/contact' element= { <ScreenContact /> }/>
           <Route path='*' element = { <NoMatchRoute /> } /> 
-          <Route path="/actividades/:id" element={<ActivityDetails />} />> 
+          <Route path="/actividades/:id" element={<ActivityDetails />} />
         </Routes>
         <Footer/>
       {/* </BrowserRouter> */}
