@@ -28,6 +28,16 @@ const isMyUserLogged = (user)=> {
     }
 }
 
+const submitUpdateDataOrganization =  (dataOrganization)=> {
+    return async dispatch=> {
+        try {
+            //aqui va la conexion cuando el endpoint este listo       
+        } catch (error) {
+            throw new Error(error)            
+        }
+    }
+}
+
 export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID 
     return async function(dispatch){
         try {
@@ -39,7 +49,7 @@ export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID
 }
 
 //with this function you can sign off the user sesion 
-export const singOff = ()=> {
+export const signOff = ()=> {
     return function(dispatch){
         try {
             dispatch(logOut())
@@ -48,7 +58,6 @@ export const singOff = ()=> {
         }
     }
 }
-
-export  { loginSlice, isMyUserLogged }
+export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
 export const { submitUserData } = loginSlice.actions
 export default loginSlice.reducer

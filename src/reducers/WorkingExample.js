@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { singOff } from '../app/slice';
+import { signOff } from '../app/slice';
 import { logIn, logOut } from './slices/authReducer';
 
 function WorkingExample() {
@@ -18,9 +18,8 @@ function WorkingExample() {
             !state.authData.isAuthenticated? 
             logIn(state.authData.isAuthenticated) 
             : 
-            // logOut(!state.authData.isAuthenticated));
-            // console.log('hola ke ase '))
-            dispatch(singOff()))
+            // logOut(!state.authData.isAuthenticated));     
+            dispatch(signOff()))
     }
     
     // Click event to dispatch logIn and logOut for the example
