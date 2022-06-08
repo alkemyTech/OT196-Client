@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Logo from "../../images/logo.png";
 import { BsFacebook, BsInstagram, BsWhatsapp, BsTwitter } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import "./footer.css";
 import { Link } from "react-router-dom";
+import { getRequest } from "../../services/RequestService"
 
 const Footer = () => {
+    const [publicData, setPublicData] = useState({})
+    const BACKEND = `http://localhost:3000/organizations/1/public`
     const hrStyle = {
         maxWidth: "100%",
         height: "4px",
         color: "white",
     };
+
+    useEffect(() => {
+      async function fetchPublicData(){
+        const res = await getRequest(BACKEND);
+        setPublicData(res)
+      }
+      fetchPublicData()
+    }, [BACKEND])
+    
 
     return (
         <IconContext.Provider value={{ color: "black", size: "1.5em" }}>
@@ -42,22 +54,22 @@ const Footer = () => {
                 </Row>
                 <Row className="justify-content-center text-center ">
                     <Col xs="1">
-                        <a href="https://www.facebook.com/Somos_Más" target="_blank" rel="noopener noreferrer">
+                        <a href={publicData.facebook} target="_blank" rel="noopener noreferrer">
                             <BsFacebook />
                         </a>
                     </Col>
                     <Col xs="1">
-                        <a href="https://www.instagram.com/SomosMás" target="_blank" rel="noopener noreferrer">
+                        <a href={publicData.instagram} target="_blank" rel="noopener noreferrer">
                             <BsInstagram />
                         </a>
                     </Col>
                     <Col xs="1">
-                        <a href="https://api.whatsapp.com/send?phone=5491160112988" target="_blank" rel="noopener noreferrer">
+                        <a href={publicData.whatsapp} target="_blank" rel="noopener noreferrer">
                             <BsWhatsapp />
                         </a>
                     </Col>
                     <Col xs="1">
-                        <a href="https://www.twitter.com/Somos_Más" target="_blank" rel="noopener noreferrer">
+                        <a href={publicData.twitter} target="_blank" rel="noopener noreferrer">
                             <BsTwitter />
                         </a>
                     </Col>
