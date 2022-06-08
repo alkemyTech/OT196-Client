@@ -32,7 +32,7 @@ export default function ContactList(){
                 </Card>
             })
         : <h6> No tienes contactos por ahora, en cuanto los tengas 
-            podras encontrarlos en esta liga 
+            podras encontrarlos en esta lista 
         </h6> 
         }
         </div>
