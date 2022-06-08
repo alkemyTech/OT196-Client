@@ -3,10 +3,8 @@ import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 
 export default function NoMatchRoute(){
-
     const navigate = useNavigate()
-    
-
+   
     return(
         <div> 
             <h1> La ruta que estas buscando no existe en nuestra app </h1>
@@ -15,7 +13,6 @@ export default function NoMatchRoute(){
             <Button variant="primary" size="lg" onClick={()=> navigate('/')}>
                 Volver al Inicio
             </Button>
-
         </div>
     )
 }
