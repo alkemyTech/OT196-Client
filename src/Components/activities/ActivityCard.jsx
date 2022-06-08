@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import Swal from 'sweetalert2'
-import ActForm from '../ActivitiesForm'
+import ActForm from '../../components/ActivitiesForm'
 import './ActivityList.css'
 
 export default function ActivityCard({ id, imagen, tittle, start, end, participants }){

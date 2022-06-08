@@ -4,12 +4,10 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Validation from "./ValidationForm";
 import { useState, useEffect } from "react";
-import store from '../../reducers/store'; // Import the store
+// import store from '../../reducers/store'; // Import the store
+import { useSelector } from "react-redux";
 
 export default function EditUserForm() {
-
-
-
   // States for validation
   const [validated, setValidated] = useState(false);
 
@@ -39,8 +37,11 @@ export default function EditUserForm() {
   }
   // Get state from store for use the id
     
-  const state = store.getState()
-  const id = state.auth.authData.id
+    const id = useSelector(state=>state.auth.authData.id);
+    console.log(id)
+
+  // const state = store.getState()
+  // const id = state.auth.authData.id
 
   // PUT && Submit Handler. For test put a number instead of :id
   function onSubmit(event) {
@@ -60,20 +61,20 @@ export default function EditUserForm() {
   }
 
   // Example GET User for placeholders. 
-  useEffect(() => {
-    async function getUsers() {
-      // eslint-disable-next-line
-      const res = await axios
-        .get(`${REACT_APP_BACKEND}/users`)
-        .then((res) => {
-          return res.data;
-        })
-        .then((response) => {
-          setUser(response);
-        });
-    }
-    getUsers();
-  }, [REACT_APP_BACKEND]);
+  // useEffect(() => {
+  //   async function getUsers() {
+  //     // eslint-disable-next-line
+  //     const res = await axios
+  //       .get(`${REACT_APP_BACKEND}/users`)
+  //       .then((res) => {
+  //         return res.data;
+  //       })
+  //       .then((response) => {
+  //         setUser(response);
+  //       });
+  //   }
+  //   getUsers();
+  // }, [REACT_APP_BACKEND]);
 
   return (
     <Form
