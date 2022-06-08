@@ -9,6 +9,7 @@ import {
   FaRegListAlt,
   FaUsers,
   FaUserTie,
+  FaUserEdit,
 } from "react-icons/fa";
 import { RiSlideshow3Line } from "react-icons/ri";
 import { ImTree } from "react-icons/im";
@@ -28,12 +29,7 @@ function Backoffice() {
   const fakeRoleId = 1;
 
   let availableFeatures = [
-    { icon: <FaRegNewspaper className={iconSize} />, text: "Novedades" },
-    { icon: <FaTasks className={iconSize} />, text: "Actividades" },
-    { icon: <FaRegListAlt className={iconSize} />, text: "Categorías" },
-    { icon: <BiMessageDetail className={iconSize} />, text: "Testimonios" },
-    { icon: <ImTree className={iconSize} />, text: "Organización" },
-    { icon: <RiSlideshow3Line className={iconSize} />, text: "Slides" },
+    { icon: <FaUserEdit className={iconSize} />, text: "Editar Perfil" },
   ];
 
   //  Boolean that returns the role from the user
@@ -46,6 +42,12 @@ function Backoffice() {
   React.useEffect(() => {
     if (isAdmin()) {
       availableFeatures.push(
+        { icon: <FaRegNewspaper className={iconSize} />, text: "Novedades" },
+        { icon: <FaTasks className={iconSize} />, text: "Actividades" },
+        { icon: <FaRegListAlt className={iconSize} />, text: "Categorías" },
+        { icon: <BiMessageDetail className={iconSize} />, text: "Testimonios" },
+        { icon: <ImTree className={iconSize} />, text: "Organización" },
+        { icon: <RiSlideshow3Line className={iconSize} />, text: "Slides" },
         { icon: <FaUsers className={iconSize} />, text: "Usuarios" },
         { icon: <FaUserTie className={iconSize} />, text: "Miembros" }
       );
