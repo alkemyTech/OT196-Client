@@ -40,8 +40,7 @@ export default function TestimonialForm({ existingTestimony }){
     const handleSubmit = e=> {
         e.preventDefault()      
             !existingTestimony ? 
-            //dispatch(submitTestimonialForm({ name, content, img }))
-            console.log({name, content,img})
+            dispatch(submitTestimonialForm({ name, content, img }))
             .then(()=> {
                 Swal.fire({
                     icon: 'sucess',
@@ -54,8 +53,7 @@ export default function TestimonialForm({ existingTestimony }){
                 })
             })
             : 
-           //dispatch(editTestimonialForm( { name, content, img, id: existingTestimony.id } ))         
-           console.log({ name, content, img })
+           dispatch(editTestimonialForm( { name, content, img, id: existingTestimony.id } ))         
             .then(()=> {
                 Swal.fire({
                     icon: 'sucess',
