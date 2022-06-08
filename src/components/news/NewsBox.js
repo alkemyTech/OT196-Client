@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaRegClock, FaList } from "react-icons/fa";
 
 const fixImageFit = {objectFit: "cover"}
-const fitTextStyle = {display: "-webkit-box", webkitLineClamp: "5", webkitBoxOrient: "vertical", overflow: "hidden"} // Allow to correct fit the text and add ellipsis
+const fitTextStyle = {display: "-webkit-box", WebkitLineClamp: "5", WebkitBoxOrient: "vertical", overflow: "hidden"} // Allow to correct fit the text and add ellipsis
 const formatDate = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
 const firstToUpper = (str) => {return str.charAt(0).toUpperCase() + str.slice(1)}
 const dateFormat = (str) => {var date = new Date(str).toLocaleDateString('es-AR', formatDate);return firstToUpper(date)}
