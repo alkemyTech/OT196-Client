@@ -12,12 +12,13 @@ import Header from './Components/header';
 import Login from './Components/Login';
 import Footer from './Components/footer/Footer';
 import NoMatchRoute from './Components/noMatchRoute';
+import ScreenTestimonials from './pages/ScreenTestimony';
+import ScreenContact from './pages/screenContact';
 import EditOrganizationData from './Components/editOrganizationData/EditOrganizationData';
 import ActivityList from './Components/activities/ActivityList';
 import CreateUser from './components/register/CreateUser'
 import ShowNews from './components/news/ShowNews';
 import Formcontact from './components/formContact';
-
 
 function App() {
   
@@ -37,6 +38,8 @@ function App() {
           <Route path='/donations' element = { <h1>Donations</h1> } />
           <Route path= '/backoffice/edit-organization' element = { <EditOrganizationData /> } />
           <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
+          <Route path='/backoffice/testimonials' element = { <ScreenTestimonials /> } />
+          <Route path='/contact' element= { <ScreenContact /> }/>
           <Route path='*' element = { <NoMatchRoute /> } /> 
         </Routes>
         <Footer/>
