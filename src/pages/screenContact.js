@@ -4,34 +4,34 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function ScreenContact(){
     return(
-        <div className="d-flex">
-            <div className="row justify-content-evenly">
-                <div className="col-4 border border-dark rounded">
-                    <h3 className="p-2 bg-dark text-white">
+        <div className="container-fluid d-flex mt-3">
+            <div className="row justify-content-around">
+                <div className="col-11 col-sm-5 mb-3 border border-dark rounded">
+                    <h2 className="p-2 bg-dark text-white">
                         Nuestra visión
-                    </h3>
-                    <p>
-                    Mejorar la calidad de vida de niños y
-                    familias en situación de vulnerabilidad
-                    en el barrio La Cava, otorgando un cambio
-                    de rumbo en cada individuo a través de la
-                    educación, salud, trabajo, deporte,
-                    responsabilidad y compromiso.
+                    </h2>
+                    <p className='fs-6 m-2'>
+                        Mejorar la calidad de vida de niños y
+                        familias en situación de vulnerabilidad
+                        en el barrio La Cava, otorgando un cambio
+                        de rumbo en cada individuo a través de la
+                        educación, salud, trabajo, deporte,
+                        responsabilidad y compromiso.
                     </p>
-                    <h3 className="p-2 bg-dark text-white">
+                    <h2 className="p-2 bg-dark text-white">
                         Nuestra misión
-                    </h3>
-                    <p>
-                    Trabajar articuladamente con los distintos aspectos de la vida de las
-                    familias, generando espacios de desarrollo personal y familiar,
-                    brindando herramientas que logren mejorar la calidad de vida a
-                    través de su propio esfuerzo.
+                    </h2>
+                    <p className='fs-6 m-2'>
+                        Trabajar articuladamente con los distintos aspectos de la vida de las
+                        familias, generando espacios de desarrollo personal y familiar,
+                        brindando herramientas que logren mejorar la calidad de vida a
+                        través de su propio esfuerzo.
                     </p>
                 </div>
-                <div className="col-4 border border-dark rounded">
-                    <h3 className="p-2 bg-dark text-white">
+                <div className="col-11 col-sm-5 mb-3 border border-dark rounded">
+                    <h2 className="p-2 bg-dark text-white">
                         ¡Contactáte con nosotros!
-                    </h3>
+                    </h2>
                     <Formcontact/>
                 </div>
             </div>
