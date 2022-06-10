@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { logOut } from "../reducers/slices/authReducer";
 const initialState = {
     isUserLogged: false, 
 }
@@ -14,7 +15,7 @@ const loginSlice = createSlice({
     }
 })
 
-const REACT_APP_BACKEND = `http://localhost:3000`
+const { REACT_APP_BACKEND } = process.env
 
 const isMyUserLogged = (user)=> {
     return async (dispatch)=> {
@@ -47,6 +48,38 @@ export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID
     }    
 }
 
+//FUNCTION FOR EDIT A TESTIMONIAL EXISTING 
+export const editTestimonialForm = (existingTestimony)=> {
+    return async function(dispatch){
+        try {
+           await axios.patch(`${REACT_APP_BACKEND}/testimonials/${existingTestimony.id}`, existingTestimony)
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+}
+
+//FUNCTION FOR CREATE A NEW TESTIMONIAL 
+export const submitTestimonialForm = (testimony)=> {
+return async function(dispatch){
+    try {
+       await axios.post(`${REACT_APP_BACKEND}/testimonials`, testimony)
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+}
+
+//with this function you can sign off the user sesion 
+export const signOff = ()=> {
+    return function(dispatch){
+        try {
+            dispatch(logOut())
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
 export const { submitUserData } = loginSlice.actions
