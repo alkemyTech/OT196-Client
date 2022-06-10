@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import WorkingExample from './reducers/WorkingExample';
+// import WorkingExample from './reducers/WorkingExample';
 import {
   //BrowserRouter,
   Routes,
@@ -16,6 +16,7 @@ import ScreenTestimonials from './pages/ScreenTestimony';
 import ScreenContact from './pages/screenContact';
 import EditOrganizationData from './Components/editOrganizationData/EditOrganizationData';
 import ActivityList from './Components/activities/ActivityList';
+import ContactList from './Components/contactList';
 import CreateUser from './components/register/CreateUser'
 import ShowNews from './components/news/ShowNews';
 import Formcontact from './components/formContact';
@@ -38,6 +39,7 @@ function App() {
           <Route path='/donations' element = { <h1>Donations</h1> } />
           <Route path= '/backoffice/edit-organization' element = { <EditOrganizationData /> } />
           <Route path='/backoffice/activities' element = { <ActivityList /> } /> 
+          <Route path='/backoffice/contacts' element = { <ContactList /> } /> 
           <Route path='/backoffice/testimonials' element = { <ScreenTestimonials /> } />
           <Route path='/contact' element= { <ScreenContact /> }/>
           <Route path='*' element = { <NoMatchRoute /> } /> 
