@@ -1,12 +1,9 @@
 import React from "react";
 import "./App.css";
-import WorkingExample from "./reducers/WorkingExample";
 import {
-  //BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import "./App.css";
 import Home from "./Components/home/Home";
 import Header from "./Components/header";
 import Login from "./Components/Login";
@@ -19,13 +16,16 @@ import ActivityList from "./Components/activities/ActivityList";
 import CreateUser from "./components/register/CreateUser";
 import ShowNews from "./components/news/ShowNews";
 import Formcontact from "./components/formContact";
+import ContactList from './Components/contactList';
 import ActivityDetails from "./pages/ActivityDetails";
 import Backoffice from "./pages/Backoffice";
+import ViewNews from './pages/ViewNews'
+import ListNews from './pages/ListNews'
+
 
 function App() {
   return (
     <div className="App">
-      {/* <BrowserRouter> */}
       <Header />
       <Routes>
         <Route index element={<Home />} />
@@ -41,17 +41,19 @@ function App() {
           element={<EditOrganizationData />}
         />
         <Route path="/backoffice/activities" element={<ActivityList />} />
+        <Route path='/backoffice/contacts' element = { <ContactList /> } /> 
         <Route
           path="/backoffice/testimonials"
           element={<ScreenTestimonials />}
         />
         <Route path="/backoffice" element={<Backoffice />} />
         <Route path="/contact" element={<ScreenContact />} />
-        <Route path="*" element={<NoMatchRoute />} />
+        <Route path='/novedades/' element = { <ListNews /> } /> 
+        <Route path='/novedades/:id' element = { <ViewNews /> } /> 
         <Route path="/actividades/:id" element={<ActivityDetails />} />
+        <Route path="*" element={<NoMatchRoute />} />
       </Routes>
       <Footer />
-      {/* </BrowserRouter> */}
     </div>
   );
 }
