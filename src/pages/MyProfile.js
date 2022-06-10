@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../components/Profile";
+import Profile from "../components/myProfile/Profile";
 import { Container } from "react-bootstrap";
 
 function MyProfile() {
