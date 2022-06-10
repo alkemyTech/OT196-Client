@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { logOut } from "../reducers/slices/authReducer";
 const initialState = {
     isUserLogged: false, 
 }
@@ -14,7 +15,7 @@ const loginSlice = createSlice({
     }
 })
 
-const REACT_APP_BACKEND = `http://localhost:3000`
+const { REACT_APP_BACKEND } = process.env
 
 const isMyUserLogged = (user)=> {
     return async (dispatch)=> {
@@ -67,6 +68,17 @@ return async function(dispatch){
         throw new Error(error)
     }
 }
+}
+
+//with this function you can sign off the user sesion 
+export const signOff = ()=> {
+    return function(dispatch){
+        try {
+            dispatch(logOut())
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
