@@ -7,11 +7,12 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
-import Home from './Components/home/Home';
-import Header from './Components/header';
-import Login from './Components/Login';
-import Footer from './Components/footer/Footer';
-import NoMatchRoute from './Components/noMatchRoute';
+
+import Home from './components/home/Home';
+import Header from './components/header';
+import Login from './components/Login';
+import Footer from './components/footer/Footer';
+import NoMatchRoute from './components/noMatchRoute';
 import ScreenTestimonials from './pages/ScreenTestimony';
 import ScreenContact from './pages/screenContact';
 import EditOrganizationData from './Components/editOrganizationData/EditOrganizationData';
@@ -21,6 +22,9 @@ import ShowNews from './Components/news/ShowNews';
 import Formcontact from './Components/formContact';
 import ContactList from './Components/contactList';
 import ActivityDetails from "./pages/ActivityDetails";
+import ViewNews from './pages/ViewNews'
+import ListNews from './pages/ListNews'
+
 
 function App() {
         const existingTestimony = {
@@ -31,8 +35,6 @@ function App() {
         }
   return (
     <div className="App">
-      
-      
       {/* <BrowserRouter> */}
       {/* <WorkingExample /> */}
         <Header />
@@ -52,9 +54,10 @@ function App() {
           <Route path='/contact' element= { <ScreenContact /> }/>
           <Route path='*' element = { <NoMatchRoute /> } /> 
           <Route path="/actividades/:id" element={<ActivityDetails />} />
+          <Route path='/novedades/' element = { <ListNews /> } /> 
+          <Route path='/novedades/:id' element = { <ViewNews /> } /> 
         </Routes>
         <Footer/>
-      {/* </BrowserRouter> */}
     </div>
   );
 }
