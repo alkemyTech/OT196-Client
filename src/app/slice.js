@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { logOut } from "../reducers/slices/authReducer";
 const initialState = {
     isUserLogged: false, 
 }
@@ -47,7 +48,16 @@ export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID
     }    
 }
 
-
+//with this function you can sign off the user sesion 
+export const signOff = ()=> {
+    return function(dispatch){
+        try {
+            dispatch(logOut())
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
 export const { submitUserData } = loginSlice.actions
 export default loginSlice.reducer

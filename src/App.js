@@ -16,10 +16,10 @@ import ScreenTestimonials from './pages/ScreenTestimony';
 import ScreenContact from './pages/screenContact';
 import EditOrganizationData from './Components/editOrganizationData/EditOrganizationData';
 import ActivityList from './Components/activities/ActivityList';
+import CreateUser from './Components/register/CreateUser'
+import ShowNews from './Components/news/ShowNews';
+import Formcontact from './Components/formContact';
 import ContactList from './Components/contactList';
-import CreateUser from './components/register/CreateUser'
-import ShowNews from './components/news/ShowNews';
-import Formcontact from './components/formContact';
 import ActivityDetails from "./pages/ActivityDetails";
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
     <div className="App">
       
       {/* <BrowserRouter> */}
+<WorkingExample />
         <Header />
         <Routes>
           <Route index element = { <Home /> } /> 
