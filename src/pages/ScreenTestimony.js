@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect} from "react";
-import TestimonyItem from "../components/itemTestimonials";
+import TestimonyItem from "../Components/itemTestimonials";
 
 const ScreenTestimonials = () => {
     const url = "http://localhost:3000/testimonials";
