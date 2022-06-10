@@ -48,6 +48,28 @@ export const deleteUser = (id)=> {  //FUNCTION TO DELETET USER BY ID
     }    
 }
 
+//FUNCTION FOR EDIT A TESTIMONIAL EXISTING 
+export const editTestimonialForm = (existingTestimony)=> {
+    return async function(dispatch){
+        try {
+           await axios.patch(`${REACT_APP_BACKEND}/testimonials/${existingTestimony.id}`, existingTestimony)
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+}
+
+//FUNCTION FOR CREATE A NEW TESTIMONIAL 
+export const submitTestimonialForm = (testimony)=> {
+return async function(dispatch){
+    try {
+       await axios.post(`${REACT_APP_BACKEND}/testimonials`, testimony)
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+}
+
 //with this function you can sign off the user sesion 
 export const signOff = ()=> {
     return function(dispatch){
@@ -58,6 +80,7 @@ export const signOff = ()=> {
         }
     }
 }
+
 export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
 export const { submitUserData } = loginSlice.actions
 export default loginSlice.reducer
