@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Row } from 'react-bootstrap'
+import { Button, Row, Spinner } from 'react-bootstrap'
 import NewsCard from '../news/NewsBox'
 import WelcomeTitle from './WelcomeTitle'
 import SliderComponent from '../../features/sliderComponent/SliderComponent'
@@ -9,15 +9,17 @@ import { Link } from 'react-router-dom'
 export default function Home() {
   const { REACT_APP_BACKEND_URL } = process.env
   const [data, setData] = useState()
+  const [isReady, setIsReady] = useState({status: false, message: 'Cargando información'})
 
   useEffect(() => {
     async function fetchLastNews(){
       try{
         const res = await getRequest(`${REACT_APP_BACKEND_URL}/news/`)
         setData(res)
+        setIsReady({status: true, message: ''})
       }
       catch(e){
-        
+        setIsReady({status: false, message: 'Error al obtener la información'})
       }
     }
     fetchLastNews()
@@ -35,13 +37,16 @@ export default function Home() {
           <h2>Ultimas novedades</h2>
         </div>
         <Row className="px-3" xs={1} sm={2} md={2} xl={3}>
-          {data ?
+          {isReady.status ?
             ((data.slice(3)).reverse()).map((news, index) => {
               return (<NewsCard newData={news} key={news.id}/>)
             })
             : 
-            "No se encontraron novedades."}
-      </Row>
+            <div className='mx-auto'>
+            <Spinner animation="border" variant="primary" />
+            <h5>{isReady.message}</h5>
+            </div>}
+        </Row>
       </div>
       <div className="all-news-button  my-4 py-4">
         <Link to="/novedades">
