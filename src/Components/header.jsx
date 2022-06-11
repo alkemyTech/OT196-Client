@@ -63,27 +63,12 @@ export default function Header(props) {
                                 </>
                                 :
                                 <>
-                                <Dropdown.Item eventKey="1">Mi Perfil</Dropdown.Item>
-                                <Dropdown.Item eventKey="1">Salir</Dropdown.Item>
+                                <Dropdown.Item>Mi Perfil</Dropdown.Item>
+                                <Dropdown.Item>Salir</Dropdown.Item>
                                 </>
                             } 
                             
                         </DropdownButton>
-                        {/* <Button className="btn-block" style={{
-                            borderRadius: '15px',
-                            backgroundColor: 'white',
-                            color: 'black',
-                            marginLeft: '1em'
-                        }}
-                            onClick={() => navigate('/login')}
-                        > Log in </Button>
-                        <Button variant="info" style={{
-                            borderRadius: '15px',
-                            color: 'white',
-                            marginLeft: '1em'
-                        }}
-                            onClick={() => navigate('/signup')}
-                        > Registrarse </Button> */}
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
