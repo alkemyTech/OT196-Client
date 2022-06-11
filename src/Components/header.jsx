@@ -1,4 +1,4 @@
-import { Button, Container, Dropdown, DropdownButton } from "react-bootstrap"
+import { Container, Dropdown, DropdownButton } from "react-bootstrap"
 import React from "react"
 import { Navbar, Nav } from 'react-bootstrap'
 import logo from "../img/logoSomosMas.png"
