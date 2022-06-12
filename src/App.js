@@ -16,6 +16,7 @@ import ActivityDetails from "./pages/ActivityDetails";
 import ViewNews from "./pages/ViewNews";
 import ListNews from "./pages/ListNews";
 import Backoffice from "./pages/Backoffice";
+import BackofficeNews from "./pages/BackofficeNews";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           path="/backoffice/testimonials"
           element={<BackofficeTestimonials />}
         />
-
+        <Route path="/backoffice/news" element={<BackofficeNews />} />
         <Route path="/actividades/:id" element={<ActivityDetails />} />
         <Route path="/news/" element={<ListNews />} />
         <Route path="/news/:id" element={<ViewNews />} />
