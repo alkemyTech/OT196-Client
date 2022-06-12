@@ -9,6 +9,8 @@ import { postRequest } from '../services/RequestService';
 export default function Formcontact() {
   const [isLoading, setIsLoading] = useState({status: false, message: ''})
   const {REACT_APP_BACKEND_URL} = process.env
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
   const contactSchema = yup.object().shape({
     name: yup.string()
       .min(2, 'El nombre debe tener al menos 2 caracteres!')
@@ -22,7 +24,9 @@ export default function Formcontact() {
     message: yup.string()
       .min(20, 'El mensaje debe contener al menos 20 caracteres')
       .max(300, 'El mensaje no puede contener más de 300 caracteres')
-      .required('Mensaje es un campo obligatorio.')
+      .required('Mensaje es un campo obligatorio.'),
+    phone: yup.string().matches(phoneRegExp, 'El numero de telefono es invalido.')
+      .max(20, 'El telefono no puede contener más de 20 caracteres.')
     });
   return(
     <div>
@@ -31,7 +35,8 @@ export default function Formcontact() {
         initialValues={{
           name: '',
           email:'',
-          message: ''
+          message: '',
+          phone: ''
         }}
 
         //Validación del schema creado con yup
@@ -46,7 +51,8 @@ export default function Formcontact() {
               values: {
                 name: '',
                 email:'',
-                message: ''
+                message: '',
+                phone: ''
               }},
               )
             setIsLoading({status: false, message: 'Mensaje enviado con exito.'})
@@ -83,6 +89,19 @@ export default function Formcontact() {
 				  	  />
               <ErrorMessage name='email' component={() => (
                 <div className="alert alert-danger">{errors.email}</div>
+              )}/>
+			  	  </div>
+				    <div className='form-group'>
+					    <label className='fs-5' htmlFor="phone">Telefono de contacto</label>
+					    <Field
+                className="form-control"
+					    	type="text"
+					    	name="phone"
+					    	placeholder="Ej: 113252185"
+					    	id="phone"
+				  	  />
+              <ErrorMessage name='phone' component={() => (
+                <div className="alert alert-danger">{errors.phone}</div>
               )}/>
 			  	  </div>
             <div className='form-group'>
