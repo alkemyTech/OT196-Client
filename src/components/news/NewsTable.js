@@ -2,7 +2,8 @@ import axios from "axios";
 import React from "react";
 import { Table, Button, Image } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
-// import NewsEdit from "./NewsEdit";
+import NewsEdit from "./NewsEdit";
+// import "./NewsTable.css";
 
 const NewsTable = () => {
   const [list, setList] = React.useState([]);
@@ -40,8 +41,7 @@ const NewsTable = () => {
             <td>{news.name}</td>
             <td>{news.createdAt.substring(0, 10)}</td>
             <td>
-              EDITAR
-              {/* <NewsEdit newsId={news.id} /> */}
+              <NewsEdit newsId={news.id} />
             </td>
             <td>
               <Button variant="danger">
