@@ -3,7 +3,7 @@ import React from "react";
 import { Table, Button, Image } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
 import NewsEdit from "./NewsEdit";
-// import "./NewsTable.css";
+import "./NewsTable.css";
 
 const NewsTable = () => {
   const [list, setList] = React.useState([]);
