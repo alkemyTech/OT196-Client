@@ -1,6 +1,5 @@
 import React from "react";
 import Formcontact from "../components/formContact";
-import 'bootstrap/dist/css/bootstrap.css';
 
 function ScreenContact(){
     return(
