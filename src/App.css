@@ -1,7 +1,6 @@
-
 .App {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .App-logo {
@@ -34,10 +33,10 @@
   }
 
   50% {
-    transform: translateY(10px)
+    transform: translateY(10px);
   }
 
   100% {
-    transform: translateY(0px)
+    transform: translateY(0px);
   }
 }
