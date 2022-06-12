@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Logo from "../../images/logo.png";
+import Logo from "../../img/logoSomosMas.png";
 import { BsFacebook, BsInstagram, BsWhatsapp, BsTwitter } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import "./footer.css";

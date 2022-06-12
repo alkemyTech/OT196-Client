@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import BackofficeCard from "../components/BackofficeCard.js";
+import BackofficeCard from "../components/backoffice/BackofficeCard.js";
 
 import {
   FaRegNewspaper,
