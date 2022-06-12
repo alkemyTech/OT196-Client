@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.css';
+import {Spinner} from 'react-bootstrap';
 
+import { postRequest } from '../services/RequestService';
 
 export default function Formcontact() {
-  const [wasSent, setWasSent] = useState(false);
+  const [isLoading, setIsLoading] = useState({status: false, message: ''})
+  const {REACT_APP_BACKEND_URL} = process.env
   const contactSchema = yup.object().shape({
     name: yup.string()
       .min(2, 'El nombre debe tener al menos 2 caracteres!')
@@ -35,16 +38,23 @@ export default function Formcontact() {
         validationSchema= {contactSchema}
 
         //Función para enviar los valores al endpoint(cuando este exista)
-        onSubmit={(values, actions) => {
-          setWasSent(true)
-          setTimeout(() => setWasSent(false), 5000)
-          actions.resetForm({
-            values: {
-              name: '',
-              email:'',
-              message: ''
-            }},
-          )
+        onSubmit={ async (values, actions) => {
+          try{
+            setIsLoading({status: true, message: ''})
+            await postRequest(`${REACT_APP_BACKEND_URL}/contacts/`, values)
+            actions.resetForm({
+              values: {
+                name: '',
+                email:'',
+                message: ''
+              }},
+              )
+            setIsLoading({status: false, message: 'Mensaje enviado con exito.'})
+            setTimeout(()=>setIsLoading({status: false, message: ''}), 5000)
+          }
+          catch(e){
+            setIsLoading({status: false, message: 'Error al enviar mensaje.'})
+          }
         }}
         >
         {( {errors} ) => (
@@ -90,7 +100,9 @@ export default function Formcontact() {
             </div>
             <br/>
 				    <button className="btn ps-5 pe-5 mb-3 btn-outline-dark" type="submit">Enviar</button>
-            {wasSent ? <div className='text-green'>Enviado con éxito</div> : ''}
+            <div className='text-green'>
+            {(isLoading.status) ? <Spinner animation="border" variant="dark" /> : isLoading.message}
+            </div>
 			    </Form>
         )}
       </Formik>
