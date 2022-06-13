@@ -5,6 +5,7 @@ import EditUserModal from "./EditUserModal";
 
 import { FaTrashAlt } from "react-icons/fa";
 import axios from "axios";
+import { successAlert, warningAlert } from "../../setupAlerts";
 
 // fake user (admin role) to test
 const jwtExample =
@@ -28,28 +29,58 @@ const UserList = () => {
     }
   };
 
-  const updateProfile = async (e, user) => {
-    e.preventDefault();
+  const updateProfile = async (result, user) => {
     try {
-      await axios.put(`http://localhost:3000/users/${user.id}`, user, {
-        headers: {
-          Authorization: "Bearer " + jwtExample,
-        },
-      });
-      getUsers();
+      if (result.isConfirmed) {
+        await axios.put(`http://localhost:3000/users/${user.id}`, user, {
+          headers: {
+            Authorization: "Bearer " + jwtExample,
+          },
+        });
+        successAlert();
+        getUsers();
+      }
     } catch (e) {
       console.error(e);
     }
   };
 
-  const deleteUser = async (e, id) => {
+  const warningUpdate = (e, user) => {
     e.preventDefault();
+    warningAlert({
+      iconWarning: "warning",
+      msgWarning: "El usuario sufrirá cambios. ¿Desea continuar?",
+      confirmButton: true,
+      denyButton: true,
+      triggerFunction: updateProfile,
+      params: user,
+    });
+  };
+
+  const deleteUser = async (result, id) => {
     try {
-      await axios.delete(`http://localhost:3000/users/${id}`);
-      getUsers();
+      if (result.isConfirmed) {
+        await axios.delete(`http://localhost:3000/users/${id}`);
+        successAlert();
+        getUsers();
+      }
     } catch (e) {
-      console.error();
+      console.error(e);
     }
+  };
+
+  const warningDelete = (e, id) => {
+    e.preventDefault();
+    warningAlert({
+      iconWarning: "warning",
+      msgWarning: "El usuario será eliminado. ¿Desea continuar?",
+      textConfirmButton: "Aceptar",
+      confirmButton: true,
+      textDenyButton: "Cancelar",
+      denyButton: true,
+      triggerFunction: deleteUser,
+      params: id,
+    });
   };
 
   const editBtn = "Edit";
@@ -82,13 +113,13 @@ const UserList = () => {
                     title="Edit user"
                     item={user}
                     btnLabel={editBtn}
-                    onSubmitForm={updateProfile}
+                    onSubmitForm={warningUpdate}
                   />
                 </td>
                 <td>
                   <Button
                     variant="danger"
-                    onClick={(e) => deleteUser(e, user.id)}
+                    onClick={(e) => warningDelete(e, user.id)}
                   >
                     <FaTrashAlt /> Delete
                   </Button>
