@@ -13,7 +13,6 @@ const jwtExample =
 // Gets a list from all the users if the user logged is an Admin
 const UserList = () => {
   const [list, setList] = React.useState([]);
-  const [refresh, setRefresh] = React.useState(true);
 
   const getUsers = async () => {
     try {
@@ -37,17 +36,27 @@ const UserList = () => {
           Authorization: "Bearer " + jwtExample,
         },
       });
-      setRefresh(true);
+      getUsers();
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const deleteUser = async (e, id) => {
+    e.preventDefault();
+    try {
+      await axios.delete(`http://localhost:3000/users/${id}`);
+      getUsers();
+    } catch (e) {
+      console.error();
     }
   };
 
   const editBtn = "Edit";
 
   React.useEffect(() => {
-    if (refresh) getUsers();
-  }, [refresh]);
+    getUsers();
+  }, []);
 
   return (
     <>
@@ -74,13 +83,12 @@ const UserList = () => {
                     item={user}
                     btnLabel={editBtn}
                     onSubmitForm={updateProfile}
-                    onShow={() => setRefresh(false)}
                   />
                 </td>
                 <td>
                   <Button
                     variant="danger"
-                    onClick={() => console.log("DELETED")}
+                    onClick={(e) => deleteUser(e, user.id)}
                   >
                     <FaTrashAlt /> Delete
                   </Button>

@@ -3,13 +3,7 @@ import { Modal, Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { FaEdit } from "react-icons/fa";
 
 // Modal with a form that will render depending on the props.
-function EditUserModal({
-  title = "",
-  item,
-  btnLabel,
-  onSubmitForm = "#",
-  onShow,
-}) {
+function EditUserModal({ title = "", item, btnLabel, onSubmitForm = "#" }) {
   const [show, setShow] = React.useState(false);
 
   const [firstName, setFirstName] = React.useState(item.firstName);
@@ -17,10 +11,7 @@ function EditUserModal({
   const [email, setEmail] = React.useState(item.email);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => {
-    setShow(true);
-    onShow();
-  };
+  const handleShow = () => setShow(true);
 
   return (
     <>
