@@ -1,9 +1,9 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 
-import CustomModal from "./CustomModal";
+import EditUserModal from "./EditUserModal";
 
-import { FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 // fake user (admin role) to test
 const jwtExample =
@@ -28,24 +28,20 @@ const UserList = () => {
     }
   };
 
-  const updateProfile = async (input, property) => {
+  const updateProfile = async (e, user) => {
+    e.preventDefault();
     try {
       // fetch url (api) with update
-
-      // fake update:
-      if (property === "firstName") {
-        console.log("New first name going to DB ", input);
-      } else if (property === "lastName") {
-        console.log("New last name going to DB ", input);
-      } else if (property === "email") {
-        console.log("New email going to DB ", input);
-      }
+      //         await fetch(`http://localhost:5000/backoffice/users/${user.id}`, {
+      //         method: "PUT",
+      //         headers: { "Content-Type": "application/json" },
+      //         body: JSON.stringify(user),
+      //   });
     } catch (e) {
       console.error(e);
     }
   };
 
-  const editBtn = "Edit";
   //   starting point for the value that will be unique key for each child in the list
   let rowId = 0;
 
@@ -62,42 +58,31 @@ const UserList = () => {
             <th>Last name</th>
             <th>Email</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {list &&
             list.map((user) => (
               <tr key={rowId++}>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.email}</td>
                 <td>
-                  {user.firstName}{" "}
-                  <CustomModal
-                    text={"Edit first name"}
-                    item={user.firstName}
+                  <EditUserModal
+                    title="Edit user"
+                    item={user}
                     btnLabel={editBtn}
-                    onSubmitData={updateProfile}
-                    property={"firstName"}
+                    // onSubmitForm={() => updateProfile()}
                   />
-                </td>
-                <td>
-                  {user.lastName}{" "}
-                  <CustomModal
-                    text={"Edit last name"}
-                    item={user.lastName}
-                    btnLabel={editBtn}
-                    onSubmitData={updateProfile}
-                    property={"lastName"}
-                  />
-                </td>
-                <td>
-                  {user.email}{" "}
-                  <CustomModal
-                    text={"Edit email"}
-                    item={user.email}
-                    btnLabel={editBtn}
-                    onSubmitData={updateProfile}
-                    property={"email"}
-                    inputClass="email"
-                  />
+                  <Button
+                    variant="primary"
+                    onClick={() =>
+                      console.log("EDIT WINDOW OR MODAL SHOULD POP HERE")
+                    }
+                  >
+                    <FaEdit /> Edit
+                  </Button>
                 </td>
                 <td>
                   <Button
