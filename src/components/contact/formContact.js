@@ -50,7 +50,7 @@ export default function Formcontact() {
         {( {errors} ) => (
 			    <Form>
 				    <div className='form-inline'>
-					    <label className="sr-only" htmlFor="name">Nombre</label>
+					    <label className='fs-5' htmlFor="name">Nombre</label>
 					    <Field
                 className="form-control"
 					    	type="text"
@@ -63,7 +63,7 @@ export default function Formcontact() {
               )}/>
 				    </div>
 				    <div className='form-group'>
-					    <label className="sr-only" htmlFor="email">Email de contacto</label>
+					    <label className='fs-5' htmlFor="email">Email de contacto</label>
 					    <Field
                 className="form-control"
 					    	type="text"
@@ -76,7 +76,7 @@ export default function Formcontact() {
               )}/>
 			  	  </div>
             <div className='form-group'>
-              <label className="sr-only">Mensaje</label>
+              <label className='fs-5'>Mensaje</label>
               <Field
                 className="form-control"
                 as='textarea'
@@ -89,8 +89,8 @@ export default function Formcontact() {
               )}/>
             </div>
             <br/>
-				    <button className="btn btn-outline-dark" type="submit">Enviar</button>
-            {wasSent ? <div>Enviado con éxito</div> : ''}
+				    <button className="btn ps-5 pe-5 mb-3 btn-outline-dark" type="submit">Enviar</button>
+            {wasSent ? <div className='text-green'>Enviado con éxito</div> : ''}
 			    </Form>
         )}
       </Formik>
