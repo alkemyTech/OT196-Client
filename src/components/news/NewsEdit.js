@@ -5,7 +5,12 @@ import axios from "axios";
 import { FaEdit } from "react-icons/fa";
 
 // Component that gives the possibility to edit movements (represented as a button that opens a modal with its corresponding form).
-function NewsEdit({ newsId, btnLabel = "Editar", title = "Editar novedad" }) {
+function NewsEdit({
+  newsId,
+  onClose,
+  btnLabel = "Editar",
+  title = "Editar novedad",
+}) {
   const [news, setNews] = React.useState({});
   const [show, setShow] = React.useState(false);
 
@@ -20,10 +25,14 @@ function NewsEdit({ newsId, btnLabel = "Editar", title = "Editar novedad" }) {
   };
 
   // Handle modal's show
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    onClose(true);
+  };
   const handleShow = async () => {
     await getDetails(newsId);
     setShow(true);
+    onClose(false);
   };
 
   return (

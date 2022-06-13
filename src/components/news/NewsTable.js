@@ -7,6 +7,7 @@ import "./NewsTable.css";
 
 const NewsTable = () => {
   const [list, setList] = React.useState([]);
+  const [updateList, setUpdateList] = React.useState(true);
 
   const getAllNews = async () => {
     try {
@@ -17,9 +18,16 @@ const NewsTable = () => {
     }
   };
 
+  // Trying to re-render list
+  const handleUpdate = (updateCheck) => {
+    setUpdateList(updateCheck);
+  };
+
   React.useEffect(() => {
-    getAllNews();
-  }, []);
+    if (updateList) {
+      getAllNews();
+    }
+  }, [updateList]);
 
   return (
     <Table borderless hover responsive="md" className="mt-3">
@@ -41,7 +49,10 @@ const NewsTable = () => {
             <td>{news.name}</td>
             <td>{news.createdAt.substring(0, 10)}</td>
             <td>
-              <NewsEdit newsId={news.id} />
+              <NewsEdit
+                newsId={news.id}
+                onClose={(updateCheck) => handleUpdate(updateCheck)}
+              />
             </td>
             <td>
               <Button variant="danger">
