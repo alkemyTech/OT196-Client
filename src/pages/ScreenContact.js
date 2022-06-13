@@ -1,10 +1,15 @@
 import React from "react";
 import Formcontact from "../components/contact/formContact";
 import "bootstrap/dist/css/bootstrap.css";
+import { motion } from 'framer-motion'
 
 function ScreenContact() {
   return (
-    <div className="container-fluid d-flex mt-3">
+    <motion.div className="container-fluid d-flex mt-3"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
       <div className="row justify-content-around">
         <div className="col-11 col-sm-5 mb-3 border border-dark rounded">
           <h2 className="p-2 bg-dark text-white">Nuestra visión</h2>
@@ -27,7 +32,7 @@ function ScreenContact() {
           <Formcontact />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

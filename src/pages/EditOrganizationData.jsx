@@ -5,6 +5,7 @@ import "./EditOrganizationData.css";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { submitUpdateDataOrganization } from "../app/slice";
+import {motion} from 'framer-motion'
 
 export default function EditOrganizationData() {
   const dispatch = useDispatch();
@@ -42,7 +43,11 @@ export default function EditOrganizationData() {
   });
 
   return (
-    <section className="editOrganizationData_main">
+    <motion.section className="editOrganizationData_main"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
       <h1>
         {" "}
         A continuacion puedes editar el nombre y el logo de la organización:{" "}
@@ -89,6 +94,6 @@ export default function EditOrganizationData() {
           Enviar{" "}
         </Button>
       </form>
-    </section>
+    </motion.section>
   );
 }

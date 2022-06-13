@@ -4,6 +4,7 @@ import { exampleNewsData } from "../components/news/exampleNewsData";
 import NewsCard from "../components/news/NewsCard";
 import WelcomeTitle from "../components/home/WelcomeTitle";
 import SliderComponent from "../features/sliderComponent/SliderComponent";
+import { motion } from 'framer-motion'
 
 export default function Home() {
   const [data, setData] = useState({ welcome: "", news: "" });
@@ -17,7 +18,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container-fluid">
+    <motion.div className="container-fluid"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
       <WelcomeTitle text={data.welcome} />
       <div className="container-fluid">
         <SliderComponent />
@@ -37,6 +42,6 @@ export default function Home() {
       <div className="all-news-button  my-4 py-4">
         <Button variant="outline-info">See all news</Button>
       </div>
-    </div>
+    </motion.div>
   );
 }
