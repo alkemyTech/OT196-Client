@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import UserList from "../components/UserList";
+import UserList from "../components/backoffice/UserList";
 
 function BackofficeUserList() {
   return (

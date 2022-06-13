@@ -3,26 +3,27 @@ import { Table, Button } from "react-bootstrap";
 
 import EditUserModal from "./EditUserModal";
 
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
+import axios from "axios";
 
 // fake user (admin role) to test
 const jwtExample =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJVc3VhcmlvIiwibGFzdE5hbWUiOiJEZW1vIiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaW1hZ2UiOiJodHRwczovL3d3dy5kZXNpZ25ldm8uY29tL3Jlcy90ZW1wbGF0ZXMvdGh1bWJfc21hbGwvY29sb3JmdWwtaGFuZC1hbmQtd2FybS1jb21tdW5pdHkucG5nIiwicGFzc3dvcmQiOiIxMjM0Iiwicm9sZUlkIjoxfQ._f00RS4RShZx9TuyEt9Ge3v2KnindoKemeetD_FvvZE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.KA60K1WLyw4tlfA5S1B1vW_3-JFxGkOzCcnUZBSgGPk";
 
 // Gets a list from all the users if the user logged is an Admin
 const UserList = () => {
   const [list, setList] = React.useState([]);
+  const [refresh, setRefresh] = React.useState(true);
 
   const getUsers = async () => {
     try {
       // can be changed to a custom fetch that gets the user that's logged in
-      const response = await fetch("http://localhost:3000/users", {
-        headers: new Headers({
+      const response = await axios.get("http://localhost:3000/users", {
+        headers: {
           Authorization: "Bearer " + jwtExample,
-        }),
+        },
       });
-      const jsonData = await response.json();
-      setList(jsonData);
+      setList(response.data);
     } catch (e) {
       console.error(e.message);
     }
@@ -31,23 +32,22 @@ const UserList = () => {
   const updateProfile = async (e, user) => {
     e.preventDefault();
     try {
-      // fetch url (api) with update
-      //         await fetch(`http://localhost:5000/backoffice/users/${user.id}`, {
-      //         method: "PUT",
-      //         headers: { "Content-Type": "application/json" },
-      //         body: JSON.stringify(user),
-      //   });
+      await axios.put(`http://localhost:3000/users/${user.id}`, user, {
+        headers: {
+          Authorization: "Bearer " + jwtExample,
+        },
+      });
+      setRefresh(true);
     } catch (e) {
       console.error(e);
     }
   };
 
-  //   starting point for the value that will be unique key for each child in the list
-  let rowId = 0;
+  const editBtn = "Edit";
 
   React.useEffect(() => {
-    getUsers();
-  }, []);
+    if (refresh) getUsers();
+  }, [refresh]);
 
   return (
     <>
@@ -64,7 +64,7 @@ const UserList = () => {
         <tbody>
           {list &&
             list.map((user) => (
-              <tr key={rowId++}>
+              <tr key={user.id}>
                 <td>{user.firstName}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
@@ -73,16 +73,9 @@ const UserList = () => {
                     title="Edit user"
                     item={user}
                     btnLabel={editBtn}
-                    // onSubmitForm={() => updateProfile()}
+                    onSubmitForm={updateProfile}
+                    onShow={() => setRefresh(false)}
                   />
-                  <Button
-                    variant="primary"
-                    onClick={() =>
-                      console.log("EDIT WINDOW OR MODAL SHOULD POP HERE")
-                    }
-                  >
-                    <FaEdit /> Edit
-                  </Button>
                 </td>
                 <td>
                   <Button
