@@ -4,7 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { warningAlert, successAlert } from "../../setupAlerts";
 import axios from "axios";
 
-const BtnDelete = ({ btnLabel = "Delete", apiRoute, id }) => {
+const BtnDelete = ({ btnLabel = "Eliminar", apiRoute, id, msgWarning }) => {
   const triggerDelete = async (result, id) => {
     try {
       if (result.isConfirmed) {
@@ -20,7 +20,7 @@ const BtnDelete = ({ btnLabel = "Delete", apiRoute, id }) => {
     e.preventDefault();
     warningAlert({
       iconWarning: "warning",
-      msgWarning: "La categoría será eliminada. ¿Desea continuar?",
+      msgWarning,
       textConfirmButton: "Aceptar",
       confirmButton: true,
       textDenyButton: "Cancelar",
