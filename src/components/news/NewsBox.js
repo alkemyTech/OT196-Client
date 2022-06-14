@@ -10,9 +10,9 @@ const firstToUpper = (str) => {return str.charAt(0).toUpperCase() + str.slice(1)
 const dateFormat = (str) => {var date = new Date(str).toLocaleDateString('es-AR', formatDate);return firstToUpper(date)}
 
 export default function NewsCard(props){
-    const {id, image, name, createdAt, type} = props.newData
+    const {id, image, name, createdAt} = props.newData
     return(
-        <Col>
+        <Col className="mb-3">
             <Link to={`/novedades/${id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                 <Card border="primary" className="h-100">
                     <Row className="g-0 flex-fill flex-nowrap overflow-hidden" style={{maxHeight: "150px"}}>
