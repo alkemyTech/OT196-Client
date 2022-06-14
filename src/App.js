@@ -19,9 +19,9 @@ import Formcontact from "./components/formContact";
 import ContactList from './Components/contactList';
 import ActivityDetails from "./pages/ActivityDetails";
 import Backoffice from "./pages/Backoffice";
+import BackofficeNews from "./pages/BackofficeNews";
 import ViewNews from './pages/ViewNews'
 import ListNews from './pages/ListNews'
-
 
 function App() {
   return (
@@ -46,6 +46,7 @@ function App() {
           path="/backoffice/testimonials"
           element={<ScreenTestimonials />}
         />
+        <Route path="/backoffice/news" element={<BackofficeNews />} />
         <Route path="/backoffice" element={<Backoffice />} />
         <Route path="/contact" element={<ScreenContact />} />
         <Route path='/novedades/' element = { <ListNews /> } /> 
