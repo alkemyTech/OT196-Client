@@ -1,3 +1,4 @@
+import React from "react";
 import { Breadcrumb, Container } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import ShowNews from '../components/news/ShowNews'
