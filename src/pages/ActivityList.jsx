@@ -5,9 +5,9 @@ import ActivityCard from "../components/activities/ActivityCard";
 
 export default function ActivityList() {
   const activitiesToShow = hardcodeActivities;
-
+  
   return (
-    <div className="container_main">
+    <div className=" .d-sm-flex justify-content-around container_main">
       {activitiesToShow && activitiesToShow.length ? (
         activitiesToShow.map((x) => {
           return (
