@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import Activity from "../Components/activity/Activity";
+import Activity from "../components/activity/Activity";
 
 function ActivityDetails() {
   return (
