@@ -40,7 +40,6 @@ function App() {
           path="/backoffice/testimonials"
           element={<BackofficeTestimonials />}
         />
-
         <Route path="/actividades/:id" element={<ActivityDetails />} />
         <Route path="/news/" element={<ListNews />} />
         <Route path="/news/:id" element={<ViewNews />} />
