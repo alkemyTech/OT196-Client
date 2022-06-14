@@ -1,24 +1,39 @@
-import { Button } from "react-bootstrap"
+import { Container, Dropdown, DropdownButton } from "react-bootstrap"
 import React from "react"
-import { Navbar, Nav, Container } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 import logo from "../img/logoSomosMas.png"
 import { useNavigate, useLocation } from "react-router-dom"
+import { FaBars } from "react-icons/fa";
 
 export default function Header(props) {
     const location = useLocation()
     const navigate = useNavigate()
+    const isLogged = false // Fake data to fetch if user is logged
 
     return (
         <>
-            <Navbar bg="light" variant="ligth" style={{ boxShadow: '1px 2px 5px rgb(0, 0 , 0, 0.3)', color: 'black' }}>
-                <div className='container-fluid d-flex justify-content-between'>
-                    <Navbar.Brand onClick={()=> navigate("/")}>
+            <style type="text/css">
+                {`
+                .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+                color: #fff;
+                }
+                .nav-pills .nav-link{
+                    color: #000
+                }
+                `}
+            </style>
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="ligth" style={{ boxShadow: '1px 2px 5px rgb(0, 0 , 0, 0.3)', color: 'black' }}>
+                <Container className="px-5 justify-content-around" fluid>
+                    <Navbar.Brand onClick={()=> navigate('/')}>
                     <img src={logo}
                         alt="logo"
-                        style={{ maxHeight: '6em', marginRight: '2rem' }}
+                        className="ms-5"
+                        style={{ maxHeight: '5em', marginRight: '2rem' }}
                     />
                     </Navbar.Brand>
-                    <Nav fill variant="pills" activeKey={location.pathname}>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav"><FaBars/></Navbar.Toggle>
+                    <Navbar.Collapse className="justify-content-end"  id="responsive-navbar-nav">
+                    <Nav style={{rowGap: "8px"}} fill variant="pills" activeKey={location.pathname}>
                         <Nav.Item>
                             <Nav.Link onClick={()=> navigate("/")}>Inicio</Nav.Link>
                         </Nav.Item>
@@ -37,23 +52,26 @@ export default function Header(props) {
                         <Nav.Item>
                             <Nav.Link onClick={()=> navigate("/donations")} className="mx-1" style={{ color: 'black' }}>Contribuye</Nav.Link>
                         </Nav.Item>
-                        <Button style={{
-                            borderRadius: '15px',
-                            backgroundColor: 'white',
-                            color: 'black',
-                            marginLeft: '1em'
-                        }}
-                            onClick={() => navigate('/login')}
-                        > Log in </Button>
-                        <Button variant="info" style={{
-                            borderRadius: '15px',
-                            color: 'white',
-                            marginLeft: '1em'
-                        }}
-                            onClick={() => navigate('/signup')}
-                        > Registrarse </Button>
+                        <Nav.Item>
+                            <Nav.Link href="/donations">Contribuye</Nav.Link>
+                        </Nav.Item>
+                        <DropdownButton className="ms-3" variant="info" align="end" title="Cuenta" id="dropdown-menu-align-end">
+                            {!isLogged ? 
+                                <>
+                                <Dropdown.Item onClick={() => navigate('/login')}>Ingresar</Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate('/signup')}>Registrarse</Dropdown.Item>
+                                </>
+                                :
+                                <>
+                                <Dropdown.Item>Mi Perfil</Dropdown.Item>
+                                <Dropdown.Item>Salir</Dropdown.Item>
+                                </>
+                            } 
+                            
+                        </DropdownButton>
                     </Nav>
-                </div>
+                    </Navbar.Collapse>
+                </Container>
             </Navbar>
         </>
     )
