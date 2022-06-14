@@ -37,7 +37,7 @@ function CategoriesList(){
             </Row>
             {(!isLoading.status && categoriesList.length > 0) ?
             categoriesList.map((cat) => (
-            <CategoriesListItem itemData={cat} />
+            <CategoriesListItem key={cat.id} itemData={cat} />
             ))
             :
             isLoading.message === '' ? 
