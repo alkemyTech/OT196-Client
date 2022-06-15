@@ -3,7 +3,7 @@
     background-color: gray;    
 }
 
-.noneListStyle, a{
+.noneListStyle a{
     list-style: none;
     text-decoration: none!important;
     color: black!important;
