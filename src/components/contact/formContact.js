@@ -51,11 +51,14 @@ export default function Formcontact() {
         },
       });
       setIsLoading({ status: false, message: "" });
-      // successAlert({});
+      successAlert({
+        titleSuccess: "¡Gracias por contactarse!",
+        msgSuccess: "En breves, le llegará un mensaje a su email.",
+      });
     } catch (e) {
       setIsLoading({ status: false, message: "" });
       console.error(e);
-      // errorAlert({});
+      errorAlert({});
     }
   };
   return (
