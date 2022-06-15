@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Row, Spinner } from 'react-bootstrap'
-import NewsCard from '../news/NewsBox'
-import WelcomeTitle from './WelcomeTitle'
-import SliderComponent from '../../features/sliderComponent/SliderComponent'
-import { getRequest } from '../../services/RequestService'
+import NewsCard from '../components/news/NewsBox'
+import WelcomeTitle from '../components/home/WelcomeTitle'
+import SliderComponent from '../features/sliderComponent/SliderComponent'
+import { getRequest } from '../services/RequestService'
 import { Link } from 'react-router-dom'
 
 export default function Home() {

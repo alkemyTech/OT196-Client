@@ -20,7 +20,7 @@ const { REACT_APP_BACKEND } = process.env
 const isMyUserLogged = (user)=> {
     return async (dispatch)=> {
         try {
-          const response = await axios.post(`${REACT_APP_BACKEND}/auth/login`, user) 
+          const response = await axios.post(`${REACT_APP_BACKEND}/users/auth/login`, user) 
           dispatch(submitUserData(response.data))
         } catch (error) {
             console.log(error)
