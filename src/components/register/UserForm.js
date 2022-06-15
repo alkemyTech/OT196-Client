@@ -28,7 +28,7 @@ export default function UserForm() {
     password: ''
   }
 
-  const {REACT_APP_BACKEND} = process.env
+  const {REACT_APP_BACKEND_URL} = process.env
 
   const handleSubmit = async (e) => {
     const newUser = {
@@ -38,9 +38,9 @@ export default function UserForm() {
       password: e.password
     }
     //CREATE USER IN DATABASE 
-    const response = await axios.post(`${REACT_APP_BACKEND}/users/auth/register`, newUser)
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/users/auth/register`, newUser)
     //GET A NEW VALID TOKEN FOR OUR USER 
-    const token = await axios.post(`${REACT_APP_BACKEND}/jwt/auth/login`, response.data)
+    const token = await axios.post(`${REACT_APP_BACKEND_URL}/jwt/auth/login`, response.data)
     //PARSE TOKEN DATA TO JSON
     const userToken = JSON.stringify(token.data.token)
     //PERSIST TOKEN IN LOCAL STORAGE 
