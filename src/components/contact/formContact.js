@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Spinner} from 'react-bootstrap';
 
-import { postRequest } from '../services/RequestService';
+import { postRequest } from '../../services/RequestService';
 
 export default function Formcontact() {
   const [isLoading, setIsLoading] = useState({status: false, message: ''})
