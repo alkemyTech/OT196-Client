@@ -5,7 +5,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Spinner } from "react-bootstrap";
 import { successAlert, errorAlert } from "../../setupAlerts";
 
+<<<<<<< HEAD
 import { postRequest } from "../../services/RequestService";
+=======
+import { postRequest } from '../../services/RequestService';
+>>>>>>> 55a1a32753eb4fe1c93f43171d1ca4f0df5eaa9b
 
 export default function Formcontact() {
   const [isLoading, setIsLoading] = useState({ status: false, message: "" });
