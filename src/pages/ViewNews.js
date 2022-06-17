@@ -3,6 +3,7 @@ import NewsDetail from "../components/news/NewsDetail";
 import { Breadcrumb } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import { getRequest } from "../services/RequestService";
+import {motion} from 'framer-motion'
 
 function ViewNews() {
     const { id } = useParams()
@@ -21,7 +22,11 @@ function ViewNews() {
     }, [ENDPOINT])
 
     return (
-    <>
+    <motion
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
         <Breadcrumb className="mt-3 ms-3">
             <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Inicio</Breadcrumb.Item>
             <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/novedades" }}>Novedades</Breadcrumb.Item>
@@ -32,7 +37,7 @@ function ViewNews() {
         :
         <h3 className="my-5">No se ha encontrado la novedad solicitada.</h3>
         }
-    </>
+    </motion>
     );
 }
 
