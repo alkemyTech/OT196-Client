@@ -4,19 +4,18 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Home from "./Components/home/Home";
-import Header from "./Components/header";
-import Login from "./Components/Login";
-import Footer from "./Components/footer/Footer";
-import NoMatchRoute from "./Components/noMatchRoute";
-import ScreenTestimonials from "./pages/ScreenTestimony";
-import ScreenContact from "./pages/screenContact";
-import EditOrganizationData from "./Components/editOrganizationData/EditOrganizationData";
-import ActivityList from "./Components/activities/ActivityList";
-import CreateUser from "./components/register/CreateUser";
+import Home from "./pages/Home";
+import Header from "./components/header";
+import Login from "./pages/Login";
+import Footer from "./components/footer/Footer";
+import NoMatchRoute from "./pages/NoMatchRoute";
+import ScreenContact from "./pages/ScreenContact";
+import EditOrganizationData from "./pages/EditOrganizationData";
+import ActivityList from "./pages/ActivityList";
+import CreateUser from "./pages/CreateUser";
 import ShowNews from "./components/news/ShowNews";
-import Formcontact from "./components/formContact";
-import ContactList from './Components/contactList';
+import Formcontact from "./components/contact/formContact";
+import ContactList from './pages/ContactList';
 import ActivityDetails from "./pages/ActivityDetails";
 import Backoffice from "./pages/Backoffice";
 import BackofficeUserList from "./pages/BackofficeUserList";
@@ -43,10 +42,7 @@ function App() {
         />
         <Route path="/backoffice/activities" element={<ActivityList />} />
         <Route path='/backoffice/contacts' element = { <ContactList /> } /> 
-        <Route
-          path="/backoffice/testimonials"
-          element={<ScreenTestimonials />}
-        />
+
 
         <Route path="/backoffice/users" element={<BackofficeUserList />} />
         <Route path="/backoffice/news" element={<BackofficeNews />} />
