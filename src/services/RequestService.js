@@ -39,9 +39,31 @@ async function postRequest(link, values) {
   return response.data
 }
 
+async function putRequest(link, values) {
+  
+  let jwtToken = ''
+  let header = null
+  
+  if(window.localStorage.getItem("token")) {
+    jwtToken = window.localStorage.getItem("token")
+    header = { Authorization: `Bearer ${jwtToken}` }
+  }
+
+  let response = await axios.put(
+    link,
+    {
+      ...values,
+      token: jwtToken
+    }, {
+    headers: header,
+  }
+  )
+  return response.data
+}
+
 async function deleteRequest(link) {
   let response = await axios.delete(link)
   return response.data
 }
 
-export { deleteRequest, postRequest, getRequest }
+export { deleteRequest, postRequest, getRequest, putRequest }
