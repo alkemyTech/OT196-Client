@@ -5,10 +5,11 @@ import WelcomeTitle from '../components/home/WelcomeTitle'
 import SliderComponent from '../features/sliderComponent/SliderComponent'
 import { getRequest } from '../services/RequestService'
 import { Link } from 'react-router-dom'
+import {motion} from 'framer-motion'
 
 export default function Home() {
   const { REACT_APP_BACKEND_URL } = process.env
-  const [data, setData] = useState()
+  const [data, setData] = useState({})
   const [isReady, setIsReady] = useState({status: false, message: 'Cargando información'})
 
   useEffect(() => {
@@ -26,6 +27,12 @@ export default function Home() {
   }, [REACT_APP_BACKEND_URL])
 
   return (
+    <motion.div className="container-fluid"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
+      <WelcomeTitle text={data.welcome} />
     <div className="container-fluid">
       <WelcomeTitle text="Inicio" />
       <div className="container-fluid">
@@ -53,6 +60,7 @@ export default function Home() {
           <Button variant="outline-primary" >Ver más noticias</Button>
         </Link>
       </div>
-    </div>
-  )
+      </div>
+    </motion.div>
+  );
 }

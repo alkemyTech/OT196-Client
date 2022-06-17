@@ -27,7 +27,7 @@ export default function NewsCard(props){
                     </Row>
                     <Card.Footer className="d-flex justify-content-between">
                     <small className="text-muted"><span className="align-top me-2"><FaRegClock/></span> {dateFormat(createdAt)}</small>
-                    <small className="text-muted"><span className="align-top me-2"><FaList/></span>{firstToUpper(type || "news")}</small>
+                    <small className="text-muted"><span className="align-top me-2"><FaList/></span> News </small>
                     </Card.Footer>
                 </Card>
             </Link>

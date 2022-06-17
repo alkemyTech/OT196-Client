@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import hands from "../img/hands.jpg";
+import {motion} from 'framer-motion'
 
 export default function Login() {
   const navigate = useNavigate();
@@ -63,7 +64,11 @@ export default function Login() {
   });
 
   return (
-    <div className="login">
+    <motion.div className="login"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
       <section className="section-1-login">
         <h6 style={{ marginLeft: "-50%" }}> Bienvenido </h6>
         <h1> Inicia sesión en tu cuenta! </h1>
@@ -113,6 +118,6 @@ export default function Login() {
       <section>
         <img src={hands} alt="somos mas" className="img-hands" />
       </section>
-    </div>
+    </motion.div>
   );
 }

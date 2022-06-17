@@ -24,7 +24,7 @@ export default function Header(props) {
             </style>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="ligth" style={{ boxShadow: '1px 2px 5px rgb(0, 0 , 0, 0.3)', color: 'black' }}>
                 <Container className="px-5 justify-content-around" fluid>
-                    <Navbar.Brand href="/">
+                    <Navbar.Brand onClick={()=> navigate('/')}>
                     <img src={logo}
                         alt="logo"
                         className="ms-5"
@@ -35,22 +35,22 @@ export default function Header(props) {
                     <Navbar.Collapse className="justify-content-end"  id="responsive-navbar-nav">
                     <Nav style={{rowGap: "8px"}} fill variant="pills" activeKey={location.pathname}>
                         <Nav.Item>
-                            <Nav.Link href="/">Inicio</Nav.Link>
+                            <Nav.Link onClick={()=> navigate("/")}>Inicio</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/about-us">Nosotros</Nav.Link>
+                            <Nav.Link onClick={()=> navigate("/about-us")} className="mx-1" style={{ color: 'black' }}>Nosotros</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/novedades">Novedades</Nav.Link>
+                            <Nav.Link onClick={()=> navigate("/news")} className="mx-1" style={{ color: 'black' }}>Novedades</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/testimonials">Testimoniales</Nav.Link>
+                            <Nav.Link onClick={()=> navigate("/testimonials")} className="mx-1" style={{ color: 'black' }}>Testimoniales</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/contacto">Contacto</Nav.Link>
+                            <Nav.Link onClick={()=> navigate("/contact-us")} className="mx-1" style={{ color: 'black' }}>Contacto</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/donations">Contribuye</Nav.Link>
+                            <Nav.Link onClick={()=> navigate("/donations")} className="mx-1" style={{ color: 'black' }}>Contribuye</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link href="/donations">Contribuye</Nav.Link>
