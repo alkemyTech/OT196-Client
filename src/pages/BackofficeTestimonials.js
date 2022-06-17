@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import TestimonyItem from "../components/backoffice/itemTestimonials";
+import { motion } from 'framer-motion'
 
 const BackofficeTestimonials = () => {
   const url = "http://localhost:3000/testimonials";
@@ -24,7 +25,11 @@ const BackofficeTestimonials = () => {
   }, []);
 
   return (
-    <div className="container-fluid mb-5">
+    <motion.div className="container-fluid mb-5"
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
       <h1 className="sr-only m-4">Lista de Testimonios</h1>
       <div className="list-group">
         {!testimonials ? (
@@ -48,7 +53,7 @@ const BackofficeTestimonials = () => {
           })
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
