@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
+import { motion } from 'framer-motion'
 import BackofficeCard from "../components/backoffice/BackofficeCard.js";
 
 import {
@@ -9,6 +9,7 @@ import {
   FaRegListAlt,
   FaUsers,
   FaUserTie,
+  FaUserEdit,
 } from "react-icons/fa";
 import { RiSlideshow3Line } from "react-icons/ri";
 import { ImTree } from "react-icons/im";
@@ -28,12 +29,7 @@ function Backoffice() {
   const fakeRoleId = 1;
 
   let availableFeatures = [
-    { icon: <FaRegNewspaper className={iconSize} />, text: "Novedades" },
-    { icon: <FaTasks className={iconSize} />, text: "Actividades" },
-    { icon: <FaRegListAlt className={iconSize} />, text: "Categorías" },
-    { icon: <BiMessageDetail className={iconSize} />, text: "Testimonios" },
-    { icon: <ImTree className={iconSize} />, text: "Organización" },
-    { icon: <RiSlideshow3Line className={iconSize} />, text: "Slides" },
+    { icon: <FaUserEdit className={iconSize} />, text: "Editar Perfil" },
   ];
 
   //  Boolean that returns the role from the user
@@ -46,6 +42,12 @@ function Backoffice() {
   React.useEffect(() => {
     if (isAdmin()) {
       availableFeatures.push(
+        { icon: <FaRegNewspaper className={iconSize} />, text: "Novedades" },
+        { icon: <FaTasks className={iconSize} />, text: "Actividades" },
+        { icon: <FaRegListAlt className={iconSize} />, text: "Categorías" },
+        { icon: <BiMessageDetail className={iconSize} />, text: "Testimonios" },
+        { icon: <ImTree className={iconSize} />, text: "Organización" },
+        { icon: <RiSlideshow3Line className={iconSize} />, text: "Slides" },
         { icon: <FaUsers className={iconSize} />, text: "Usuarios" },
         { icon: <FaUserTie className={iconSize} />, text: "Miembros" }
       );
@@ -54,7 +56,11 @@ function Backoffice() {
   }, [availableFeatures]);
 
   return (
-    <Container>
+    <motion.Container
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
       <h1 className="text-center">Backoffice</h1>
       <Row className="justify-content-center">
         {cardsArr.map((card) => (
@@ -63,7 +69,7 @@ function Backoffice() {
           </Col>
         ))}
       </Row>
-    </Container>
+    </motion.Container>
   );
 }
 

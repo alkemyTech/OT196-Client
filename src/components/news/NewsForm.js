@@ -5,7 +5,7 @@ import { errorAlert, successAlert } from "../../setupAlerts";
 import { Form, Image } from "react-bootstrap";
 
 const NewsForm = ({ newsObject }) => {
-  const [title, setTitle] = React.useState("");
+  const [name, setName] = React.useState("");
   const [image, setImage] = React.useState("");
   const [content, setContent] = React.useState("");
   const [category, setCategory] = React.useState("Otros");
@@ -19,17 +19,17 @@ const NewsForm = ({ newsObject }) => {
 
   React.useEffect(() => {
     if (newsObject) {
-      setTitle(newsObject.title);
+      setName(newsObject.name);
       setImage(newsObject.image);
       setContent(newsObject.content);
-      setMethod("PATCH");
+      setMethod("PUT");
       setUrl(`http://localhost:3000/news/${newsObject.id}`);
     }
   }, [newsObject]);
 
-  // Change title based on the input
-  const handleTitle = (e) => {
-    setTitle(e.target.value);
+  // Change name based on the input
+  const handleName = (e) => {
+    setName(e.target.value);
   };
 
   // Change content based on the input
@@ -63,7 +63,7 @@ const NewsForm = ({ newsObject }) => {
           Authorization: "Bearer " + jwtFake,
         },
         body: JSON.stringify({
-          title: title,
+          name: name,
           content: content,
           image: image,
           category: category,
@@ -83,22 +83,25 @@ const NewsForm = ({ newsObject }) => {
 
   return (
     <div className="d-flex justify-content-center">
-      <form className="form-inline col-6 mt-3 mb-3">
+      <form className="form-inline col-10 mt-3 mb-3">
         <label className="sr-only">Titulo</label>
         <input
           type="text"
           className="form-control mb-3"
           id="name"
-          onChange={handleTitle}
-          value={title}
+          onChange={handleName}
+          value={name}
         />
         <label className="sr-only">Contenido</label>
-        <CKEditor
-          editor={ClassicEditor}
-          data={content}
-          id="content"
-          onChange={handleContent}
-        />
+        {content && (
+          <CKEditor
+            editor={ClassicEditor}
+            data={content}
+            id="content"
+            onChange={handleContent}
+          />
+        )}
+
         <label className="sr-only mt-3">Categoria</label>
         <input
           type="text"
@@ -119,13 +122,15 @@ const NewsForm = ({ newsObject }) => {
           )}
           <Form.Control type="file" size="sm" onChange={handleImage} />
         </Form.Group>
-        <button
-          onClick={handleSubmit}
-          className="btn btn-dark mb-3"
-          type="submit"
-        >
-          Enviar
-        </button>
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button
+            onClick={handleSubmit}
+            className="btn btn-dark mb-3"
+            type="submit"
+          >
+            Enviar
+          </button>
+        </div>
       </form>
     </div>
   );
