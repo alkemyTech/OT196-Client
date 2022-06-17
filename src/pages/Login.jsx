@@ -92,7 +92,7 @@ export default function Login() {
         </form>
         <div className="span-login">
           <span>No tienes cuenta? </span>
-          <Link className="registro-login" to="#">
+          <Link to='/signup' className="registro-login" >
             Registrate{" "}
           </Link>{" "}
         </div>
