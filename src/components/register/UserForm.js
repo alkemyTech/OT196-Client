@@ -5,9 +5,12 @@ import { Button, Form } from "react-bootstrap"
 import axios from "axios"
 import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { createValidToken, submitUserToDB } from "../../app/slice"
 
 export default function UserForm() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   //FOR A FAST AUTHENTICATION, 
   //IT IS CHECKED IF THERE IS A TOKEN OF THIS APP IN LOCAL STORAGE, 
@@ -27,9 +30,6 @@ export default function UserForm() {
     email: '',
     password: ''
   }
-
-  const {REACT_APP_BACKEND_URL} = process.env
-
   const handleSubmit = async (e) => {
     const newUser = {
       firstName: e.firstName,
@@ -37,27 +37,32 @@ export default function UserForm() {
       email: e.email,
       password: e.password
     }
+    
     //CREATE USER IN DATABASE 
-    const response = await axios.post(`${REACT_APP_BACKEND_URL}/users/auth/register`, newUser)
+    dispatch(submitUserToDB(newUser))
+    .then(x=> {
     //GET A NEW VALID TOKEN FOR OUR USER 
-    const token = await axios.post(`${REACT_APP_BACKEND_URL}/jwt/auth/login`, response.data)
+      const token = dispatch(createValidToken(x))
+      return token     
+    }).then(x=> {
     //PARSE TOKEN DATA TO JSON
-    const userToken = JSON.stringify(token.data.token)
-    //PERSIST TOKEN IN LOCAL STORAGE 
-    localStorage.setItem('somosMasToken', userToken)
-    Swal.fire({
-      icon: 'success', 
-      title: 'Usuario creado con exito'
-    }).then(result=> {
-      if(result.isConfirmed) navigate('/')
-    }).catch(()=> {
+      const userToken = JSON.stringify(x)
+    //PERSIST TOKEN IN LOCAL STORAGE
+      localStorage.setItem('somosMasToken', userToken)
+    //INFORM TO USER IF THE RESULT IS CORRECT OR NOT 
       Swal.fire({
-        icon: 'error', 
-        title: 'Error en la petición HTTP'
+        icon: 'success', 
+        title: 'Usuario creado con exito'
+        }).then(result=> {
+          if(result.isConfirmed) navigate('/')
+        }).catch(()=> {
+        Swal.fire({
+          icon: 'error', 
+          title: 'Error en la petición HTTP'
+        })
       })
     })
   }
-
 
   const schema = yup.object({
     firstName: yup.string().max(16, 'Must be 16 characters or less').required('Required'),
