@@ -9,7 +9,7 @@ import { getRequest } from "../services/RequestService";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const { REACT_APP_BACKEND_URL } = process.env;
+  const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_NEWS } = process.env;
   const [data, setData] = useState({});
   const [isReady, setIsReady] = useState({
     status: false,
@@ -19,7 +19,9 @@ export default function Home() {
   useEffect(() => {
     async function fetchLastNews() {
       try {
-        const res = await getRequest(`${REACT_APP_BACKEND_URL}/news/`);
+        const res = await getRequest(
+          `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_NEWS}`
+        );
         setData(res);
         setIsReady({ status: true, message: "" });
       } catch (e) {
