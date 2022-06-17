@@ -1,14 +1,14 @@
 import React from "react";
 import UserForm from "../components/register/UserForm";
 import logo from "../img/logoSomosMas.png";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 export default function CreateUser() {
   return (
-    <motion
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0}}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       <header>
         <img
@@ -21,6 +21,6 @@ export default function CreateUser() {
       <div className="d-flex">
         <UserForm />
       </div>
-    </motion>
+    </motion.div>
   );
 }
