@@ -3,13 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.css";
 import { Spinner } from "react-bootstrap";
-import { successAlert, errorAlert } from "../../setupAlerts";
-
-<<<<<<< HEAD
-import { postRequest } from "../../services/RequestService";
-=======
-import { postRequest } from '../../services/RequestService';
->>>>>>> 55a1a32753eb4fe1c93f43171d1ca4f0df5eaa9b
+import submitForm from "../utils/submitForm";
 
 export default function Formcontact() {
   const [isLoading, setIsLoading] = useState({ status: false, message: "" });
@@ -43,27 +37,14 @@ export default function Formcontact() {
   });
 
   const onSubmitForm = async (values, actions) => {
-    try {
-      setIsLoading({ status: true, message: "" });
-      await postRequest(`${REACT_APP_BACKEND_URL}/contacts/`, values);
-      actions.resetForm({
-        values: {
-          name: "",
-          email: "",
-          message: "",
-          phone: "",
-        },
-      });
-      setIsLoading({ status: false, message: "" });
-      successAlert({
-        titleSuccess: "¡Gracias por contactarse!",
-        msgSuccess: "En breves, le llegará un mensaje a su email.",
-      });
-    } catch (e) {
-      setIsLoading({ status: false, message: "" });
-      console.error(e);
-      errorAlert({});
-    }
+    submitForm(
+      values,
+      actions,
+      `${REACT_APP_BACKEND_URL}/contacts/`,
+      setIsLoading,
+      "¡Gracias por contactarse!",
+      "En breves, le llegará un mensaje a su email."
+    );
   };
   return (
     <div>
