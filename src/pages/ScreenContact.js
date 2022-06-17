@@ -1,5 +1,5 @@
 import React from "react";
-import Formcontact from "../components/formContact";
+import Formcontact from "../components/contact/formContact";
 
 function ScreenContact(){
     return(
