@@ -73,10 +73,10 @@ const NewsForm = ({ newsObject }) => {
           const error = (res && res.message) || res.status;
           return Promise.reject(error);
         }
-        successAlert();
+        successAlert({});
       });
     } catch (error) {
-      errorAlert();
+      errorAlert({});
       console.error(error);
     }
   };

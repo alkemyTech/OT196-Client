@@ -15,7 +15,7 @@ const BtnDelete = ({
     try {
       if (result.isConfirmed) {
         await axios.delete(`${apiRoute}/${id}`);
-        successAlert();
+        successAlert({});
         // execute every function on the array
         for (let i = 0; i < arrFunc.length; i++) {
           // get the current function getting looped
