@@ -30,7 +30,7 @@ export default function UserForm() {
     email: '',
     password: ''
   }
-  const handleSubmit = async (e) => {
+  const handleSubmit = e => {
     const newUser = {
       firstName: e.firstName,
       lastName: e.lastName,
