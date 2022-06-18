@@ -22,7 +22,7 @@ errorAlert(
 )
 */
 
-export function successAlert(
+export function successAlert({
   iconSuccess = "success",
   titleSuccess = "Bien hecho!",
   msgSuccess = "Ha sido realizado con éxito",
@@ -32,8 +32,8 @@ export function successAlert(
   textConfirmButton = "Aceptar",
   textCancelButton = "Cancelar",
   textDenyButton = "Rechazar",
-  allowOthers = false
-) {
+  allowOthers = false,
+}) {
   Swal.fire({
     icon: iconSuccess,
     title: titleSuccess,
@@ -50,7 +50,7 @@ export function successAlert(
   });
 }
 
-export function errorAlert(
+export function errorAlert({
   iconError = "error",
   titleError = "Oops...",
   msgError = "Ocurrio un error inesperado",
@@ -60,8 +60,8 @@ export function errorAlert(
   textConfirmButton = "Aceptar",
   textCancelButton = "Cancelar",
   textDenyButton = "Rechazar",
-  allowOthers = false
-) {
+  allowOthers = false,
+}) {
   Swal.fire({
     icon: iconError,
     title: titleError,
