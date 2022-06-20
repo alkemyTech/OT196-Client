@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap'
 
 export default function NewsCard(props) {
 
-  const { img, title } = props.data
+  const { img, title } = props.newData
 
   return (
     <Card className="border-0 col-sm-2">
