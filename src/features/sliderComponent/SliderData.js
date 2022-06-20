@@ -14,7 +14,7 @@ const SliderData = ({
 
 	const siguiente = useCallback(() => {
 		
-		if(sliderComponents.current.children.length > 0){
+		if(sliderComponents?.current?.children?.length > 0){
 
 			const primerElemento = sliderComponents.current.children[0];
 
