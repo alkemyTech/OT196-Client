@@ -4,11 +4,27 @@ import { Navbar, Nav } from 'react-bootstrap'
 import logo from "../img/logoSomosMas.png"
 import { useNavigate, useLocation } from "react-router-dom"
 import { FaBars } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux"
+import { signOff } from "../app/slice";
+
+
 
 export default function Header(props) {
     const location = useLocation()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const isLogged = false // Fake data to fetch if user is logged
+    const userData = useSelector(state => state.USER_LOGIN)
+    const isLogged = userData.isUserLogged || false
+    const roleId = userData.roleId || 1
+
+    const handleUserLogout = () => {
+        // Remove data from store
+        dispatch(signOff())
+        // Remove data from localstorage
+        localStorage.removeItem('userData')
+        // Redirect to index
+        window.location.replace('/')
+    }
 
     return (
         <>
@@ -35,25 +51,22 @@ export default function Header(props) {
                     <Navbar.Collapse className="justify-content-end"  id="responsive-navbar-nav">
                     <Nav style={{rowGap: "8px"}} fill variant="pills" activeKey={location.pathname}>
                         <Nav.Item>
-                            <Nav.Link onClick={()=> navigate("/")}>Inicio</Nav.Link>
+                            <Nav.Link eventKey="/" onClick={()=> navigate("/")}>Inicio</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={()=> navigate("/about-us")} className="mx-1" style={{ color: 'black' }}>Nosotros</Nav.Link>
+                            <Nav.Link eventKey="/about-us" onClick={()=> navigate("/about-us")} className="mx-1">Nosotros</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={()=> navigate("/news")} className="mx-1" style={{ color: 'black' }}>Novedades</Nav.Link>
+                            <Nav.Link eventKey="/news" onClick={()=> navigate("/news")} className="mx-1">Novedades</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={()=> navigate("/testimonials")} className="mx-1" style={{ color: 'black' }}>Testimoniales</Nav.Link>
+                            <Nav.Link eventKey="/testimonials" onClick={()=> navigate("/testimonials")} className="mx-1">Testimoniales</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={()=> navigate("/contact-us")} className="mx-1" style={{ color: 'black' }}>Contacto</Nav.Link>
+                            <Nav.Link eventKey="/contact-us" onClick={()=> navigate("/contact-us")} className="mx-1">Contacto</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={()=> navigate("/donations")} className="mx-1" style={{ color: 'black' }}>Contribuye</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/donations">Contribuye</Nav.Link>
+                            <Nav.Link eventKey="/donations" onClick={()=> navigate("/donations")} className="mx-1">Contribuye</Nav.Link>
                         </Nav.Item>
                         <DropdownButton className="ms-3" variant="info" align="end" title="Cuenta" id="dropdown-menu-align-end">
                             {!isLogged ? 
@@ -63,8 +76,9 @@ export default function Header(props) {
                                 </>
                                 :
                                 <>
-                                <Dropdown.Item>Mi Perfil</Dropdown.Item>
-                                <Dropdown.Item>Salir</Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate('/perfil')}>Mi perfil</Dropdown.Item>
+                                {roleId === 1 ? <Dropdown.Item onClick={() => navigate('/backoffice')}>Backoffice</Dropdown.Item> : null}
+                                <Dropdown.Item onClick={handleUserLogout}>Salir</Dropdown.Item>
                                 </>
                             } 
                             
