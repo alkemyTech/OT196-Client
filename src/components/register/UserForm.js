@@ -23,10 +23,10 @@ export default function UserForm() {
   }
 
   const schema = yup.object({
-    firstName: yup.string().max(16, 'Must be 16 characters or less').required('Required'),
-    lastName: yup.string().min(3, 'Must be 3 characters at least').max(16, 'Must be 16 characters or less').required('Required'),
-    email: yup.string().email('Invalid email address').required('Required'),
-    password: yup.string().min(6, 'Must be 6 characters at least').max(20, 'Must be 20 characters or less').required('Required')
+    firstName: yup.string().max(16, 'El nombre debe tener menos de 16 caracteres.').required('Required'),
+    lastName: yup.string().min(3, 'El apellido debe tener al menos 3 caracteres.').max(16, 'El apellido debe tener menos de 16 caracteres.').required('Required'),
+    email: yup.string().email('El email es invalido.').required('Required'),
+    password: yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres.').max(20, 'La contraseña debe tener menos de 20 caracteres.').required('Required')
   })
 
   return (
@@ -42,13 +42,13 @@ export default function UserForm() {
           onSubmit={handleSubmit}
         >
           <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label className="text-start">First Name</Form.Label>
+            <Form.Label className="text-start">Nombre</Form.Label>
             <Form.Control
               name="firstName"
               type="text"
               onChange={handleChange}
               value={values.firstName}
-              placeholder="Enter your name"
+              placeholder="Ingresa tu nombre"
               isValid={touched.firstName && !errors.firstName}
               isInvalid={!!errors.firstName}
             />
@@ -57,13 +57,13 @@ export default function UserForm() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicLastName">
-            <Form.Label>Last Name</Form.Label>
+            <Form.Label>Apellido</Form.Label>
             <Form.Control
               name="lastName"
               type="text"
               onChange={handleChange}
               value={values.lastName}
-              placeholder="Enter your lastname"
+              placeholder="Ingresa tu apellido"
               isValid={touched.lastName && !errors.lastName}
               isInvalid={!!errors.lastName}
             />
@@ -72,13 +72,13 @@ export default function UserForm() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               name="email"
               value={values.email}
               onChange={handleChange}
-              placeholder="Enter email"
+              placeholder="Ingresa tu email"
               isValid={touched.email && !errors.email}
               isInvalid={!!errors.email}
             />
@@ -88,13 +88,13 @@ export default function UserForm() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type="password"
               name="password"
               value={values.password}
               onChange={handleChange}
-              placeholder="Choose a password"
+              placeholder="Ingresa tu contraseña"
               isValid={touched.password && !errors.password}
               isInvalid={!!errors.password}
             />
@@ -103,7 +103,7 @@ export default function UserForm() {
             </Form.Control.Feedback>
           </Form.Group>
           <Button variant="success" type="submit">
-            Submit
+            Enviar
           </Button>
         </Form>
       )}
