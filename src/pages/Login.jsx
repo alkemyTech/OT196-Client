@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useFormik } from "formik";
 import { Button } from "react-bootstrap";
 import { isMyUserLogged } from "../app/slice";
@@ -98,7 +98,7 @@ export default function Login() {
         </form>
         <div className="span-login">
           <span>No tienes cuenta? </span>
-          <Link className="registro-login" to="#">
+          <Link to='/signup' className="registro-login" >
             Registrate{" "}
           </Link>{" "}
         </div>

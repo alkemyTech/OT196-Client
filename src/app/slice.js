@@ -85,16 +85,40 @@ export const editTestimonialForm = (existingTestimony)=> {
 }
 
 //FUNCTION FOR CREATE A NEW TESTIMONIAL 
-export const submitTestimonialForm = (testimony)=> {
-return async function(dispatch){
+export const submitTestimonialForm = (testimony) => {
+  return async function (dispatch) {
     try {
-       await axios.post(`${REACT_APP_BACKEND_URL}/testimonials`, testimony)
+      await axios.post(`${REACT_APP_BACKEND_URL}/testimonials`, testimony);
     } catch (error) {
-        throw new Error(error)
+      throw new Error(error);
+    }
+  };
+};
+
+
+//FUNCTION FOR CREATE A NEW USER IN DATABASE
+export const submitUserToDB = (user)=> {
+    return async function(dispatch){
+        try {
+            const response = await axios.post(`${REACT_APP_BACKEND_URL}/users/auth/register`, user)
+            return response.data
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 }
+
+//FUNCTION FOR GET A VALID TOKEN FOR A NEW USER 
+export const createValidToken = (userData)=>{
+    return async function(dispatch){
+        try {
+            const token = await axios.post(`${REACT_APP_BACKEND_URL}/jwt/auth/login`, userData)
+            return token.data.token
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
 }
 
-export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization, signOff }
-export const { submitUserData, removeUserData } = loginSlice.actions
-export default loginSlice.reducer
+export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
+export const { submitUserData } = loginSlice.actions

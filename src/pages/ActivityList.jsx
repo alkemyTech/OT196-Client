@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 
 export default function ActivityList() {
   const activitiesToShow = hardcodeActivities;
-
+  
   return (
-    <motion.div className="container_main"
+   
+    <motion.div className=".d-sm-flex justify-content-around  container_main"
     initial={{opacity: 0}}
     animate={{opacity: 1}}
     exit={{opacity: 0}}

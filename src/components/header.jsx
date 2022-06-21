@@ -1,8 +1,8 @@
-import { Container, Dropdown, DropdownButton } from "react-bootstrap"
-import React from "react"
-import { Navbar, Nav } from 'react-bootstrap'
-import logo from "../img/logoSomosMas.png"
-import { useNavigate, useLocation } from "react-router-dom"
+import { Container, Dropdown, DropdownButton } from "react-bootstrap";
+import React from "react";
+import { Navbar, Nav } from "react-bootstrap";
+import logo from "../img/logoSomosMas.png";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux"
 import { signOff } from "../app/slice";
@@ -26,10 +26,10 @@ export default function Header(props) {
         window.location.replace('/')
     }
 
-    return (
-        <>
-            <style type="text/css">
-                {`
+  return (
+    <>
+      <style type="text/css">
+        {`
                 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
                 color: #fff;
                 }
