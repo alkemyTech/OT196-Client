@@ -1,24 +1,21 @@
 import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 import ModalForm from './ModalForm';
 
 function ModalButton(props){
     const [showModal, setShowModal] = useState(false)
-    const accion = (!props.data) ? 'Creando' : 'Editando'
-    const buttonData = props.buttonData
-    const categoryData = props.data || {}
+    const [isLoading, setIsLoading] = useState(false);
+    const {variant, text, categoryData, lastUpdate} = props
+    const accion = (!categoryData) ? 'Creando' : 'Editando'
 
-    const handleShow = () => {
-        setShowModal(true)
-    }
-    const handleClose = () => {
-        setShowModal(false)
-    }
+    const handleShow = () => setShowModal(true);
+    const handleClose = () => setShowModal(false);
+    //const handleClick = () => setIsLoading(true);
 
     return(
         <>
-        <Button variant={buttonData.variant} onClick={handleShow}>
-            {buttonData.text}
+        <Button className="mx-2" variant={variant} onClick={handleShow}>
+            {text}
         </Button>
         <Modal
             show={showModal}
@@ -30,13 +27,17 @@ function ModalButton(props){
           <Modal.Title>{accion} categoria</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ModalForm categoryData={categoryData}/>
+          <ModalForm categoryData={categoryData} lastUpdate={lastUpdate} handleClose={handleClose} setIsLoading={setIsLoading}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
             Cancelar
           </Button>
-          <Button variant="success" form='categoryModal' type="submit">Guardar</Button>
+          <Button variant="success" form='categoryModal' disabled={isLoading} type="submit">{isLoading ? 
+            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> 
+            : 
+            'Guardar'}
+          </Button>
         </Modal.Footer>
         </Modal>
         </>
