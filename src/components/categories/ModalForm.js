@@ -14,9 +14,9 @@ const categorieSchema = Yup.object().shape({
     .max(75, "El nombre no puede tener más de 75 caracteres"),
 });
  
- function ModalForm({categoryData}){
-    const formType = categoryData.name ? 'Edit' : 'Create'
-    const initialValues = formType === 'Edit' ? categoryData : {name: '',description: ''}
+ function ModalForm({categoryData, lastUpdate, handleClose, setIsLoading}){
+    const formType = (!categoryData) ? 'Create' : 'Edit'
+    const initialValues = formType === 'Edit' ? categoryData : {name: '', description: ''}
     const saveFunction = {Edit: putRequest, Create: postRequest}
     const {REACT_APP_BACKEND_URL} = process.env
 
@@ -46,16 +46,19 @@ const categorieSchema = Yup.object().shape({
         validationSchema={categorieSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const { name, description } = values
-          const submitData = {name, description} 
+          setIsLoading(true)
           try{
-            const res = await saveFunction[formType](`${REACT_APP_BACKEND_URL}/categories`, submitData)
-            console.log(res)
-            successAlert('success', '¡Todo correcto!', 'Se han guardado los cambios con exito.')
+            const reqPath = formType === 'Create' ? `${REACT_APP_BACKEND_URL}/categories`  : `${REACT_APP_BACKEND_URL}/categories/${categoryData.id}`
+            await saveFunction[formType](reqPath, { name, description })
+            successAlert({iconSuccess: 'success', titleSuccess:'¡Todo correcto!', msgSuccess:'Se han guardado los cambios con exito.'})
+            setIsLoading(false)
+            handleClose()
+            lastUpdate(Date.now())
           }
           catch(e){
-              errorAlert('error', '¡Lo siento!', 'No fue posible realizar los cambios.')
+            errorAlert({iconError: 'error', titleError:'¡Lo sentimos!', msgError:'No ha sido posible realizar los cambios.'})
+            setIsLoading(false)
           }
-          setSubmitting(false);
         }}
         >
         {({
