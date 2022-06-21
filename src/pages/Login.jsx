@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useFormik } from "formik";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -14,6 +14,19 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const res = useSelector(submitUserData);
+
+  //FOR A FAST AUTHENTICATION, 
+  //IT IS CHECKED IF THERE IS A TOKEN OF THIS APP IN LOCAL STORAGE, 
+  //IF THERE IS A LOG IN IMMEDIATELY
+  useEffect(()=> {
+    const token = localStorage.getItem('somosMasToken')
+    if(token){
+      Swal.fire('Bienvenido de Nuevo')
+      .then(result=> {
+        if(result.isConfirmed) navigate('/')
+      })
+    }  
+  }, [])
 
   const handleSubmitUserData = (user) => {
     dispatch(isMyUserLogged(user));
