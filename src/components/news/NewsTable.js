@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
-import { Table, Button, Image } from "react-bootstrap";
-import { FaTrashAlt } from "react-icons/fa";
+import { Table, Image } from "react-bootstrap";
 import NewsEdit from "./NewsEdit";
+import BtnDeleteNews from "./BtnDeleteNews";
 import "./NewsTable.css";
 
 const NewsTable = () => {
@@ -55,9 +55,7 @@ const NewsTable = () => {
               />
             </td>
             <td>
-              <Button variant="danger">
-                <FaTrashAlt /> Eliminar
-              </Button>
+              <BtnDeleteNews newsId={news.id} arrFunc={[getAllNews]} />
             </td>
           </tr>
         ))}
