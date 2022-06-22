@@ -4,6 +4,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import logo from "../img/logoSomosMas.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import './Header.css'
 
 export default function Header(props) {
   const location = useLocation();
@@ -12,21 +13,11 @@ export default function Header(props) {
 
   return (
     <>
-      <style type="text/css">
-        {`
-                .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-                color: #fff;
-                }
-                .nav-pills .nav-link{
-                    color: #000
-                }
-                `}
-      </style>
       <Navbar
         collapseOnSelect
         expand="lg"
         bg="light"
-        variant="ligth"
+        variant="text-bold"
         style={{ boxShadow: "1px 2px 5px rgb(0, 0 , 0, 0.3)", color: "black" }}
       >
         <Container className="px-5 justify-content-around" fluid>
@@ -35,7 +26,7 @@ export default function Header(props) {
               src={logo}
               alt="logo"
               className="ms-5"
-              style={{ maxHeight: "5em", marginRight: "2rem" }}
+              style={{ maxHeight: "6rem", marginRight: "2rem" }}
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav">
@@ -102,11 +93,11 @@ export default function Header(props) {
                 </Nav.Link>
               </Nav.Item>
               <DropdownButton
-                className="ms-3"
                 variant="info"
                 align="end"
-                title="Cuenta"
+                title='CUENTA'
                 id="dropdown-menu-align-end"
+                className="DropdownButton"
               >
                 {!isLogged ? (
                   <>
