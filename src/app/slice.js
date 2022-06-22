@@ -13,6 +13,7 @@ const loginSlice = createSlice({
             state.email = action.payload.email;
             state.id = action.payload.id;
             state.roleId = action.payload.roleId;
+            state.image = action.payload.image;
         },
         removeUserData: (state, action) => {
             state = {};
