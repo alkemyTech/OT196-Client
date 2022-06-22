@@ -17,6 +17,7 @@ import Backoffice from "./Backoffice";
 import BackofficeNews from "./BackofficeNews";
 import BackofficeCategories from "./BackofficeCategories";
 import BackofficeUserList from "./BackofficeUserList";
+import Testimonials from "./Testimonials";
 
 export default function Router() {
   const location = useLocation();
@@ -26,7 +27,7 @@ export default function Router() {
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<CreateUser />} />
-        <Route path="/testimonials" element={<h1>testimonials</h1>} />
+        <Route path="/testimonials" element={<Testimonials /> } />
         <Route path="/contact-us" element={<ScreenContact />} />
         <Route path="/about-us" element={<h1>About Us</h1>} />
         <Route path="/donations" element={<h1>Donations</h1>} />
