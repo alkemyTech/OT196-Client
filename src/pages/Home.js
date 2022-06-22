@@ -22,7 +22,7 @@ export default function Home() {
       try {
         const res = await getRequest(
           `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_NEWS}`
-        );
+        );     
         setData(res);
         setIsReady({ status: true, message: "" });
       } catch (e) {
