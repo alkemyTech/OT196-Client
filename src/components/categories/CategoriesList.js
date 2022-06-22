@@ -6,7 +6,7 @@ import CategoriesListItem from './CategoriesListItem';
 
 
 function CategoriesList(){
-    const {REACT_APP_BACKEND_URL} = process.env
+    const {REACT_APP_BACKEND_URL,REACT_APP_BACKEND_CATEGORIES} = process.env
     const [isLoading, setIsLoading] = useState({})
     const [categoriesList, setCategoriesList] = useState({})
     
@@ -14,7 +14,8 @@ function CategoriesList(){
       async function fetchCategories(){
         try{
           setIsLoading({status: true, message: ''})
-          const res = await getRequest(`${REACT_APP_BACKEND_URL}/categories/`)
+          const reqPath = REACT_APP_BACKEND_URL+REACT_APP_BACKEND_CATEGORIES
+          const res = await getRequest(reqPath)
           setCategoriesList(res.result)
 
           // Set message if response is empty

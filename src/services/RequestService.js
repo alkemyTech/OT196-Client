@@ -1,14 +1,18 @@
 import axios from "axios"
 
+const getToken = () => {
+
+  const data = window.localStorage.getItem('userData') 
+  if (!data) return ''
+  const token = JSON.parse(data).token
+  return token
+  
+}
+
 async function getRequest(link) {
 
-  let jwtToken = ''
-  let header = null
-
-  if(window.localStorage.getItem("token")) {
-    jwtToken = window.localStorage.getItem("token")
-    header = { Authorization: `Bearer ${jwtToken}` }
-  }
+  const token = getToken()
+  const header = token ? { Authorization: `Bearer ${token}` } : null
 
   let response = await axios.get(link, {
     headers: header

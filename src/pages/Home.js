@@ -21,7 +21,7 @@ export default function Home() {
       try {
         const res = await getRequest(
           `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_NEWS}`
-        );
+        );     
         setData(res);
         setIsReady({ status: true, message: "" });
       } catch (e) {
@@ -68,7 +68,7 @@ export default function Home() {
           <Row className="px-3" xs={1} sm={2} md={2} xl={3}>
             {isReady.status ? (
               data
-                .slice(3)
+                .slice(-3)
                 .reverse()
                 .map((news, index) => {
                   return <NewsCard newData={news} key={news.id} />;
