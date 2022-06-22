@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from "axios";
-import { logOut } from "../reducers/slices/authReducer";
 const initialState = JSON.parse(localStorage.getItem('userData')) || {
     isUserLogged: false, 
 }
@@ -22,17 +21,16 @@ const loginSlice = createSlice({
     }
 })
 
-const { REACT_APP_BACKEND_URL } = process.env
+const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_LOGIN, REACT_APP_BACKEND_REGISTER } = process.env
 
 const isMyUserLogged = createAsyncThunk(
     'auth/login',
     async (user, thunkAPI) => {
         try{
-            const response = await axios.post(`${REACT_APP_BACKEND_URL}/auth/login`, user)
-            console.log(response)
-            const newUserData = {...response.data.user, ...{isUserLogged: true}}
+            const reqPath = REACT_APP_BACKEND_URL+REACT_APP_BACKEND_LOGIN
+            const response = await axios.post(reqPath, user)
+            const newUserData = {...response.data, ...{isUserLogged: true}}
             thunkAPI.dispatch(submitUserData(newUserData))
-            console.log(newUserData)
             return newUserData
             }
         catch(e){
@@ -100,7 +98,7 @@ export const submitTestimonialForm = (testimony) => {
 export const submitUserToDB = (user)=> {
     return async function(dispatch){
         try {
-            const response = await axios.post(`${REACT_APP_BACKEND_URL}/users/auth/register`, user)
+            const response = await axios.post(`${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_REGISTER}`, user)
             return response.data
         } catch (error) {
             throw new Error(error)
@@ -112,7 +110,7 @@ export const submitUserToDB = (user)=> {
 export const createValidToken = (userData)=>{
     return async function(dispatch){
         try {
-            const token = await axios.post(`${REACT_APP_BACKEND_URL}/jwt/auth/login`, userData)
+            const token = await axios.post(`${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_LOGIN}`, {email: userData.email, password: userData.password})
             return token.data.token
         } catch (error) {
             throw new Error(error)
@@ -120,5 +118,6 @@ export const createValidToken = (userData)=>{
     }
 }
 
-export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
-export const { submitUserData } = loginSlice.actions
+export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization, signOff}
+export const { submitUserData, removeUserData } = loginSlice.actions
+export default loginSlice.reducer
