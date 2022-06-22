@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, Row, Spinner } from "react-bootstrap";
-import { exampleNewsData } from "../components/news/exampleNewsData";
+import { Button, Row, Spinner, Image, Col } from "react-bootstrap";
 import NewsCard from "../components/news/NewsBox";
 import WelcomeTitle from "../components/home/WelcomeTitle";
 import SliderComponent from "../features/sliderComponent/SliderComponent";
 import { motion } from "framer-motion";
 import { getRequest } from "../services/RequestService";
 import { Link } from "react-router-dom";
+import imgNews from "../img/ultimasNovedades.png";
+import "./Home.css";
 
 export default function Home() {
   const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_NEWS } = process.env;
@@ -48,13 +49,24 @@ export default function Home() {
           <SliderComponent />
         </div>
         <div className="news-container">
-          <div className="news-title my-4 py-4">
-            <h2>Ultimas novedades</h2>
-          </div>
-          <Row className="px-3" xs={1} sm={2} md={2} xl={3}>
+          <Row
+            className="g-4 d-flex align-items-center justify-content-center"
+            xs={1}
+            sm={2}
+            md={4}
+          >
+            <Col
+              xs={12}
+              sm={12}
+              lg={3}
+              className="d-flex justify-content-center"
+            >
+              <Image fluid src={imgNews} className="img-custom-size" />
+            </Col>
+
             {isReady.status ? (
               data
-                .slice(3)
+                .slice(-3)
                 .reverse()
                 .map((news, index) => {
                   return <NewsCard newData={news} key={news.id} />;
@@ -68,7 +80,7 @@ export default function Home() {
           </Row>
         </div>
         <div className="all-news-button  my-4 py-4">
-          <Link to="/novedades">
+          <Link to="/news">
             <Button variant="outline-primary">Ver más noticias</Button>
           </Link>
         </div>
