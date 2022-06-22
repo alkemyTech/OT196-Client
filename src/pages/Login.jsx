@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useFormik } from "formik";
 import { Button } from "react-bootstrap";
 import { isMyUserLogged } from "../app/slice";
