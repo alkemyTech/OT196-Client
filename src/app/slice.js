@@ -29,7 +29,7 @@ const isMyUserLogged = createAsyncThunk(
         try{
             const reqPath = REACT_APP_BACKEND_URL+REACT_APP_BACKEND_LOGIN
             const response = await axios.post(reqPath, user)
-            const newUserData = {...response.data, ...{isUserLogged: true}}
+            const newUserData = {...response.data.user, ...{isUserLogged: true}}
             thunkAPI.dispatch(submitUserData(newUserData))
             return newUserData
             }
