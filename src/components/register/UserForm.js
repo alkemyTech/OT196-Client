@@ -57,15 +57,16 @@ export default function UserForm() {
           Swal.fire({
             icon: "error",
             title: "Error al iniciar sesión",
-            text: "Su cuenta fue creada, intente iniciar sesión nuevamente.",
+            text: "Su cuenta ya existe, intente iniciar sesión nuevamente.",
           })
         })
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log(e)
       Swal.fire({
         icon: "error",
         title: "Error al crear su cuenta",
-        text: "No fue posible crear su cuenta, intentelo nuevamente.",
+        text: e,
       });
     });
   }

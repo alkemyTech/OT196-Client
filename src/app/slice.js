@@ -102,7 +102,7 @@ export const submitUserToDB = (user)=> {
             const response = await axios.post(`${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_REGISTER}`, user)
             return response.data
         } catch (error) {
-            throw new Error(error)
+            throw new Error(error?.response?.data?.message || "No fue posible crear su cuenta, intentelo nuevamente.")
         }
     }
 }
