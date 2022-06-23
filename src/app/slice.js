@@ -1,7 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from "axios";
-import { logOut } from "../reducers/slices/authReducer";
-const initialState = {
+const initialState = JSON.parse(localStorage.getItem('userData')) || {
     isUserLogged: false, 
 }
 
@@ -10,21 +9,46 @@ const loginSlice = createSlice({
     initialState, 
     reducers: {
         submitUserData: (state, action)=> {
-            state.isUserLogged = action.payload
+            state.isUserLogged = action.payload.isUserLogged;
+            state.email = action.payload.email;
+            state.id = action.payload.id;
+            state.roleId = action.payload.roleId;
+            state.image = action.payload.image;
+        },
+        removeUserData: (state, action) => {
+            state = {};
+            state.isUserLogged = false;
         }
     }
 })
 
-const { REACT_APP_BACKEND_URL } = process.env
+const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_LOGIN, REACT_APP_BACKEND_REGISTER } = process.env
 
-const isMyUserLogged = (user)=> {
-    return async (dispatch)=> {
+const isMyUserLogged = createAsyncThunk(
+    'auth/login',
+    async (user, thunkAPI) => {
+        try{
+            const reqPath = REACT_APP_BACKEND_URL+REACT_APP_BACKEND_LOGIN
+            const response = await axios.post(reqPath, user)
+            const newUserData = {...response.data.user, ...{isUserLogged: true}}
+            thunkAPI.dispatch(submitUserData(newUserData))
+            return newUserData
+            }
+        catch(e){
+            console.log(e)
+            throw new Error(e)
+        }
+    }
+)
+
+//with this function you can sign off the user sesion 
+const signOff = ()=> {
+    return function(dispatch){
         try {
-          const response = await axios.post(`${REACT_APP_BACKEND_URL}/users/auth/login`, user)       
-          dispatch(submitUserData(response.data))
+            dispatch(removeUserData())
         } catch (error) {
             console.log(error)
-        }      
+        }
     }
 }
 
@@ -60,35 +84,25 @@ export const editTestimonialForm = (existingTestimony)=> {
 }
 
 //FUNCTION FOR CREATE A NEW TESTIMONIAL 
-export const submitTestimonialForm = (testimony)=> {
-return async function(dispatch){
+export const submitTestimonialForm = (testimony) => {
+  return async function (dispatch) {
     try {
-      await axios.post(`${REACT_APP_BACKEND_URL}/testimonials`, testimony)
+      await axios.post(`${REACT_APP_BACKEND_URL}/testimonials`, testimony);
     } catch (error) {
-        throw new Error(error)
+      throw new Error(error);
     }
-}
-}
+  };
+};
 
-//with this function you can sign off the user sesion 
-export const signOff = ()=> {
-    return function(dispatch){
-        try {
-            dispatch(logOut())
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
 
 //FUNCTION FOR CREATE A NEW USER IN DATABASE
 export const submitUserToDB = (user)=> {
     return async function(dispatch){
         try {
-            const response = await axios.post(`${REACT_APP_BACKEND_URL}/users/auth/register`, user)
+            const response = await axios.post(`${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_REGISTER}`, user)
             return response.data
         } catch (error) {
-            throw new Error(error)
+            throw new Error(error?.response?.data?.message || "No fue posible crear su cuenta, intentelo nuevamente.")
         }
     }
 }
@@ -97,7 +111,7 @@ export const submitUserToDB = (user)=> {
 export const createValidToken = (userData)=>{
     return async function(dispatch){
         try {
-            const token = await axios.post(`${REACT_APP_BACKEND_URL}/jwt/auth/login`, userData)
+            const token = await axios.post(`${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_LOGIN}`, {email: userData.email, password: userData.password})
             return token.data.token
         } catch (error) {
             throw new Error(error)
@@ -105,6 +119,6 @@ export const createValidToken = (userData)=>{
     }
 }
 
-export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization }
-export const { submitUserData } = loginSlice.actions
+export  { loginSlice, isMyUserLogged, submitUpdateDataOrganization, signOff}
+export const { submitUserData, removeUserData } = loginSlice.actions
 export default loginSlice.reducer

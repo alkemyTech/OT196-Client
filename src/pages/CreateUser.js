@@ -16,7 +16,7 @@ export default function CreateUser() {
           src={logo}
           alt="Logo Somos Mas"
         />
-        <h1 className="text-center mb-4">Sign Up</h1>
+        <h1 className="text-center mb-4">Registrarse</h1>
       </header>
       <div className="d-flex">
         <UserForm />

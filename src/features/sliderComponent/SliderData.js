@@ -14,7 +14,7 @@ const SliderData = ({
 
 	const siguiente = useCallback(() => {
 		
-		if(sliderComponents.current.children.length > 0){
+		if(sliderComponents?.current?.children?.length > 0){
 
 			const primerElemento = sliderComponents.current.children[0];
 
@@ -43,7 +43,6 @@ const SliderData = ({
 	}, [velocidad]);
 	
 	const anterior = () => {
-		console.log('Anterior');
 		if(sliderComponents.current.children.length > 0){
 	
 			const index = sliderComponents.current.children.length - 1;
