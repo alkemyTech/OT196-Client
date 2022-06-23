@@ -130,7 +130,7 @@ const NewsForm = ({ newsObject }) => {
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
             onClick={handleSubmit}
-            className="btn btn-dark m-2"
+            className="btn btn-primary m-2"
             type="submit"
           >
             Enviar
