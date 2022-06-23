@@ -4,7 +4,7 @@ import TestimonyItem from "../components/backoffice/itemTestimonials";
 import { motion } from 'framer-motion'
 
 const BackofficeTestimonials = () => {
-  const url = "http://localhost:3000/testimonials/1/public";
+  const url = "http://localhost:3000/testimonials";
   const [testimonials, setTestimonials] = useState();
   const jwtExample =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
