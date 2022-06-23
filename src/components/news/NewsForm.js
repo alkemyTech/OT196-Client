@@ -2,7 +2,7 @@ import React from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { errorAlert, successAlert } from "../../setupAlerts";
-import { Form, Image } from "react-bootstrap";
+import { Form, Image, Row, Col } from "react-bootstrap";
 
 const NewsForm = ({ newsObject }) => {
   const [name, setName] = React.useState("");
@@ -83,8 +83,10 @@ const NewsForm = ({ newsObject }) => {
 
   return (
     <div className="d-flex justify-content-center">
-      <form className="form-inline col-10 mt-3 mb-3">
-        <label className="sr-only">Titulo</label>
+      <form className="container mt-3 mb-3">
+        <Row>
+        <Col md={12} lg={6} xl={6}>
+        <label>Titulo</label>
         <input
           type="text"
           className="form-control mb-3"
@@ -92,7 +94,7 @@ const NewsForm = ({ newsObject }) => {
           onChange={handleName}
           value={name}
         />
-        <label className="sr-only">Contenido</label>
+        <label>Contenido</label>
         {content !== undefined && (
           <CKEditor
             editor={ClassicEditor}
@@ -101,8 +103,9 @@ const NewsForm = ({ newsObject }) => {
             onChange={handleContent}
           />
         )}
-
-        <label className="sr-only mt-3">Categoria</label>
+        </Col>
+        <Col md={12} lg={6} xl={6}>
+        <label>Categoria</label>
         <input
           type="text"
           className="form-control mb-3"
@@ -122,10 +125,12 @@ const NewsForm = ({ newsObject }) => {
           )}
           <Form.Control type="file" size="sm" onChange={handleImage} />
         </Form.Group>
+        </Col>
+        </Row>
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
             onClick={handleSubmit}
-            className="btn btn-dark mb-3"
+            className="btn btn-dark m-2"
             type="submit"
           >
             Enviar
