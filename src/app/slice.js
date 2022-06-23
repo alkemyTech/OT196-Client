@@ -63,7 +63,7 @@ export const editTestimonialForm = (existingTestimony)=> {
 export const submitTestimonialForm = (testimony)=> {
 return async function(dispatch){
     try {
-       await axios.post(`${REACT_APP_BACKEND_URL}/testimonials`, testimony)
+      await axios.post(`${REACT_APP_BACKEND_URL}/testimonials`, testimony)
     } catch (error) {
         throw new Error(error)
     }
