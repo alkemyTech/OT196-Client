@@ -17,6 +17,7 @@ import Backoffice from "./Backoffice";
 import BackofficeNews from "./BackofficeNews";
 import BackofficeCategories from "./BackofficeCategories";
 import BackofficeUserList from "./BackofficeUserList";
+import BackofficeCategories from "./BackofficeCategories"
 
 export default function Router() {
   const location = useLocation();
@@ -46,6 +47,10 @@ export default function Router() {
         <Route
           path="/backoffice/testimonials"
           element={<BackofficeTestimonials />}
+        />
+        <Route
+          path="/backoffice/categories"
+          element={<BackofficeCategories />}
         />
         <Route path="/actividades/:id" element={<ActivityDetails />} />
         <Route path="/news/" element={<ListNews />} />

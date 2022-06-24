@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
-import "bootstrap/dist/css/bootstrap.css";
 import { Spinner } from "react-bootstrap";
 import submitForm from "../utils/submitForm";
 
