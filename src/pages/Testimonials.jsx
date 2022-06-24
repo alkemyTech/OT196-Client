@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Avatar from 'react-avatar'
 import { Card, Col } from 'react-bootstrap'
 import './testimonials.css'
+import {motion} from 'framer-motion'
 
 export default function Testimonials(){
 
@@ -11,7 +12,7 @@ export default function Testimonials(){
     const [testimonials, setTestimonials] = useState([])
     const jwtExample =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
-    const url = `${REACT_APP_BACKEND_URL}/testimonials`
+    const url = `${REACT_APP_BACKEND_URL}testimonials`
     const axiosApi = async () => {
         const response = await axios.get(url, {
           headers: {
@@ -26,7 +27,15 @@ export default function Testimonials(){
       }, []);
 
     return(
-      <div>
+      <motion.div   
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        delay: 0.1,
+        x: { type: "spring", stiffness: 100 },
+        default: { duration: 0.5 },
+      }}
+      >
         <h1> Testimonios </h1>
         <div className="testimonials_container" style={{backgrondColor: 'red'}}>
             { testimonials && testimonials.length ? 
@@ -46,6 +55,6 @@ export default function Testimonials(){
             <h1 className='testimonials_message'> Aun no hay testimonios cargados </h1>   
         }
         </div>
-      </div>
+      </motion.div>
     )
 }
