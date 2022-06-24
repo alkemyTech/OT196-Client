@@ -35,7 +35,7 @@ export default function Router() {
         <Route path="/contact-us" element={<ScreenContact />} />
         <Route path="/about-us" element={<h1>About Us</h1>} />
         <Route path="/donations" element={<h1>Donations</h1>} />
-        <Route path="/actividades/:id" element={<ActivityDetails />} />
+        <Route path="/activities/:id" element={<ActivityDetails />} />
         <Route path="/news/" element={<ListNews />} />
         <Route path="/news/:id" element={<ViewNews />} />
 
