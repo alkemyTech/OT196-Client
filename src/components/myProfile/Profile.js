@@ -1,32 +1,34 @@
 import React from "react";
-
 import { Row, Col, Button } from "react-bootstrap";
-
 import CustomModal from "./CustomModal";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Profile = () => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [profile, setProfile] = React.useState({});
+
+  const userData = useSelector((state) => state.USER_LOGIN);
 
   const editBtn = "Edit";
 
   // Get the profile from the user currently logged in
   const getProfile = async () => {
     try {
-      // const response = await fetch("htttp://localhost:3000/auth/me")
-      //   const jsonData = await response.json();
-      //   setProfile(jsonData);
-
-      //  fake user
-      const fakeUser = {
-        firstName: "Usuario",
-        lastName: "Demo",
-        email: "test@test.com",
-      };
-      setFirstName(fakeUser.firstName);
-      setLastName(fakeUser.lastName);
-      setEmail(fakeUser.email);
+      const { REACT_APP_BACKEND_AUTHME } = process.env;
+      const response = await axios.get(`${REACT_APP_BACKEND_AUTHME}`);
+      setProfile(response);
+      // //  fake user
+      // const fakeUser = {
+      //   firstName: "Usuario",
+      //   lastName: "Demo",
+      //   email: "test@test.com",
+      // };
+      // setFirstName(fakeUser.firstName);
+      // setLastName(fakeUser.lastName);
+      // setEmail(fakeUser.email);
     } catch (e) {
       console.error(e);
     }
@@ -115,7 +117,7 @@ const Profile = () => {
             </Col>
           </Row>
         ))}
-      <Row>
+      <Row className="mb-3">
         <Col className="d-flex justify-content-end">
           <Button onClick={deleteProfile} variant="danger">
             Delete
