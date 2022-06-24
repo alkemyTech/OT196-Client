@@ -7,9 +7,10 @@ import SliderComponent from "../features/sliderComponent/SliderComponent";
 import { motion } from "framer-motion";
 import { getRequest } from "../services/RequestService";
 import { Link } from "react-router-dom";
+import customTransition from "../components/utils/CustomTransition";
 
 export default function Home() {
-  const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_NEWS } = process.env;
+  const { REACT_APP_BACKEND_NEWS } = process.env;
   const [data, setData] = useState({});
   const [isReady, setIsReady] = useState({
     status: false,
@@ -19,9 +20,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchLastNews() {
       try {
-        const res = await getRequest(
-          `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_NEWS}`
-        );     
+        const res = await getRequest(`${REACT_APP_BACKEND_NEWS}`);
         setData(res);
         setIsReady({ status: true, message: "" });
       } catch (e) {
@@ -32,14 +31,14 @@ export default function Home() {
       }
     }
     fetchLastNews();
-  }, [REACT_APP_BACKEND_URL]);
+  }, [REACT_APP_BACKEND_NEWS]);
 
   return (
     <motion.div
       className="container-fluid"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      transition={customTransition}
     >
       <WelcomeTitle text={data.welcome} />
       <div className="container-fluid">
@@ -68,7 +67,7 @@ export default function Home() {
           </Row>
         </div>
         <div className="all-news-button  my-4 py-4">
-          <Link to="/novedades">
+          <Link to="/news">
             <Button variant="outline-primary">Ver más noticias</Button>
           </Link>
         </div>
