@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import TestimonyItem from "../components/backoffice/itemTestimonials";
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import CreateTestimony from "../components/testimonials/TestimonyModal";
 
 const BackofficeTestimonials = () => {
   const url = "http://localhost:3000/testimonials";
   const [testimonials, setTestimonials] = useState();
   const jwtExample =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
-
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o"
+  ;
   //Callback for testimonials data
   const axiosApi = async () => {
     const response = await axios.get(url, {
@@ -25,12 +26,13 @@ const BackofficeTestimonials = () => {
   }, []);
 
   return (
-    <motion.div className="container-fluid mb-5"
+    <motion.div className="container rounded mb-5"
     initial={{opacity: 0}}
     animate={{opacity: 1}}
     exit={{opacity: 0}}
     >
-      <h1 className="sr-only m-4">Lista de Testimonios</h1>
+      <h1 className="m-4">Lista de Testimonios</h1>
+      <CreateTestimony />
       <div className="list-group">
         {!testimonials ? (
           <div className="d-flex justify-content-center">
@@ -45,7 +47,7 @@ const BackofficeTestimonials = () => {
           testimonials.map((testimony) => {
             return (
               <TestimonyItem
-                axiosApi={axiosApi}
+              axiosApi={axiosApi}
                 key={testimony.id}
                 testimony={testimony}
               />
