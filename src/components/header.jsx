@@ -4,6 +4,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import logo from "../img/logoSomosMas.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import './Header.css'
 import HeaderAvatar from "./HeaderAvatar"
 
 
@@ -13,16 +14,6 @@ export default function Header(props) {
 
   return (
     <>
-      <style type="text/css">
-        {`
-                .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-                color: #fff;
-                }
-                .nav-pills .nav-link{
-                    color: #000
-                }
-                `}
-            </style>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="ligth" style={{ boxShadow: '1px 2px 5px rgb(0, 0 , 0, 0.3)', color: 'black' }}>
                 <Container className="px-5 justify-content-around" fluid>
                     <Navbar.Brand onClick={()=> navigate('/')}>

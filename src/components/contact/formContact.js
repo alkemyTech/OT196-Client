@@ -132,7 +132,7 @@ export default function Formcontact() {
             </div>
             <br />
             <button
-              className="btn ps-5 pe-5 mb-3 btn-outline-dark"
+              className="btn ps-5 pe-5 mb-3 btn-outline-primary"
               type="submit"
             >
               Enviar
