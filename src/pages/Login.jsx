@@ -7,27 +7,27 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import hands from "../img/hands.jpg";
-import {motion} from 'framer-motion'
-
+import { motion } from "framer-motion";
+import customTransition from "../components/utils/CustomTransition";
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleSubmitUserData = async (user) => {
     dispatch(isMyUserLogged(user))
-    .unwrap()
-    .then((result) => {
-      localStorage.setItem('userData', JSON.stringify(result))
-      navigate("/")
-    })
-    .catch(() => {
-      Swal.fire({
-        icon: "error",
-        title: "Datos Incorrectos",
-        text: "Email o contraseña incorrectos",
+      .unwrap()
+      .then((result) => {
+        localStorage.setItem("userData", JSON.stringify(result));
+        navigate("/");
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Datos Incorrectos",
+          text: "Email o contraseña incorrectos",
+        });
       });
-    });
   };
 
   const formik = useFormik({
@@ -52,10 +52,11 @@ export default function Login() {
   });
 
   return (
-    <motion.div className="login"
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0}}
+    <motion.div
+      className="login"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={customTransition}
     >
       <section className="section-1-login">
         <h6 style={{ marginLeft: "-50%" }}> Bienvenido </h6>
@@ -98,7 +99,7 @@ export default function Login() {
         </form>
         <div className="span-login">
           <span>No tienes cuenta? </span>
-          <Link to='/signup' className="registro-login" >
+          <Link to="/signup" className="registro-login">
             Registrate{" "}
           </Link>{" "}
         </div>
