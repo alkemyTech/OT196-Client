@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import TestimonyItem from "../components/backoffice/itemTestimonials";
-import { motion } from 'framer-motion';
 import CreateTestimony from "../components/testimonials/TestimonyModal";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Breadcrumb } from "react-bootstrap";
+import customTransition from "../components/utils/CustomTransition";
 
 const BackofficeTestimonials = () => {
   const url = "http://localhost:3000/testimonials";
@@ -26,11 +29,21 @@ const BackofficeTestimonials = () => {
   }, []);
 
   return (
-    <motion.div className="container rounded mb-5"
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0}}
+    <motion.div
+      className="container rounded mb-5"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={customTransition}
     >
+      <Breadcrumb className="mt-3 ms-3">
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+          Inicio
+        </Breadcrumb.Item>
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/backoffice" }}>
+          Backoffice
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>Testimonios</Breadcrumb.Item>
+      </Breadcrumb>
       <h1 className="m-4">Lista de Testimonios</h1>
       <CreateTestimony />
       <div className="list-group">

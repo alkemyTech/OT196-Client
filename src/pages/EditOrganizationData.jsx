@@ -1,11 +1,13 @@
 import React from "react";
 import { useFormik } from "formik";
-import { Button } from "react-bootstrap";
+import { Button, Breadcrumb } from "react-bootstrap";
 import "./EditOrganizationData.css";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { submitUpdateDataOrganization } from "../app/slice";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import customTransition from "../components/utils/CustomTransition";
 
 export default function EditOrganizationData() {
   const dispatch = useDispatch();
@@ -43,11 +45,21 @@ export default function EditOrganizationData() {
   });
 
   return (
-    <motion.section className="editOrganizationData_main"
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0}}
+    <motion.section
+      className="editOrganizationData_main"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={customTransition}
     >
+      <Breadcrumb className="mt-3 ms-3">
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+          Inicio
+        </Breadcrumb.Item>
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/backoffice" }}>
+          Backoffice
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>Organización</Breadcrumb.Item>
+      </Breadcrumb>
       <h1>
         {" "}
         A continuacion puedes editar el nombre y el logo de la organización:{" "}

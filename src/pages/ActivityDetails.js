@@ -1,19 +1,19 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import Activity from "../components/activity/Activity";
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
+import customTransition from "../components/utils/CustomTransition";
 function ActivityDetails() {
   return (
-    <motion.Container
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0}}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={customTransition}
     >
       <h1 className="d-flex justify-content-center mt-3 mb-5">
         Detalles de la actividad
       </h1>
       <Activity />
-    </motion.Container>
+    </motion.div>
   );
 }
 
