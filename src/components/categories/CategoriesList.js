@@ -6,7 +6,7 @@ import CategoriesListItem from "./CategoriesListItem";
 import ModalButton from "./ModalButton";
 
 function CategoriesList() {
-  const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_CATEGORIES } = process.env;
+  const { REACT_APP_BACKEND_CATEGORIES } = process.env;
   const [isLoading, setIsLoading] = useState({});
   const [categoriesList, setCategoriesList] = useState({});
   const [lastUpdate, setLastUpdate] = useState(false);
