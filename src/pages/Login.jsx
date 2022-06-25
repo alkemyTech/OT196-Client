@@ -1,32 +1,33 @@
 import React from "react";
 import { useFormik } from "formik";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { isMyUserLogged, submitUserData } from "../app/slice";
+import { isMyUserLogged } from "../app/slice";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import hands from "../img/hands.jpg";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
+import customTransition from "../components/utils/CustomTransition";
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const res = useSelector(submitUserData);
 
-  const handleSubmitUserData = (user) => {
-    dispatch(isMyUserLogged(user));
-    const apiResponse = res.payload.USER_LOGIN.isUserLogged;
-    if (apiResponse) {
-      navigate("/");
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Datos Incorrectos",
-        text: "Email o contraseña incorrectos",
+  const handleSubmitUserData = async (user) => {
+    dispatch(isMyUserLogged(user))
+      .unwrap()
+      .then((result) => {
+        localStorage.setItem("userData", JSON.stringify(result));
+        navigate("/");
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Datos Incorrectos",
+          text: "Email o contraseña incorrectos",
+        });
       });
-    }
   };
 
   const formik = useFormik({
@@ -41,7 +42,7 @@ export default function Login() {
       }
       if (!values.password) {
         errors.password = "El password es requerido";
-      } else if (values.password.length < 6) {
+      } else if (values.password.length < 2) {
         errors.password = "El password es muy corto";
       }
 
@@ -51,10 +52,11 @@ export default function Login() {
   });
 
   return (
-    <motion.div className="login"
-    initial={{opacity: 0}}
-    animate={{opacity: 1}}
-    exit={{opacity: 0}}
+    <motion.div
+      className="login"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={customTransition}
     >
       <section className="section-1-login">
         <h6 style={{ marginLeft: "-50%" }}> Bienvenido </h6>
@@ -97,7 +99,7 @@ export default function Login() {
         </form>
         <div className="span-login">
           <span>No tienes cuenta? </span>
-          <Link className="registro-login" to="#">
+          <Link to="/signup" className="registro-login">
             Registrate{" "}
           </Link>{" "}
         </div>

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Englebert&display=swap');
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    font-family: 'Englebert', sans-serif;
+    font-size: 2.5vh;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.nav-pills .nav-link{
+    color: #000;
+    font-family: 'Englebert', sans-serif;
+    font-size: 2.5vh;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.DropdownButton{
+    margin-left: 2%;
+    font-family: 'Englebert', sans-serif;
+    text-align: center;
+}

@@ -7,7 +7,7 @@ import { Form, Image } from "react-bootstrap";
 const NewsForm = ({ newsObject }) => {
   const [name, setName] = React.useState("");
   const [image, setImage] = React.useState("");
-  const [content, setContent] = React.useState("");
+  const [content, setContent] = React.useState();
   const [category, setCategory] = React.useState("Otros");
 
   const [method, setMethod] = React.useState("POST");
@@ -73,10 +73,10 @@ const NewsForm = ({ newsObject }) => {
           const error = (res && res.message) || res.status;
           return Promise.reject(error);
         }
-        successAlert();
+        successAlert({});
       });
     } catch (error) {
-      errorAlert();
+      errorAlert({});
       console.error(error);
     }
   };
@@ -93,7 +93,7 @@ const NewsForm = ({ newsObject }) => {
           value={name}
         />
         <label className="sr-only">Contenido</label>
-        {content && (
+        {content !== undefined && (
           <CKEditor
             editor={ClassicEditor}
             data={content}
