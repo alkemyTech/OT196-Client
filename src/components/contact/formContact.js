@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
-import "bootstrap/dist/css/bootstrap.css";
 import { Spinner } from "react-bootstrap";
 import submitForm from "../utils/submitForm";
 
@@ -133,7 +132,7 @@ export default function Formcontact() {
             </div>
             <br />
             <button
-              className="btn ps-5 pe-5 mb-3 btn-outline-dark"
+              className="btn ps-5 pe-5 mb-3 btn-outline-primary"
               type="submit"
             >
               Enviar

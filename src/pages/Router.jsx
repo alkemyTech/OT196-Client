@@ -18,8 +18,12 @@ import Backoffice from "./Backoffice";
 import BackofficeNews from "./BackofficeNews";
 import BackofficeCategories from "./BackofficeCategories";
 import BackofficeUserList from "./BackofficeUserList";
+<<<<<<< HEAD
 import ProtectedRoute from "../components/utils/ProtectedRoute";
 import MyProfile from "./MyProfile";
+=======
+import BackofficeCategories from "./BackofficeCategories"
+>>>>>>> 7751e2b389e36938b12831685b3fe1134c034dea
 
 export default function Router() {
   const location = useLocation();
@@ -35,7 +39,32 @@ export default function Router() {
         <Route path="/contact-us" element={<ScreenContact />} />
         <Route path="/about-us" element={<h1>About Us</h1>} />
         <Route path="/donations" element={<h1>Donations</h1>} />
+<<<<<<< HEAD
         <Route path="/activities/:id" element={<ActivityDetails />} />
+=======
+        <Route path="/backoffice" element={<Backoffice />} />
+        <Route
+          path="/backoffice/edit-organization"
+          element={<EditOrganizationData />}
+        />
+        <Route path="/backoffice/activities" element={<ActivityList />} />
+        <Route path="/backoffice/contacts" element={<ContactList />} />
+        <Route path="/backoffice/news" element={<BackofficeNews />} />
+        <Route
+          path="/backoffice/categories"
+          element={<BackofficeCategories />}
+        />
+        <Route path="/backoffice/users" element={<BackofficeUserList />} />
+        <Route
+          path="/backoffice/testimonials"
+          element={<BackofficeTestimonials />}
+        />
+        <Route
+          path="/backoffice/categories"
+          element={<BackofficeCategories />}
+        />
+        <Route path="/actividades/:id" element={<ActivityDetails />} />
+>>>>>>> 7751e2b389e36938b12831685b3fe1134c034dea
         <Route path="/news/" element={<ListNews />} />
         <Route path="/news/:id" element={<ViewNews />} />
 

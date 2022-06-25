@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Row, Spinner } from "react-bootstrap";
+import { Button, Row, Spinner, Card } from "react-bootstrap";
 import { exampleNewsData } from "../components/news/exampleNewsData";
 import NewsCard from "../components/news/NewsBox";
 import WelcomeTitle from "../components/home/WelcomeTitle";
@@ -35,20 +35,34 @@ export default function Home() {
 
   return (
     <motion.div
-      className="container-fluid"
+      className=""
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
-      <WelcomeTitle text={data.welcome} />
       <div className="container-fluid">
-        <WelcomeTitle text="Inicio" />
         <div className="container-fluid">
-          <SliderComponent />
+          <Row className='mt-4 d-flex'>
+            <Card className="col-12 col-xl-4 mb-3" border="light">
+              <Card.Title>
+                <WelcomeTitle text="BIENVENIDO A SOMOS MÁS" />
+              </Card.Title>
+                <Card.Body className="d-flex fs-5 mx-2"  style={{ textAlign: 'justify' }}>
+                  <p className="fs-5">
+                    En Somos Más trabajamos con los chicos y chicas,
+                    mamás y papás, abuelos y vecinos del barrio La Cava generando
+                    procesos de crecimiento y de inserción social.
+                  </p>
+                </Card.Body>
+            </Card>
+            <div className="col-12 col-xl-8 mb-3">
+              <SliderComponent />
+            </div>
+          </Row>
         </div>
         <div className="news-container">
-          <div className="news-title my-4 py-4">
-            <h2>Ultimas novedades</h2>
+          <div className="news-title d-flex justify-content-center my-4 py-4">
+            <h2>Últimas novedades</h2>
           </div>
           <Row className="px-3" xs={1} sm={2} md={2} xl={3}>
             {isReady.status ? (

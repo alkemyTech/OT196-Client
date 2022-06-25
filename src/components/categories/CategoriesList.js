@@ -3,11 +3,13 @@ import { Container, Row, Button, Alert, Spinner } from "react-bootstrap";
 import { getRequest } from "../../services/RequestService";
 import { FaPlus } from "react-icons/fa";
 import CategoriesListItem from "./CategoriesListItem";
+import ModalButton from "./ModalButton";
 
 function CategoriesList() {
-  const { REACT_APP_BACKEND_CATEGORIES } = process.env;
+  const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_CATEGORIES } = process.env;
   const [isLoading, setIsLoading] = useState({});
   const [categoriesList, setCategoriesList] = useState({});
+  const [lastUpdate, setLastUpdate] = useState(false);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -16,7 +18,6 @@ function CategoriesList() {
         const reqPath = REACT_APP_BACKEND_CATEGORIES;
         const res = await getRequest(reqPath);
         setCategoriesList(res.result);
-
         // Set message if response is empty
         const loadingMessage =
           res.result.length > 0
@@ -30,22 +31,31 @@ function CategoriesList() {
           message: `Error al obtener las categorias.`,
         });
       }
+      fetchCategories();
     }
-    fetchCategories();
-  }, [REACT_APP_BACKEND_CATEGORIES]);
+  }, [REACT_APP_BACKEND_CATEGORIES, lastUpdate]);
 
   return (
     <Container className="my-5">
       <h2 className="mb-4">Lista de categorias</h2>
       <Row className="justify-content-center align-items-center mb-3 mx-auto w-75">
-        <Button variant="outline-success lg">
-          <FaPlus className="me-2" />
-          Agregar nueva categoria
-        </Button>
+        <ModalButton
+          variant="outline-success lg"
+          text={
+            <>
+              <FaPlus className="me-2" /> Agregar nueva categoria
+            </>
+          }
+          lastUpdate={setLastUpdate}
+        />
       </Row>
       {!isLoading.status && categoriesList.length > 0 ? (
         categoriesList.map((cat) => (
-          <CategoriesListItem key={cat.id} itemData={cat} />
+          <CategoriesListItem
+            key={cat.id}
+            lastUpdate={setLastUpdate}
+            itemData={cat}
+          />
         ))
       ) : isLoading.message === "" ? (
         <Spinner animation="border" variant="primary" />
