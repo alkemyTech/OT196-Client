@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Englebert&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Englebert&display=swap");
 
-.App h1, h2, h3{
+.App h1,
+h3 {
   text-align: center;
-  font-family: 'Englebert', sans-serif;
-  background-color: #9AC9FB;
+  font-family: "Englebert", sans-serif;
+  background-color: #9ac9fb;
   padding-inline: 30px;
   padding-top: 15px;
   font-weight: 600;
   border-radius: 6px;
 }
 
-.App{
-  font-family: 'Montserrat', sans-serif;
+.App {
+  font-family: "Montserrat", sans-serif;
   text-align: center;
 }
