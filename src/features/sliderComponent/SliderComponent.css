@@ -12,7 +12,7 @@ body {
 }
 
 main {
-	max-width: 1000px;
-	margin: 50px auto;
+	max-width: 100%;
 	overflow: hidden;
+	border-radius: 6px;
 }
