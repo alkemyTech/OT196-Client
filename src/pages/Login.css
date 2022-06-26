@@ -12,15 +12,18 @@
 }
 
 .input {
-  border-radius: 8px;
-  margin: 0.5rem;
-  height: 3rem;
+  border-radius: 5px;
+  margin-top: 2%;
+  margin-bottom: .5rem;
+  height: 2.5rem;
+  width: 100%
 }
 
 .btn-login {
   background-color: red;
   font-family: "Roboto", sans-serif;
-  font-size: 1.2em;
+  margin-top: 2%;
+  font-size: 1.2rem;
 }
 
 .registro-login {
@@ -30,21 +33,27 @@
 }
 
 .section-1-login {
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .span-login {
-  margin-top: 30%;
-  font-size: 1.3em;
+  margin-top: 2%;
+  font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.title{
+  margin-left: 10%;
+  max-width: 80%;
+}
+
 
 @media (max-width: 767px){
   .input{
     width: 100%;
   }
   .btn-login {
-    width: 120%;
+    width: 100%;
     border-radius: 15px;
   }
 }

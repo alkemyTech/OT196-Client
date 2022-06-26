@@ -46,7 +46,7 @@ export default function EditOrganizationData() {
 
   return (
     <motion.section
-      className="editOrganizationData_main"
+      className="editOrganizationData_main mb-5"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}
