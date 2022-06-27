@@ -4,6 +4,8 @@ import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import customTransition from "../components/utils/CustomTransition";
+import CreateNews from "../components/news/NewsPost";
+
 
 const BackofficeNews = () => {
   return (
@@ -23,6 +25,7 @@ const BackofficeNews = () => {
         <Breadcrumb.Item active>Novedades</Breadcrumb.Item>
       </Breadcrumb>
       <h2>Lista de Novedades</h2>
+      <CreateNews/>
       <NewsTable />
     </motion.div>
   );
