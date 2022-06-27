@@ -4,6 +4,7 @@ import Listmembers from "../components/members/MembersList";
 import customTransition from "../components/utils/CustomTransition";
 import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function ScreenContact() {
   return (
@@ -22,12 +23,10 @@ function ScreenContact() {
       <div className="container-fluid d-flex mt-4">
         <div className="row justify-content-around">
           <div className="col-11 col-md-5 col-xl-4 shadow bg-light mb-5 border rounded px-0">
-            <p className="p-2 fs-2 bg-primary rounded text-white">
-                        Miembros
-                    </p>
-                    <div>
-                        <Listmembers/>
-                    </div>
+            <p className="p-2 fs-2 bg-primary rounded text-white">Miembros</p>
+            <div>
+              <Listmembers />
+            </div>
           </div>
           <div className="col-11 col-md-5 col-xl-4 bg-light shadow mb-5 border rounded px-0">
             <p className="p-2 fs-2 bg-primary rounded text-white">

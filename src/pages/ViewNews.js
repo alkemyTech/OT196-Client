@@ -9,7 +9,7 @@ import customTransition from "../components/utils/CustomTransition";
 function ViewNews() {
   const { id } = useParams();
   const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_NEWS } = process.env;
-  const ENDPOINT = `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_NEWS}${id}`; //endpoint path to get news by id
+  const ENDPOINT = `${REACT_APP_BACKEND_NEWS}/${id}`; //endpoint path to get news by id
   const [newsData, setNewsData] = useState({});
   const [fetchError, setFetchError] = useState(false);
 
