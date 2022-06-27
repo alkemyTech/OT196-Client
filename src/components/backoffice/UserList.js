@@ -1,47 +1,26 @@
 import React from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 import EditUserModal from "./EditUserModal";
 
-import { FaTrashAlt } from "react-icons/fa";
-import axios from "axios";
-import { successAlert, warningAlert } from "../../setupAlerts";
-
-// fake user (admin role) to test
-const jwtExample =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.KA60K1WLyw4tlfA5S1B1vW_3-JFxGkOzCcnUZBSgGPk";
+import { errorAlert, successAlert, warningAlert } from "../../setupAlerts";
+import BtnDelete from "../utils/BtnDelete";
+import { getRequest, putRequest } from "../../services/RequestService";
 
 // Gets a list from all the users if the user logged is an Admin
 const UserList = () => {
   const [list, setList] = React.useState([]);
 
+  const { REACT_APP_BACKEND_USERS } = process.env;
+
   const getUsers = async () => {
     try {
       // can be changed to a custom fetch that gets the user that's logged in
-      const response = await axios.get("http://localhost:3000/users", {
-        headers: {
-          Authorization: "Bearer " + jwtExample,
-        },
-      });
-      setList(response.data);
+      const response = await getRequest(REACT_APP_BACKEND_USERS);
+      setList(response);
     } catch (e) {
       console.error(e.message);
-    }
-  };
-
-  const updateProfile = async (result, user) => {
-    try {
-      if (result.isConfirmed) {
-        await axios.put(`http://localhost:3000/users/${user.id}`, user, {
-          headers: {
-            Authorization: "Bearer " + jwtExample,
-          },
-        });
-        successAlert();
-        getUsers();
-      }
-    } catch (e) {
-      console.error(e);
+      errorAlert({});
     }
   };
 
@@ -57,33 +36,18 @@ const UserList = () => {
     });
   };
 
-  const deleteUser = async (result, id) => {
+  const updateProfile = async (result, user) => {
     try {
       if (result.isConfirmed) {
-        await axios.delete(`http://localhost:3000/users/${id}`);
-        successAlert();
+        await putRequest(`${REACT_APP_BACKEND_USERS}/${user.id}`, user);
+        successAlert({});
         getUsers();
       }
     } catch (e) {
       console.error(e);
+      errorAlert({});
     }
   };
-
-  const warningDelete = (e, id) => {
-    e.preventDefault();
-    warningAlert({
-      iconWarning: "warning",
-      msgWarning: "El usuario será eliminado. ¿Desea continuar?",
-      textConfirmButton: "Aceptar",
-      confirmButton: true,
-      textDenyButton: "Cancelar",
-      denyButton: true,
-      triggerFunction: deleteUser,
-      params: id,
-    });
-  };
-
-  const editBtn = "Edit";
 
   React.useEffect(() => {
     getUsers();
@@ -91,7 +55,7 @@ const UserList = () => {
 
   return (
     <>
-      <Table borderless hover responsive>
+      <Table borderless hover responsive className="mb-5">
         <thead>
           <tr>
             <th>First name</th>
@@ -112,17 +76,16 @@ const UserList = () => {
                   <EditUserModal
                     title="Edit user"
                     item={user}
-                    btnLabel={editBtn}
                     onSubmitForm={warningUpdate}
                   />
                 </td>
                 <td>
-                  <Button
-                    variant="danger"
-                    onClick={(e) => warningDelete(e, user.id)}
-                  >
-                    <FaTrashAlt /> Delete
-                  </Button>
+                  <BtnDelete
+                    apiRoute={REACT_APP_BACKEND_USERS}
+                    id={user.id}
+                    msgWarning={"¿Estás seguro de eliminar este usuario?"}
+                    arrFunc={[getUsers]}
+                  />
                 </td>
               </tr>
             ))}
