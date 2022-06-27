@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import customTransition from "../components/utils/CustomTransition";
 import CreateNews from "../components/news/NewsPost";
 
+
 const BackofficeNews = () => {
   return (
     <motion.div
