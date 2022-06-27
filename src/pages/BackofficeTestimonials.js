@@ -29,7 +29,6 @@ const BackofficeTestimonials = () => {
 
   return (
     <motion.div
-      className="container rounded mb-5"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}
@@ -45,7 +44,7 @@ const BackofficeTestimonials = () => {
         <Breadcrumb.Item active>Testimonios</Breadcrumb.Item>
       </Breadcrumb>
       <CreateTestimony />
-      <div className="list-group">
+      <div className="list-group container rounded mb-5">
         {!testimonials ? (
           <div className="d-flex justify-content-center">
             <strong className="">Loading...</strong>

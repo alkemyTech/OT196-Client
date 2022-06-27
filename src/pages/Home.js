@@ -43,26 +43,23 @@ export default function Home() {
     >
       <div className="container-fluid">
         <div className="container-fluid">
-          <Row className="mt-4 d-flex">
-            <Card className="col-12 col-xl-4 mb-3" border="light">
-              <Card.Title>
-                <WelcomeTitle text="BIENVENIDO A SOMOS MÁS" />
-              </Card.Title>
-              <Card.Body
-                className="d-flex fs-5 mx-2"
-                style={{ textAlign: "justify" }}
-              >
-                <p className="fs-5">
-                  En Somos Más trabajamos con los chicos y chicas, mamás y
-                  papás, abuelos y vecinos del barrio La Cava generando procesos
-                  de crecimiento y de inserción social.
-                </p>
-              </Card.Body>
-            </Card>
-            <div className="col-12 col-xl-8 mb-3">
-              <SliderComponent />
-            </div>
-          </Row>
+          <Row className='mt-4 d-flex'>
+              <Card className="col-12 col-xl-4 mb-3 mx-0" border="light">
+                <Card.Title>
+                  <WelcomeTitle text="BIENVENIDO A SOMOS MÁS" />
+                </Card.Title>
+                  <Card.Body className="d-flex fs-5"  style={{ textAlign: 'justify' }}>
+                    <p className="fs-5">
+                      En Somos Más trabajamos con los chicos y chicas,
+                      mamás y papás, abuelos y vecinos del barrio La Cava generando
+                      procesos de crecimiento y de inserción social.
+                    </p>
+                  </Card.Body>
+              </Card>
+              <div className="col-12 col-xl-8 mb-3">
+                <SliderComponent />
+              </div>
+            </Row>
         </div>
         <div className="news-container">
           <Row

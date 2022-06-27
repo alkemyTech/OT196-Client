@@ -8,6 +8,7 @@ const TestimonyItem = ({ testimony, axiosApi }) => {
   const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_TESTIMONIALS } = process.env;
   const url = `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_TESTIMONIALS}`;
   const testimonyContent = testimony.content;
+  
   const onEdit = () => {
     // setEdit(!edit)
   };
@@ -17,8 +18,8 @@ const TestimonyItem = ({ testimony, axiosApi }) => {
       <div className="mt-2 d-flex justify-content-start">
         <strong>{testimony.name}</strong>
       </div>
-      <div className="m-2 d-flex justify-content-center">
-        {testimonyContent.slice(3, -4)}
+      <div  className="m-2 d-flex justify-content-center">
+        <p dangerouslySetInnerHTML={{ __html: testimonyContent }}/>
       </div>
       <div className="d-flex justify-content-end">
         <Button className="me-2" onClick={() => onEdit()}>
