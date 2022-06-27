@@ -54,22 +54,6 @@ async function putRequest(link, values) {
   return response.data;
 }
 
-async function putRequest(link, values) {
-  const header = getHeader();
-
-  const response = await axios.put(
-    link,
-    {
-      ...values,
-    },
-    {
-      headers: header,
-    }
-  );
-
-  return response.data;
-}
-
 async function deleteRequest(link) {
   const header = getHeader();
 
