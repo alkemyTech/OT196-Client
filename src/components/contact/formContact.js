@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
-import "bootstrap/dist/css/bootstrap.css";
 import { Spinner } from "react-bootstrap";
 import submitForm from "../utils/submitForm";
 
 export default function Formcontact() {
   const [isLoading, setIsLoading] = useState({ status: false, message: "" });
-  const { REACT_APP_BACKEND_URL } = process.env;
+  const { REACT_APP_BACKEND_CONTACTS } = process.env;
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -40,7 +39,7 @@ export default function Formcontact() {
     submitForm(
       values,
       actions,
-      `${REACT_APP_BACKEND_URL}/contacts/`,
+      `${REACT_APP_BACKEND_CONTACTS}`,
       setIsLoading,
       "¡Gracias por contactarse!",
       "En breves, le llegará un mensaje a su email."
@@ -133,7 +132,7 @@ export default function Formcontact() {
             </div>
             <br />
             <button
-              className="btn ps-5 pe-5 mb-3 btn-outline-dark"
+              className="btn ps-5 pe-5 mb-3 btn-outline-primary"
               type="submit"
             >
               Enviar

@@ -2,13 +2,14 @@ import React from "react";
 import UserForm from "../components/register/UserForm";
 import logo from "../img/logoSomosMas.png";
 import { motion } from "framer-motion";
+import customTransition from "../components/utils/CustomTransition";
 
 export default function CreateUser() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      transition={customTransition}
     >
       <header>
         <img
