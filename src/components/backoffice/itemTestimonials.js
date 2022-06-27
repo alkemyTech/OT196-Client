@@ -18,7 +18,7 @@ const TestimonyItem = ({ testimony, axiosApi }) => {
         <strong>{testimony.name}</strong>
       </div>
       <div className="m-2 d-flex justify-content-center">
-        {testimonyContent.slice(3, -4)}
+        <p dangerouslySetInnerHTML={{ __html: testimonyContent }} />
       </div>
       <div className="d-flex justify-content-end">
         <Button className="me-2" onClick={() => onEdit()}>
