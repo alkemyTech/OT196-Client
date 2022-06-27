@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Row, Spinner, Card } from "react-bootstrap";
+import { Button, Row, Spinner, Image, Col, Card } from "react-bootstrap";
 import { exampleNewsData } from "../components/news/exampleNewsData";
 import NewsCard from "../components/news/NewsBox";
 import WelcomeTitle from "../components/home/WelcomeTitle";
@@ -7,6 +7,8 @@ import SliderComponent from "../features/sliderComponent/SliderComponent";
 import { motion } from "framer-motion";
 import { getRequest } from "../services/RequestService";
 import { Link } from "react-router-dom";
+import imgNews from "../img/ultimasNovedades.png";
+import "./Home.css";
 import customTransition from "../components/utils/CustomTransition";
 
 export default function Home() {
@@ -61,10 +63,20 @@ export default function Home() {
           </Row>
         </div>
         <div className="news-container">
-          <div className="news-title d-flex justify-content-center my-4 py-4">
-            <h2>Últimas novedades</h2>
-          </div>
-          <Row className="px-3" xs={1} sm={2} md={2} xl={3}>
+          <Row
+            className="g-4 d-flex align-items-center justify-content-center"
+            xs={1}
+            sm={2}
+            md={4}
+          >
+            <Col
+              xs={12}
+              sm={12}
+              lg={3}
+              className="d-flex justify-content-center"
+            >
+              <Image fluid src={imgNews} className="img-custom-size" />
+            </Col>
             {isReady.status ? (
               data
                 .slice(-3)
