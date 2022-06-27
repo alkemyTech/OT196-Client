@@ -55,25 +55,19 @@ async function putRequest(link, values) {
 }
 
 async function putRequest(link, values) {
-  
-  let jwtToken = ''
-  let header = null
-  
-  if(window.localStorage.getItem("token")) {
-    jwtToken = window.localStorage.getItem("token")
-    header = { Authorization: `Bearer ${jwtToken}` }
-  }
+  const header = getHeader();
 
-  let response = await axios.put(
+  const response = await axios.put(
     link,
     {
       ...values,
-      token: jwtToken
-    }, {
-    headers: header,
-  }
-  )
-  return response.data
+    },
+    {
+      headers: header,
+    }
+  );
+
+  return response.data;
 }
 
 async function deleteRequest(link) {
