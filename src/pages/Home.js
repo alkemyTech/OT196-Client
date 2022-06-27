@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Row, Spinner, Card } from "react-bootstrap";
-import { exampleNewsData } from "../components/news/exampleNewsData";
+import { Button, Row, Spinner, Image, Col, Card } from "react-bootstrap";
 import NewsCard from "../components/news/NewsBox";
 import WelcomeTitle from "../components/home/WelcomeTitle";
 import SliderComponent from "../features/sliderComponent/SliderComponent";
@@ -8,6 +7,8 @@ import { motion } from "framer-motion";
 import { getRequest } from "../services/RequestService";
 import { Link } from "react-router-dom";
 import customTransition from "../components/utils/CustomTransition";
+import imgNews from "../img/ultimasNovedades.png";
+import "./Home.css";
 
 export default function Home() {
   const { REACT_APP_BACKEND_NEWS } = process.env;
@@ -42,18 +43,21 @@ export default function Home() {
     >
       <div className="container-fluid">
         <div className="container-fluid">
-          <Row className='mt-4 d-flex'>
+          <Row className="mt-4 d-flex">
             <Card className="col-12 col-xl-4 mb-3" border="light">
               <Card.Title>
                 <WelcomeTitle text="BIENVENIDO A SOMOS MÁS" />
               </Card.Title>
-                <Card.Body className="d-flex fs-5 mx-2"  style={{ textAlign: 'justify' }}>
-                  <p className="fs-5">
-                    En Somos Más trabajamos con los chicos y chicas,
-                    mamás y papás, abuelos y vecinos del barrio La Cava generando
-                    procesos de crecimiento y de inserción social.
-                  </p>
-                </Card.Body>
+              <Card.Body
+                className="d-flex fs-5 mx-2"
+                style={{ textAlign: "justify" }}
+              >
+                <p className="fs-5">
+                  En Somos Más trabajamos con los chicos y chicas, mamás y
+                  papás, abuelos y vecinos del barrio La Cava generando procesos
+                  de crecimiento y de inserción social.
+                </p>
+              </Card.Body>
             </Card>
             <div className="col-12 col-xl-8 mb-3">
               <SliderComponent />
@@ -61,10 +65,21 @@ export default function Home() {
           </Row>
         </div>
         <div className="news-container">
-          <div className="news-title d-flex justify-content-center my-4 py-4">
-            <h2>Últimas novedades</h2>
-          </div>
-          <Row className="px-3" xs={1} sm={2} md={2} xl={3}>
+          <Row
+            className="g-4 d-flex align-items-center justify-content-center"
+            xs={1}
+            sm={2}
+            md={4}
+          >
+            <Col
+              xs={12}
+              sm={12}
+              lg={3}
+              className="d-flex justify-content-center"
+            >
+              <Image fluid src={imgNews} className="img-custom-size" />
+            </Col>
+
             {isReady.status ? (
               data
                 .slice(-3)
