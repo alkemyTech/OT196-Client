@@ -1,14 +1,16 @@
 import React from "react";
-import { Row, Col, Button, Image } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 import CustomModal from "./CustomModal";
 import { getRequest } from "../../services/RequestService";
 import "./Profile.css";
+import BtnDelete from "../utils/BtnDelete";
 
 const Profile = () => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [image, setImage] = React.useState("");
+  const [id, setId] = React.useState("");
 
   const { REACT_APP_BACKEND_AUTHME } = process.env;
 
@@ -20,6 +22,7 @@ const Profile = () => {
       setLastName(response.lastName);
       setEmail(response.email);
       setImage(response.image);
+      setId(response.id);
     } catch (e) {
       console.error(e);
     }
@@ -134,13 +137,14 @@ const Profile = () => {
           lg={{ offset: 9 }}
           className="d-flex justify-content-center justify-content-sm-end justify-content-lg-center"
         >
-          <Button
-            onClick={deleteProfile}
-            variant="danger"
-            className="mb-3 mt-3"
-          >
-            Borrar cuenta
-          </Button>
+          <div className="mb-3 mt-3">
+            <BtnDelete
+              btnLabel="Eliminar mi cuenta"
+              apiRoute="#"
+              id={id}
+              msgWarning="¿Desea eliminar su cuenta?"
+            />
+          </div>
         </Col>
       </Row>
     </>
