@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getContacts } from "../app/contactSlice";
 import { Card } from "react-bootstrap";
 import { motion } from "framer-motion";
+import customTransition from "../components/utils/CustomTransition";
 
 export default function ContactList() {
   //FOR USE THE HOOK USEDISPATCH IN THE BELOW
@@ -18,7 +19,7 @@ export default function ContactList() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      transition={customTransition}
     >
       <h1>A continuación los Contactos realizados a Somos Más </h1>
 
