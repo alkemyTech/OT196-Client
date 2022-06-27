@@ -10,11 +10,11 @@ import CreateNews from "../components/news/NewsPost";
 const BackofficeNews = () => {
   return (
     <motion.div
-      className="mt-3"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>Lista de Novedades</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio

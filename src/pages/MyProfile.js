@@ -6,13 +6,13 @@ import customTransition from "../components/utils/CustomTransition";
 
 function MyProfile() {
   return (
-    <Container>
+    <Container className="mb-5">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={customTransition}
       >
-        <h1 className="d-flex justify-content-center mt-3 mb-5">Mi Perfil</h1>
+        <h1 className="d-flex justify-content-center mt-4 mb-5">Mi Perfil</h1>
         <Profile />
       </motion.div>
     </Container>

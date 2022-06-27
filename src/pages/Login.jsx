@@ -60,7 +60,7 @@ export default function Login() {
     >
       <section className="section-1-login">
         <h6 style={{ marginLeft: "-50%" }}> Bienvenido </h6>
-        <h1> Inicia sesión en tu cuenta! </h1>
+        <h1 className="title"> Inicia sesión en tu cuenta! </h1>
         <form
           onSubmit={formik.handleSubmit}
           style={{ display: "grid", maxWidth: "60%", marginLeft: "20%" }}

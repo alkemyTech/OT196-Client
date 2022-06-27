@@ -36,7 +36,7 @@ export default function Header(props) {
                             <Nav.Link eventKey="/news" onClick={()=> navigate("/news")} className="mx-1">Novedades</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="/testimonials" onClick={()=> navigate("/testimonials")} className="mx-1">Testimoniales</Nav.Link>
+                            <Nav.Link eventKey="/testimonials" onClick={()=> navigate("/testimonials")} className="mx-1">Testimonios</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="/contact-us" onClick={()=> navigate("/contact-us")} className="mx-1">Contacto</Nav.Link>

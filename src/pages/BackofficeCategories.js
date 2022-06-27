@@ -12,6 +12,7 @@ function BackofficeCategories(props) {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>Categorias</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
