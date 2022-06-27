@@ -44,12 +44,12 @@ export default function Home() {
       <div className="container-fluid">
         <div className="container-fluid">
           <Row className="mt-4 d-flex">
-            <Card className="col-12 col-xl-4 mb-3" border="light">
+            <Card className="col-12 col-xl-4 mb-3 mx-0" border="light">
               <Card.Title>
                 <WelcomeTitle text="BIENVENIDO A SOMOS MÁS" />
               </Card.Title>
               <Card.Body
-                className="d-flex fs-5 mx-2"
+                className="d-flex fs-5"
                 style={{ textAlign: "justify" }}
               >
                 <p className="fs-5">
