@@ -11,13 +11,13 @@ export default function CreateUser() {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1 className="text-center">Registrarse</h1>
       <header>
         <img
           className="mx-auto d-block img-fluid"
           src={logo}
           alt="Logo Somos Mas"
         />
-        <h1 className="text-center mb-4">Registrarse</h1>
       </header>
       <div className="d-flex">
         <UserForm />

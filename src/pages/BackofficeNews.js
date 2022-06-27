@@ -8,11 +8,11 @@ import customTransition from "../components/utils/CustomTransition";
 const BackofficeNews = () => {
   return (
     <motion.div
-      className="mt-3"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>Lista de Novedades</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
@@ -22,7 +22,6 @@ const BackofficeNews = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Novedades</Breadcrumb.Item>
       </Breadcrumb>
-      <h2>Lista de Novedades</h2>
       <NewsTable />
     </motion.div>
   );
