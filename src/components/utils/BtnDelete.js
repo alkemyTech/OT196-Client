@@ -14,7 +14,7 @@ const BtnDelete = ({
   const triggerDelete = async (result, id) => {
     try {
       if (result.isConfirmed) {
-        await axios.delete(`${apiRoute}/${id}`);
+        await axios.delete(`${apiRoute}${id}`);
         successAlert({});
         // execute every function on the array
         for (let i = 0; i < arrFunc.length; i++) {

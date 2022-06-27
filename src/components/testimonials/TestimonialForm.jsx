@@ -68,27 +68,36 @@ export default function TestimonialForm({ existingTestimony }){
     }
 
     return(
-        <div className='d-flex justify-content-center'>
+        <div className="d-flex justify-content-center">
             {
                 existingTestimony ? 
-                <form className='form-inline col-6'>
-                    <label className="sr-only">Nombre</label>
-                    <input
-                        type='text'                        
-                        id='name'
-                        onChange={handleName}
-                        value={name}                    
-                    />
-                    <label className="sr-only">Contenido</label>
+                <form className='form-inline container mt-3 mb-3'>
+                    <div className="d-flex justify-content-center">
+                        <label>Nombre</label>
+                        <input
+                            className='form-control'
+                            type='text'                        
+                            id='name'
+                            onChange={handleName}
+                            value={name}                    
+                        />
+                    </div>
+                    <label>Contenido</label>
                     <br/> 
+
                     <CKEditor
+                        editorConfig= {(config) =>{
+                            config.enterMode = `<br />`;
+                        }}
+                        className='form-control'
                         editor={ ClassicEditor }
                         data={content}
                         id='content'
                         onChange={handleCkeditorState}                     
                     />
                     <input
-                    type='text'                  
+                        className='form-control'  
+                        type='text'                  
                         id='img'
                         onChange={handleImg}
                         value={img}                      
@@ -98,31 +107,48 @@ export default function TestimonialForm({ existingTestimony }){
                     
                 </form> 
                 :            
-                <form className='form-inline col-6'>
-                    <label className="sr-only">Nombre</label>
-                    <input
-                        type='text'                        
-                        id='name'
-                        onChange={handleName}
-                        value={name}
-                        placeholder='Escribe tu nombre'
-                    />
-                    <label className="sr-only">Contenido</label>
+                <form className='form-inline container justify-content-center'>
+                        <label>Nombre</label>
+                        <br/>
+                        <input
+                            className='form-control'
+                            type='text'                        
+                            id='name'
+                            onChange={handleName}
+                            value={name}
+                            placeholder='Escribe el nombre del testimonio'
+                        />
+                    <br/>
+                    <label>Contenido</label>
+                    <br/>
                     <CKEditor
+                        editorConfig= {(config) =>{
+                            config.enterMode =`<br />`;
+                        }}
+                        className='form-control'
                         editor={ ClassicEditor }
                         data={content}
                         id='content'
+                        placeholder='Escribe su contenido'
                         onChange={handleCkeditorState}
                     />
+                    <br/>
+                    <label>Imagen</label>
                     <input
-                    type='text'                  
+                        className='form-control'
+                        type='text'                  
                         id='img'
                         onChange={handleImg}
                         value={img}
-                        placeholder='Escribe la URL de tu imagen'
-                        />
-                    <button onClick={handleSubmit} className="btn btn-primary" type="submit">Enviar</button>
-                    
+                        placeholder='Añade la URL de tu imagen'
+                    />
+                    <br/>
+                    <button 
+                    onClick={handleSubmit} 
+                    className="btn btn-success" 
+                    type="submit"
+                    style={{ width: '100%' }}
+                    >Enviar</button> 
                 </form>
                 }
         </div>
