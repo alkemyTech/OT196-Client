@@ -46,11 +46,15 @@ export default function EditOrganizationData() {
 
   return (
     <motion.section
-      className="editOrganizationData_main"
+      className="editOrganizationData_main mb-5"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>
+        {" "}
+        A continuacion puedes editar el nombre y el logo de la organización:{" "}
+      </h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
@@ -60,10 +64,6 @@ export default function EditOrganizationData() {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Organización</Breadcrumb.Item>
       </Breadcrumb>
-      <h1>
-        {" "}
-        A continuacion puedes editar el nombre y el logo de la organización:{" "}
-      </h1>
       <form
         onSubmit={formik.handleSubmit}
         className="editOrganizationData_container"

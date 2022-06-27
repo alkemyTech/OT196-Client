@@ -9,6 +9,7 @@ export default function NoMatchRoute() {
 
   return (
     <motion.div
+      className="mb-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}

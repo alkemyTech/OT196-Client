@@ -11,8 +11,7 @@ const BackofficeTestimonials = () => {
   const url = "http://localhost:3000/testimonials";
   const [testimonials, setTestimonials] = useState();
   const jwtExample =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o"
-  ;
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
   //Callback for testimonials data
   const axiosApi = async () => {
     const response = await axios.get(url, {
@@ -35,6 +34,7 @@ const BackofficeTestimonials = () => {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>Lista de Testimonios</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
@@ -44,7 +44,6 @@ const BackofficeTestimonials = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Testimonios</Breadcrumb.Item>
       </Breadcrumb>
-      <h1 className="m-4">Lista de Testimonios</h1>
       <CreateTestimony />
       <div className="list-group">
         {!testimonials ? (
@@ -60,7 +59,7 @@ const BackofficeTestimonials = () => {
           testimonials.map((testimony) => {
             return (
               <TestimonyItem
-              axiosApi={axiosApi}
+                axiosApi={axiosApi}
                 key={testimony.id}
                 testimony={testimony}
               />

@@ -16,6 +16,7 @@ export default function ActivityList() {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>Actividades</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio

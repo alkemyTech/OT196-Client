@@ -2,6 +2,8 @@ import React from "react";
 import Formcontact from "../components/contact/formContact";
 import Listmembers from "../components/members/MembersList";
 import customTransition from "../components/utils/CustomTransition";
+import { Breadcrumb } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function ScreenContact() {
   return (
@@ -10,10 +12,14 @@ function ScreenContact() {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
-      <div className="d-flex mt-4 justify-content-center">
-        <h1>Contacto</h1>
-      </div>
-      <div className="container-fluid d-flex mt-3">
+      <h1>Contacto</h1>
+      <Breadcrumb className="mt-3 ms-3">
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+          Inicio
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>Contacto</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="container-fluid d-flex mt-4">
         <div className="row justify-content-around">
           <div className="col-11 col-md-5 col-xl-4 shadow bg-light mb-5 border rounded px-0">
             <p className="p-2 fs-2 bg-primary rounded text-white">
