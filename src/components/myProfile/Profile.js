@@ -1,32 +1,25 @@
 import React from "react";
-
-import { Row, Col, Button } from "react-bootstrap";
-
+import { Row, Col, Button, Image } from "react-bootstrap";
 import CustomModal from "./CustomModal";
+import { getRequest } from "../../services/RequestService";
+import "./Profile.css";
 
 const Profile = () => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [image, setImage] = React.useState("");
 
-  const editBtn = "Edit";
+  const { REACT_APP_BACKEND_AUTHME } = process.env;
 
   // Get the profile from the user currently logged in
   const getProfile = async () => {
     try {
-      // const response = await fetch("htttp://localhost:3000/auth/me")
-      //   const jsonData = await response.json();
-      //   setProfile(jsonData);
-
-      //  fake user
-      const fakeUser = {
-        firstName: "Usuario",
-        lastName: "Demo",
-        email: "test@test.com",
-      };
-      setFirstName(fakeUser.firstName);
-      setLastName(fakeUser.lastName);
-      setEmail(fakeUser.email);
+      const response = await getRequest(REACT_APP_BACKEND_AUTHME);
+      setFirstName(response.firstName);
+      setLastName(response.lastName);
+      setEmail(response.email);
+      setImage(response.image);
     } catch (e) {
       console.error(e);
     }
@@ -35,7 +28,7 @@ const Profile = () => {
   //   delete the profile currently logged in
   const deleteProfile = async (id) => {
     try {
-      //   await fetch(`http://localhost:5000/profile/${id}`, { method: "DELETE" }
+      //   await deleteRequest(${REACT_APP_BACKEND_AUTHME)
       // logout and redirect to Home
     } catch (e) {
       console.error(e);
@@ -53,8 +46,12 @@ const Profile = () => {
         setLastName(input);
       } else if (property === "email") {
         setEmail(input);
+      } else if (property === "image") {
+        setImage(input);
       }
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   React.useEffect(() => {
@@ -64,18 +61,16 @@ const Profile = () => {
   //   Prepare an array with data from the fake user
   const arrData = [
     {
-      text: "First name:",
+      text: "Nombre:",
       item: firstName,
       onSubmitData: updateProfile,
-      btnLabel: editBtn,
       property: "firstName",
       inputClass: "text",
     },
     {
-      text: "Last name:",
+      text: "Apellido:",
       item: lastName,
       onSubmitData: updateProfile,
-      btnLabel: editBtn,
       property: "lastName",
       inputClass: "text",
     },
@@ -83,9 +78,15 @@ const Profile = () => {
       text: "Email:",
       item: email,
       onSubmitData: updateProfile,
-      btnLabel: editBtn,
       property: "email",
       inputClass: "email",
+    },
+    {
+      text: "Imagen:",
+      item: image,
+      onSubmitData: updateProfile,
+      property: "image",
+      inputClass: "image",
     },
   ];
 
@@ -97,13 +98,25 @@ const Profile = () => {
       {arrData &&
         arrData.map((i) => (
           <Row className="mb-3" key={rowId++}>
-            <Col>
+            <Col
+              sm={2}
+              md={3}
+              className="d-flex justify-content-center justify-content-sm-start justify-content-lg-center"
+            >
               <h4>{i.text}</h4>
             </Col>
-            <Col>
-              <span>{i.item}</span>
+            <Col sm={7} md={6} className="d-flex justify-content-center mb-2">
+              {i.inputClass === "image" ? (
+                <Image thumbnail className="w-25" src={i.item} />
+              ) : (
+                <span>{i.item}</span>
+              )}
             </Col>
-            <Col className="d-flex justify-content-end">
+            <Col
+              sm={3}
+              md={3}
+              className="d-flex justify-content-center justify-content-sm-end justify-content-lg-center align-items-center"
+            >
               <CustomModal
                 text={i.text}
                 item={i.item}
@@ -111,14 +124,22 @@ const Profile = () => {
                 onSubmitData={i.onSubmitData}
                 property={i.property}
                 inputClass={i.inputClass}
+                className="mh-custom"
               />
             </Col>
           </Row>
         ))}
       <Row>
-        <Col className="d-flex justify-content-end">
-          <Button onClick={deleteProfile} variant="danger">
-            Delete
+        <Col
+          lg={{ offset: 9 }}
+          className="d-flex justify-content-center justify-content-sm-end justify-content-lg-center"
+        >
+          <Button
+            onClick={deleteProfile}
+            variant="danger"
+            className="mb-3 mt-3"
+          >
+            Borrar cuenta
           </Button>
         </Col>
       </Row>
