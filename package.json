@@ -17,6 +17,7 @@
     "i": "^0.3.7",
     "npm": "^8.12.1",
     "react": "^16.13.1",
+    "react-avatar": "^5.0.1",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^16.13.1",
     "react-icons": "^4.3.1",

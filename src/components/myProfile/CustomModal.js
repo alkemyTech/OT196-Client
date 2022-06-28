@@ -1,13 +1,14 @@
 import React from "react";
-import { Modal, Button, Form, FormControl } from "react-bootstrap";
+import { Modal, Button, Form, FormControl, Image } from "react-bootstrap";
 import { FaEdit } from "react-icons/fa";
+import "./Profile.css";
 
 // Modal with a form that will render depending on the props.
 function CustomModal({
   title = "",
   text,
   item,
-  btnLabel,
+  btnLabel = "Editar",
   onSubmitData = "#",
   inputClass = "text",
   property,
@@ -18,14 +19,19 @@ function CustomModal({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleImage = (e) => {
+    const newImage = e.target.files[0];
+    setInput(URL.createObjectURL(newImage));
+  };
+
   return (
     <>
       <Button
-        className=""
-        variant={btnLabel === "Edit" ? "primary" : "secondary"}
+        className="mh-custom"
+        variant={btnLabel === "Editar" ? "primary" : "secondary"}
         onClick={handleShow}
       >
-        {btnLabel === "Edit" ? (
+        {btnLabel === "Editar" ? (
           <>
             <FaEdit /> {btnLabel}
           </>
@@ -58,6 +64,20 @@ function CustomModal({
                   onChange={(e) => setInput(e.target.value)}
                   aria-describedby="basic-addon1"
                 />
+              </Form.Group>
+            )}
+            {inputClass === "image" && (
+              <Form.Group controlId="formFileSm" className="mb-3 mt-3">
+                <Form.Label className="mb-1">{text}</Form.Label>
+                {input && (
+                  <Image
+                    fluid
+                    thumbnail
+                    className="d-block mx-auto mb-2 w-50"
+                    src={input}
+                  />
+                )}
+                <Form.Control type="file" size="sm" onChange={handleImage} />
               </Form.Group>
             )}
           </Form>

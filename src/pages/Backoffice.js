@@ -89,6 +89,7 @@ function Backoffice() {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1 className="text-center mb-3">Backoffice</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
@@ -96,7 +97,6 @@ function Backoffice() {
         <Breadcrumb.Item active>Backoffice</Breadcrumb.Item>
       </Breadcrumb>
       <div>
-        <h1 className="text-center mt-3 mb-3">Backoffice</h1>
         <Row className="justify-content-center mb-5">
           {cardsArr.map((card) => (
             <Col key={colId++} xs="auto" md={4} lg="auto" className="">
