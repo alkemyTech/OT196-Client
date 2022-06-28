@@ -101,7 +101,9 @@ const Footer = () => {
             </a>
           </Col>
           <Col xs="12" className="mt-4 mb-5">
-            <p className="text-center">2022 by Alkemy. All Rights Reserved</p>
+            <p className="text-center footer-p">
+              2022 by Alkemy. All Rights Reserved
+            </p>
           </Col>
         </Row>
       </Container>
