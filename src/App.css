@@ -1,12 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Englebert&display=swap");
 
-.App h1,
-h3 {
+.App h1 {
   text-align: center;
   font-family: "Englebert", sans-serif;
   background-color: #9ac9fb;
-  padding-inline: 30px;
-  padding-top: 15px;
+  padding-inline: 0.5rem;
+  padding-top: 13px;
   font-weight: 600;
   border-radius: 6px;
 }
