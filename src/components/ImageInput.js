@@ -26,7 +26,7 @@ function ImageInput({ image, setImage }) {
       <Form.Group controlId="formFileSm" className="mb-3 mt-3">
         <Form.Label className="mb-1">Vista previa</Form.Label>
         {image && !imageUploading ? (
-          <Image fluid thumbnail className="d-block mx-auto mb-2" src={image} />
+          <Image fluid thumbnail className="d-block mx-auto mb-2 w-50" src={image} />
         ) : (
           <Spinner
             className="mx-auto d-block my-3"
