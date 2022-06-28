@@ -2,7 +2,7 @@ import React from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { errorAlert, successAlert } from "../../setupAlerts";
-import { Form, Image } from "react-bootstrap";
+import ImageInput from "../ImageInput";
 
 const NewsForm = ({ newsObject }) => {
   const [name, setName] = React.useState("");
@@ -43,11 +43,6 @@ const NewsForm = ({ newsObject }) => {
     setCategory(e.target.value);
   };
 
-  // Change image based on the input
-  const handleImage = (e) => {
-    const newImage = e.target.files[0];
-    setImage(URL.createObjectURL(newImage));
-  };
 
   // Submits the data on the states.
   //  Also uses the corresponding method based on whether there was information before or not.
@@ -110,18 +105,7 @@ const NewsForm = ({ newsObject }) => {
           onChange={handleCategory}
           value={category}
         />
-        <Form.Group controlId="formFileSm" className="mb-3 mt-3">
-          <Form.Label className="mb-1">Imagen</Form.Label>
-          {image && (
-            <Image
-              fluid
-              thumbnail
-              className="d-block mx-auto mb-2"
-              src={image}
-            />
-          )}
-          <Form.Control type="file" size="sm" onChange={handleImage} />
-        </Form.Group>
+        <ImageInput image={image} setImage={setImage}/>
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
             onClick={handleSubmit}
