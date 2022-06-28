@@ -7,13 +7,11 @@ export default function ShowNews() {
   const [newsData, setNews] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [resMessage, setResMessage] = useState("Cargando...");
-  const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_NEWS } = process.env;
+  const { REACT_APP_BACKEND_NEWS } = process.env;
 
-  const loadData = async (emailAddress, password) => {
+  const loadData = async () => {
     try {
-      const { data } = await axios.get(
-        `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_NEWS}`
-      );
+      const { data } = await axios.get(`${REACT_APP_BACKEND_NEWS}`);
       // Sort news descending
       const sortedData = data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

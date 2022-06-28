@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import TestimonyItem from "../components/backoffice/itemTestimonials";
+import CreateTestimony from "../components/testimonials/TestimonyModal";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "react-bootstrap";
@@ -11,7 +12,6 @@ const BackofficeTestimonials = () => {
   const [testimonials, setTestimonials] = useState();
   const jwtExample =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
-
   //Callback for testimonials data
   const axiosApi = async () => {
     const response = await axios.get(url, {
@@ -29,7 +29,6 @@ const BackofficeTestimonials = () => {
 
   return (
     <motion.div
-      className="container-fluid mb-5"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={customTransition}
@@ -44,7 +43,8 @@ const BackofficeTestimonials = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Testimonios</Breadcrumb.Item>
       </Breadcrumb>
-      <div className="list-group">
+      <CreateTestimony />
+      <div className="list-group container rounded mb-5">
         {!testimonials ? (
           <div className="d-flex justify-content-center">
             <strong className="">Loading...</strong>

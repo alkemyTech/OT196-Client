@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import customTransition from "../components/utils/CustomTransition";
 import CreateNews from "../components/news/NewsPost";
 
-
 const BackofficeNews = () => {
   return (
     <motion.div
@@ -24,8 +23,7 @@ const BackofficeNews = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Novedades</Breadcrumb.Item>
       </Breadcrumb>
-      <h2>Lista de Novedades</h2>
-      <CreateNews/>
+      <CreateNews />
       <NewsTable />
     </motion.div>
   );
