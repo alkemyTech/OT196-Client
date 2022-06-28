@@ -16,6 +16,7 @@ function ImageInput({ image, setImage }) {
     }
     catch{
       errorAlert({titleError: "Error al subir la imagen!"})
+      setImage(image || "https://alkemy196.s3.sa-east-1.amazonaws.com/images/np7-whj-2x4x-image-placeholder.jpg")
       setimageUploading(false);
     }
   };
@@ -23,7 +24,7 @@ function ImageInput({ image, setImage }) {
   return (
     <>
       <Form.Group controlId="formFileSm" className="mb-3 mt-3">
-        <Form.Label className="mb-1">Imagen</Form.Label>
+        <Form.Label className="mb-1">Vista previa</Form.Label>
         {image && !imageUploading ? (
           <Image fluid thumbnail className="d-block mx-auto mb-2" src={image} />
         ) : (
