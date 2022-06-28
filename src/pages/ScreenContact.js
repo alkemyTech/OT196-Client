@@ -24,9 +24,7 @@ function ScreenContact() {
         <div className="row justify-content-around" style={{ width: '100%' }}>
           <div className="col-11 col-md-5 col-xl-4 shadow bg-light mb-5 border rounded px-0">
             <p className="p-2 fs-2 bg-primary rounded text-white">Miembros</p>
-            <div>
               <Listmembers />
-            </div>
           </div>
           <div className="col-11 col-md-5 col-xl-4 bg-light shadow mb-5 border rounded px-0">
             <p className="p-2 fs-2 bg-primary rounded text-white">

@@ -30,7 +30,7 @@ const Listmembers = () => {
                 : //if get members, extract data of each member
                 (members.map((member) => {
                         return(
-                            <div className="d-flex justify-content-center m-2">
+                            <div className="d-flex justify-content-center">
                             <MemberItem 
                             key={member.id}
                             member={member}
