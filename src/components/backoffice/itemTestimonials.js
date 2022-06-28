@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { FaTimes, FaRegEdit } from "react-icons/fa";
+import React from "react";
+import { FaRegEdit } from "react-icons/fa";
 import BtnDelete from "../utils/BtnDelete";
 import { Button } from "react-bootstrap";
-import TestimonialForm from "../testimonials/TestimonialForm";
 
 const TestimonyItem = ({ testimony, axiosApi }) => {
-  const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_TESTIMONIALS } = process.env;
-  const url = `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_TESTIMONIALS}`;
+  const { REACT_APP_BACKEND_TESTIMONIALS } = process.env;
+  const url = `${REACT_APP_BACKEND_TESTIMONIALS}`;
   const testimonyContent = testimony.content;
   
   const onEdit = () => {
