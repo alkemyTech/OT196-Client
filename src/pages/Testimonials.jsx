@@ -5,21 +5,15 @@ import { Card, Col } from "react-bootstrap";
 import "./testimonials.css";
 import { motion } from "framer-motion";
 
-export default function Testimonials() {
-  //Get testimonials information
-  const { REACT_APP_BACKEND_TESTIMONIALS } = process.env;
-  const [testimonials, setTestimonials] = useState([]);
-  const jwtExample =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
-  const url = `${REACT_APP_BACKEND_TESTIMONIALS}`;
-  const axiosApi = async () => {
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + jwtExample,
-      },
-    });
-    setTestimonials(response.data);
-  };
+export default function Testimonials(){
+
+    //Get testimonials information 
+    const { REACT_APP_BACKEND_TESTIMONIALS } = process.env
+    const [testimonials, setTestimonials] = useState([])
+    const axiosApi = async () => {
+        const response = await axios.get(REACT_APP_BACKEND_TESTIMONIALS);
+        setTestimonials(response.data);
+      };
 
   useEffect(() => {
     axiosApi();
@@ -34,36 +28,26 @@ export default function Testimonials() {
         x: { type: "spring", stiffness: 100 },
         default: { duration: 0.5 },
       }}
-    >
-      <h1> Testimonios </h1>
-      <div className="testimonials_container" style={{ backgrondColor: "red" }}>
-        {testimonials && testimonials.length ? (
-          testimonials.map((x) => {
-            return (
-              <div>
-                <Card
-                  style={{
-                    width: "14rem",
-                    backgroundColor: "rgb(236, 245, 66)",
-                  }}
-                  className="card"
-                >
-                  <Avatar src={x.image} round={true} />
-                  <Card.Body>
-                    <Card.Title>{x.name}</Card.Title>
-                    <Card.Text>{x.content}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </div>
-            );
-          })
-        ) : (
-          <h1 className="testimonials_message">
-            {" "}
-            Aun no hay testimonios cargados{" "}
-          </h1>
-        )}
-      </div>
-    </motion.div>
-  );
+      >
+        <h1> Testimonios </h1>
+        <div className="testimonials_container mx-auto" style={{backgrondColor: 'red'}}>
+            { testimonials && testimonials.length ? 
+            testimonials.map(x=> {
+                return     <div>
+                <Card style={{ width: '14rem', backgroundColor: 'rgb(181 217 255)' }} className='card'>
+                          <Avatar className="mx-auto my-2" src={x.image} round={true}/>
+                          <Card.Body>
+                            <Card.Title>{x.name}</Card.Title>
+                            <Card.Text>
+                              {x.content}
+                            </Card.Text>
+                          </Card.Body>
+                        </Card> 
+                     </div>                  
+            }) : 
+            <h1 className='testimonials_message'> Aun no hay testimonios cargados </h1>   
+        }
+        </div>
+      </motion.div>
+    )
 }

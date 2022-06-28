@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { warningAlert, successAlert } from "../../setupAlerts";
 import { deleteRequest } from "../../services/RequestService";
 
+
 const BtnDelete = ({
   btnLabel = "Eliminar",
   apiRoute,

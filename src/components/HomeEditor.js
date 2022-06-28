@@ -158,3 +158,5 @@ export function HomeEditor(){
         </Formik>
     );
 }
+
+export default HomeEditor
