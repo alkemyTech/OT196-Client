@@ -1,16 +1,14 @@
 import React from "react";
 import { Row, Col, Image, Button } from "react-bootstrap";
 import CustomModal from "./CustomModal";
-import { getRequest, putRequest } from "../../services/RequestService";
+import { getRequest } from "../../services/RequestService";
 import "./Profile.css";
 import BtnDelete from "../utils/BtnDelete";
 import ImageInput from "../ImageInput"
 import { FaSave } from "react-icons/fa"
-import { updateUserLogged } from "../../app/slice";
+import { signOff, updateUserLogged } from "../../app/slice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { errorAlert, successAlert } from "../../setupAlerts";
-
 
 const Profile = () => {
   const [firstName, setFirstName] = React.useState("");
@@ -39,13 +37,18 @@ const Profile = () => {
   //   delete the profile currently logged in
   const deleteProfile = async (id) => {
     try {
-      //   await deleteRequest(${REACT_APP_BACKEND_AUTHME)
-      // logout and redirect to Home
+      // Remove data from store
+      dispatch(signOff());
+      // Remove data from localstorage
+      localStorage.removeItem("userData");
+      // Redirect to index
+      successAlert({titleSuccess: "Su cuenta ha sido borrada!", msgSuccess: "Todos tus datos han sido eliminados."})
+      window.location.replace("/");
     } catch (e) {
+      errorAlert({titleError: "Error al eliminar tu cuenta!", msgError: "Lo sentimos! Ha surgido un error al intentar borrar sus datos."})
       console.error(e);
     }
   };
-
   const updateProfile = async (input, property) => {
     try {
       // fake update:
@@ -70,7 +73,7 @@ const Profile = () => {
     }
     catch(e){
       console.log(e)
-      successAlert({titleSuccess: "Error al actualizar!", msgSuccess: "Lo sentimos! Ha surgido un error al intentar actualizar sus datos."})
+      errorAlert({titleError: "Error al actualizar!", msgError: "Lo sentimos! Ha surgido un error al intentar actualizar sus datos."})
     }
   }
 
@@ -166,9 +169,10 @@ const Profile = () => {
             </Button>
             <BtnDelete
               btnLabel="Eliminar mi cuenta"
-              apiRoute="#"
-              id={id}
+              apiRoute={REACT_APP_BACKEND_AUTHME}
+              id=""
               msgWarning="¿Desea eliminar su cuenta?"
+              arrFunc={[deleteProfile]}
             />
           </div>
         </Col>
