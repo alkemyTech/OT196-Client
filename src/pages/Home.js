@@ -79,7 +79,6 @@ export default function Home() {
             >
               <Image fluid src={imgNews} className="img-custom-size" />
             </Col>
-
             {isReady.status ? (
               data
                 .slice(-3)

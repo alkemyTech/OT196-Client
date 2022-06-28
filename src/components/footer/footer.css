@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Englebert&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Englebert&display=swap");
 
 .bg {
-    background-color: gray;    
+  background-color: gray;
 }
 
-.noneListStyle a{
-    list-style: none;
-    text-decoration: none!important;
-    color: black!important;
+.noneListStyle a {
+  list-style: none;
+  text-decoration: none !important;
+  color: black !important;
 }
 
-.imgWidth{
-    max-width: 100%!important;
+.imgWidth {
+  max-width: 100% !important;
 }
 
-p {
-    font-size: 0.8rem;
+.footer-p {
+  font-size: 0.8rem;
 }
 
 ul li {
-    font-family: 'Englebert', sans-serif;
-    font-size: 1.2rem;
+  font-family: "Englebert", sans-serif;
+  font-size: 1.2rem;
 }

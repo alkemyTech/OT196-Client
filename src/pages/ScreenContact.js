@@ -21,12 +21,14 @@ function ScreenContact() {
         <Breadcrumb.Item active>Contacto</Breadcrumb.Item>
       </Breadcrumb>
       <div className="container-fluid d-flex justify-content-center mt-4">
-        <div className="row justify-content-around" style={{ width: "100%" }}>
+        <div className="row justify-content-around" style={{maxHeight: '100%', width: "100%" }}>
           <div className="col-11 col-md-5 col-xl-4 shadow bg-light mb-5 border rounded px-0">
             <p className="p-2 fs-2 bg-primary rounded text-white">Miembros</p>
+            <div style={{maxHeight: '400px'}} className='overflow-auto'>
               <Listmembers />
+            </div>
           </div>
-          <div className="col-11 col-md-5 col-xl-4 bg-light shadow mb-5 border rounded px-0">
+          <div className="col-11 col-md-5 col-xl-4 bg-light shadow mb-5 border rounded px-0" >
             <p className="p-2 fs-2 bg-primary rounded text-white">
               ¡Contactáte con nosotros!
             </p>

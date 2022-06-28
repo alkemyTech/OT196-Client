@@ -17,9 +17,7 @@ function ListNews() {
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
         </Breadcrumb.Item>
-        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/news" }}>
-          Novedades
-        </Breadcrumb.Item>
+        <Breadcrumb.Item active>Novedades</Breadcrumb.Item>
       </Breadcrumb>
       <Container className="my-5">
         <ShowNews />
