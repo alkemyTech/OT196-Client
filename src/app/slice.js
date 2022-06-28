@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { putRequest } from "../services/RequestService";
 const initialState = JSON.parse(localStorage.getItem("userData")) || {
   isUserLogged: false,
 };
@@ -9,11 +10,11 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     submitUserData: (state, action) => {
-      state.isUserLogged = action.payload.isUserLogged;
-      state.email = action.payload.email;
-      state.id = action.payload.id;
-      state.roleId = action.payload.roleId;
-      state.image = action.payload.image;
+      state.isUserLogged = action.payload.isUserLogged || state.isUserLogged;
+      state.email = action.payload.email || state.email;
+      state.id = action.payload.id || state.id;
+      state.roleId = action.payload.roleId || state.roleId;
+      state.image = action.payload.image || state.image;
     },
     removeUserData: (state, action) => {
       state = {};
@@ -27,6 +28,7 @@ const {
   REACT_APP_BACKEND_REGISTER,
   REACT_APP_BACKEND_USERS,
   REACT_APP_BACKEND_TESTIMONIALS,
+  REACT_APP_BACKEND_AUTHME,
 } = process.env;
 
 const isMyUserLogged = createAsyncThunk(
@@ -38,6 +40,26 @@ const isMyUserLogged = createAsyncThunk(
       const newUserData = { ...response.data.user, ...{ isUserLogged: true } };
       thunkAPI.dispatch(submitUserData(newUserData));
       return newUserData;
+    } catch (e) {
+      console.log(e);
+      throw new Error(e);
+    }
+  }
+);
+
+const updateUserLogged = createAsyncThunk(
+  "auth/me",
+  async (data, thunkAPI) => {
+    try {
+      const response = await putRequest(REACT_APP_BACKEND_AUTHME, data);
+      const newUserData = { email: response.result.email, image: response.result.image };
+      const localStorageData = JSON.parse(localStorage.getItem('userData'))
+      localStorageData.email = response.result.email 
+      localStorageData.image = response.result.image 
+      localStorage.setItem('userData', JSON.stringify(localStorageData))
+      console.log(newUserData)
+      thunkAPI.dispatch(submitUserData(newUserData));
+      return true
     } catch (e) {
       console.log(e);
       throw new Error(e);
@@ -132,6 +154,6 @@ export const createValidToken = (userData) => {
   };
 };
 
-export { loginSlice, isMyUserLogged, submitUpdateDataOrganization, signOff };
+export { loginSlice, isMyUserLogged, submitUpdateDataOrganization, signOff, updateUserLogged };
 export const { submitUserData, removeUserData } = loginSlice.actions;
 export default loginSlice.reducer;
