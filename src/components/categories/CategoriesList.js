@@ -31,8 +31,8 @@ function CategoriesList() {
           message: `Error al obtener las categorias.`,
         });
       }
-      fetchCategories();
     }
+    fetchCategories();
   }, [REACT_APP_BACKEND_CATEGORIES, lastUpdate]);
 
   return (
