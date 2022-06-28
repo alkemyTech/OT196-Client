@@ -1,35 +1,44 @@
-import React from "react";
-import { FaTimes, FaRegEdit } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaRegEdit } from "react-icons/fa";
 import BtnDelete from '../utils/BtnDelete'
-import { Button } from "react-bootstrap";
+import TestimonialForm from '../testimonials/TestimonialForm';
+
 
 const TestimonyItem = ({ testimony, axiosApi }) => {
-    const {REACT_APP_BACKEND_URL, REACT_APP_BACKEND_TESTIMONIALS} = process.env;
-    const url = `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_TESTIMONIALS}`;
-    const testimonyContent = testimony.content;
+    const [edit, setEdit] = useState(false)
     const onEdit = () => {
-        //gerards form
+        setEdit(!edit)
     };
 
     return(
-        <ul className="list-group-item bg-light rounded border">
-                    <div className="mt-2 d-flex justify-content-start">
-                      <strong>{testimony.name}</strong>
+        <ul className="list-group-item">
+                <div >
+                  
+                       {/* RENDER OF FORM-COMPONENT FOR EDIT INFORMATION   */}
+                   { edit ? <TestimonialForm 
+                    existingTestimony={testimony}
+                   /> :
+                   <div> 
+                      <div className="mt-2 d-flex justify-content-start"> 
+                        <strong>{testimony.name}</strong>                        
+                      </div>
+                      <div className="m-2 d-flex justify-content-center" >
+                          {testimony.content}
+                      </div>
                     </div>
-                    <div className="m-2 d-flex justify-content-center">
-                      {testimonyContent.slice(3, -4)}
-                    </div>
-          <div className="d-flex justify-content-end">
-              <Button  className='me-2' onClick={() => onEdit()}>
-                  Editar <FaRegEdit />
-              </Button>
-              <BtnDelete 
-              apiRoute={url} 
-              id={testimony.id} 
-              msgWarning='¿Desea eliminar este testimonio?' 
-              arrFunc={[axiosApi]}
+                   }
+                    <div className="d-flex justify-content-end">
+                    <button onClick={() => onEdit()} className="btn m-1 btn-dark">
+                      Editar <FaRegEdit />
+                    </button>
+                    <BtnDelete 
+                    apiRoute={url} 
+                    id={testimony.id} 
+                    msgWarning='¿Desea eliminar este testimonio?' 
+                    arrFunc={[axiosApi]}
               />
-          </div>
+                </div>
+            </div>
         </ul>
     )
 }

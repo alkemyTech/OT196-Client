@@ -8,7 +8,8 @@ import customTransition from "../components/utils/CustomTransition";
 
 function ViewNews() {
   const { id } = useParams();
-  const ENDPOINT = `http://localhost:3000/news/${id}`; //endpoint path to get news by id
+  const { REACT_APP_BACKEND_URL, REACT_APP_BACKEND_NEWS } = process.env;
+  const ENDPOINT = `${REACT_APP_BACKEND_URL}${REACT_APP_BACKEND_NEWS}${id}`; //endpoint path to get news by id
   const [newsData, setNewsData] = useState({});
   const [fetchError, setFetchError] = useState(false);
 
@@ -34,7 +35,7 @@ function ViewNews() {
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
         </Breadcrumb.Item>
-        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/novedades" }}>
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/news" }}>
           Novedades
         </Breadcrumb.Item>
         <Breadcrumb.Item active>

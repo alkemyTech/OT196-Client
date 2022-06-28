@@ -12,11 +12,12 @@ function ListNews() {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>Novedades</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
         </Breadcrumb.Item>
-        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/novedades" }}>
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/news" }}>
           Novedades
         </Breadcrumb.Item>
       </Breadcrumb>

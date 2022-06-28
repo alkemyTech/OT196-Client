@@ -5,7 +5,7 @@
     font-family: 'Englebert', sans-serif;
     font-size: 2.5vh;
     text-align: center;
-    vertical-align: middle;
+    padding-bottom: 0.2rem;
 }
 
 .nav-pills .nav-link{
@@ -13,7 +13,8 @@
     font-family: 'Englebert', sans-serif;
     font-size: 2.5vh;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: bottom;
+    padding-bottom: 0.2rem;
 }
 
 .DropdownButton{

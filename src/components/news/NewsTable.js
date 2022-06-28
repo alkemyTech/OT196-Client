@@ -30,14 +30,13 @@ const NewsTable = () => {
   }, [updateList]);
 
   return (
-    <Table borderless hover responsive="md" className="mt-3">
+    <Table borderless hover responsive="sm" className="mt-3">
       <thead>
         <tr>
           <th></th>
           <th>Nombre</th>
-          <th>Fecha de cración</th>
-          <th></th>
-          <th></th>
+          <th>Fecha de creación</th>
+          <th>Opciones</th>
         </tr>
       </thead>
       <tbody>
@@ -46,17 +45,19 @@ const NewsTable = () => {
             <td>
               <Image fluid thumbnail src={news.image} className="custom-size" />
             </td>
-            <td>{news.name}</td>
-            <td>{news.createdAt.substring(0, 10)}</td>
-            <td>
-              <NewsEdit
-                newsId={news.id}
-                onClose={(updateCheck) => handleUpdate(updateCheck)}
-              />
-            </td>
-            <td>
-              <BtnDeleteNews newsId={news.id} arrFunc={[getAllNews]} />
-            </td>
+                <td>{news.name}</td>
+                <td>{news.createdAt.substring(0, 10)}</td>
+                <td>
+                  <NewsEdit
+                    newsId={news.id}
+                    onClose={(updateCheck) => handleUpdate(updateCheck)}
+                  />
+                  <br/>
+                  <BtnDeleteNews newsId={news.id} arrFunc={[getAllNews]} />
+                </td>
+                <td>
+                  
+                </td>
           </tr>
         ))}
       </tbody>

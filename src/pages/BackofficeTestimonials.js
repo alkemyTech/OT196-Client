@@ -35,6 +35,7 @@ const BackofficeTestimonials = () => {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>Lista de Testimonios</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
@@ -44,7 +45,6 @@ const BackofficeTestimonials = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Testimonios</Breadcrumb.Item>
       </Breadcrumb>
-      <h1 className="m-4">Lista de Testimonios</h1>
       <CreateTestimony />
       <div className="list-group">
         {!testimonials ? (
