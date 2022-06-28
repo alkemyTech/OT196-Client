@@ -62,7 +62,6 @@ export default function UserForm() {
         })
     })
     .catch((e) => {
-      console.log(e)
       Swal.fire({
         icon: "error",
         title: "Error al crear su cuenta",
