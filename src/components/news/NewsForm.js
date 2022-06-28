@@ -4,7 +4,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { errorAlert, successAlert } from "../../setupAlerts";
 import ImageInput from "../ImageInput";
 import { Col, Row } from "react-bootstrap"
-import { postRequest } from "../../services/"
+import { postRequest, putRequest } from "../../services/RequestService"
 
 const NewsForm = ({ newsObject }) => {
   const [name, setName] = React.useState("");
