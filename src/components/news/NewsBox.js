@@ -19,6 +19,10 @@ const dateFormat = (str) => {
   var date = new Date(str).toLocaleDateString("es-AR", formatDate);
   return firstToUpper(date);
 };
+const formatTitle = (str) => {
+  const newTitle = str.length > 55 ? str.slice(0,70) + "..." : str
+  return newTitle
+};
 
 export default function NewsCard(props) {
   const { id, image, name, createdAt } = props.newData;
@@ -26,7 +30,7 @@ export default function NewsCard(props) {
     <Col>
       <Link
         to={`/news/${id}`}
-        className="card-center"
+        className="card-center h-100"
         style={{
           color: "inherit",
           textDecoration: "inherit",
@@ -35,11 +39,11 @@ export default function NewsCard(props) {
         }}
       >
         <Card border="light" className="box-shadow">
-          <div className="">
+          <div className="ratio ratio-4x3">
             <Card.Img variant="top" src={image} style={fixImageFit} />
           </div>
           <Card.Body>
-            <Card.Title>{name}</Card.Title>
+            <Card.Title>{formatTitle(name)}</Card.Title>
           </Card.Body>
           <Card.Footer>
             <small className="text-muted">
