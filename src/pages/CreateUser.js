@@ -19,7 +19,7 @@ export default function CreateUser() {
           alt="Logo Somos Mas"
         />
       </header>
-      <div className="d-flex">
+      <div className="d-flex mb-5">
         <UserForm />
       </div>
     </motion.div>
