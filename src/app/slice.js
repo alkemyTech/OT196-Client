@@ -81,7 +81,7 @@ export const deleteUser = (id) => {
 export const editTestimonialForm = (existingTestimony) => {
   return async function (dispatch) {
     try {
-      await axios.patch(
+      await axios.put(
         `${REACT_APP_BACKEND_TESTIMONIALS}/${existingTestimony.id}`,
         existingTestimony
       );

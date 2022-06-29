@@ -7,14 +7,14 @@ import { useDispatch } from "react-redux";
 import { editTestimonialForm, submitTestimonialForm } from "../../app/slice";
 import Swal from "sweetalert2";
 
-export default function TestimonialForm({ existingTestimony }){
+export default function TestimonialForm({ existingTestimony, axiosApi }){
     //FOR USING THE HOOK USEDISPATCH IN THE BELOW 
     const dispatch = useDispatch()
 
     //WITH THIS STATES YOU CAN CAPTURE THE DATA OF THE NAME OF THE TESTIMONIAL AUTHOR, THE CONTENT AND IMAGE
     const [name, setName] = useState(existingTestimony ? existingTestimony.name : '');
     const [content, setContent] = useState(existingTestimony ? existingTestimony.content : '');
-    const [img, setImg] = useState(existingTestimony ? existingTestimony.img : '')
+    const [image, setImage] = useState(existingTestimony ? existingTestimony.img : '')
 
     //FUNCTION FOR CAPTURE THE NAME IN THE LOCAL STATE 
     const handleName = (e) => {
@@ -31,49 +31,53 @@ export default function TestimonialForm({ existingTestimony }){
     //FUNCTION FOR CAPTURE THE IMAGE IN THE LOCAL STATE 
     const handleImg = (e) => {
         const target = e.target.value       
-        setImg(target);
+        setImage(target);
     }
 
     //FUNCTION FOR CALLING THE ACTION FOR CONNECT WITH THE BACKEND 
     //THIS FUNCTION CALL ONE OR OTHER ENDPOINT IF THE CASE IS EDIT AN 
     //EXISTING TESTIMONIAL OR IS NEW 
-    const handleSubmit = e=> {
+    const handleSubmitCreate = e=> {
         e.preventDefault()      
-            !existingTestimony ? 
-            dispatch(submitTestimonialForm({ name, content, img }))
+            dispatch(submitTestimonialForm({ name, content, image }))
             .then(()=> {
                 Swal.fire({
-                    icon: 'sucess',
-                    text: `Has modificado con éxito la base de datos`,
+                    icon: 'success',
+                    text: `Has creado con éxito un nuevo testimonio`,
                 })
             }).catch(()=> {
                  Swal.fire({
                 icon: 'error',
                 text: `Error en la petición HTTP`,
                 })
-            })
-            : 
-           dispatch(editTestimonialForm( { name, content, img, id: existingTestimony.id } ))         
+            }
+            )
+            axiosApi()
+        }
+    const handleSubmitEdit = e=> {
+        e.preventDefault() 
+        dispatch(editTestimonialForm( { name, content, image, id: existingTestimony.id } ))         
             .then(()=> {
                 Swal.fire({
-                    icon: 'sucess',
-                    text: `Has modificado con éxito la base de datos`,
+                    icon: 'success',
+                    text: `Has modificado con éxito el testimonio`,
                 })
             }).catch(()=> {
                  Swal.fire({
                 icon: 'error',
                 text: `Error en la petición HTTP`,
                 })
-            })      
+            })  
+            axiosApi()    
     }
 
     return(
         <div className="d-flex justify-content-center">
             {
                 existingTestimony ? 
-                <form className='form-inline container mt-3 mb-3'>
-                    <div className="d-flex justify-content-center">
+                <form className='container mt-3 mb-3'>
                         <label>Nombre</label>
+                        <br/>
                         <input
                             className='form-control'
                             type='text'                        
@@ -81,33 +85,36 @@ export default function TestimonialForm({ existingTestimony }){
                             onChange={handleName}
                             value={name}                    
                         />
-                    </div>
+                    <br/> 
                     <label>Contenido</label>
                     <br/> 
-
                     <CKEditor
-                        editorConfig= {(config) =>{
-                            config.enterMode = `<br />`;
-                        }}
                         className='form-control'
                         editor={ ClassicEditor }
                         data={content}
                         id='content'
                         onChange={handleCkeditorState}                     
                     />
+                    <br/>
+                    <label>Imagen</label>
                     <input
-                        className='form-control'  
+                        className='form-control'
                         type='text'                  
                         id='img'
                         onChange={handleImg}
-                        value={img}                      
-                       // placeholder={existingTestimony.img}
-                        />
-                    <button onClick={handleSubmit} className="btn btn-primary" type="submit">Enviar</button>
-                    
+                        value={image}                      
+                        placeholder={image || 'añade la URL de tu imagen'}
+                    />
+                    <br/>
+                    <button 
+                        onClick={handleSubmitEdit} 
+                        className="btn btn-success" 
+                        type="submit"
+                        style={{ width: '100%' }}
+                    >Enviar</button>
                 </form> 
                 :            
-                <form className='form-inline container justify-content-center'>
+                <form className='container justify-content-center'>
                         <label>Nombre</label>
                         <br/>
                         <input
@@ -122,9 +129,6 @@ export default function TestimonialForm({ existingTestimony }){
                     <label>Contenido</label>
                     <br/>
                     <CKEditor
-                        editorConfig= {(config) =>{
-                            config.enterMode =`<br />`;
-                        }}
                         className='form-control'
                         editor={ ClassicEditor }
                         data={content}
@@ -139,12 +143,12 @@ export default function TestimonialForm({ existingTestimony }){
                         type='text'                  
                         id='img'
                         onChange={handleImg}
-                        value={img}
+                        value={image}
                         placeholder='Añade la URL de tu imagen'
                     />
                     <br/>
                     <button 
-                    onClick={handleSubmit} 
+                    onClick={handleSubmitCreate} 
                     className="btn btn-success" 
                     type="submit"
                     style={{ width: '100%' }}

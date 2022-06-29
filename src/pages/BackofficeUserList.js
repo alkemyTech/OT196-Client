@@ -12,6 +12,7 @@ function BackofficeUserList() {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
+      <h1>User List</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio
@@ -22,7 +23,6 @@ function BackofficeUserList() {
         <Breadcrumb.Item active>Usuarios</Breadcrumb.Item>
       </Breadcrumb>
       <Container>
-        <h1 className="d-flex justify-content-center mt-3 mb-5">User List</h1>
         <UserList />
       </Container>
     </motion.div>

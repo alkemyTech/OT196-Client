@@ -4,7 +4,7 @@ import imgDefault from './img/DefaultImage.png';
 
 export const MemberItem = ({ member }) => {
     return(
-        <Card  style={{ width: '100%' }} >
+        <Card  style={{ width: '100%', marginTop: '0' }} >
             <Row className="d-flex flex-nowrap align-items-center" >
                 <Col xs={4}>
                     <img 

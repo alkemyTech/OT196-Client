@@ -1,35 +1,36 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import { BiChevronsDown } from "react-icons/bi";
+import { FaRegEdit } from "react-icons/fa";
 import TestimonialForm from './TestimonialForm';
 
-function CreateTestimony({axiosApi}) {
+function EditTestimony({ testimony, axiosApi }) {
     const [show, setShow] = React.useState(false);
   
     const handleClose = () => {
       setShow(false);
     };
+
     const handleShow = async () => {
       setShow(true);
     };
   
     return (
       <>
-        <Button className="mb-3" variant="primary" onClick={handleShow}>
+        <Button className="me-2" variant="primary" onClick={handleShow}>
           <>
-            <BiChevronsDown /> Crear nuevo testimonio <BiChevronsDown />
+            <FaRegEdit /> Editar
           </>
         </Button>
         <Modal show={show} size='md' onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Crear nuevo testimonio</Modal.Title>
+            <Modal.Title>Editar testimonio</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <TestimonialForm axiosApi={axiosApi}/>
+            <TestimonialForm existingTestimony={testimony} axiosApi={axiosApi}/>
           </Modal.Body>
         </Modal>
       </>
     );
 }
 
-export default CreateTestimony;
+export default EditTestimony;

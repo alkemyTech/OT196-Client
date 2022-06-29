@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import TestimonyItem from "../components/backoffice/itemTestimonials";
 import CreateTestimony from "../components/testimonials/TestimonyModal";
@@ -6,20 +5,15 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "react-bootstrap";
 import customTransition from "../components/utils/CustomTransition";
+import { getRequest } from "../services/RequestService";
 
 const BackofficeTestimonials = () => {
-  const url = "http://localhost:3000/testimonials";
+  const { REACT_APP_BACKEND_TESTIMONIALS } = process.env;
   const [testimonials, setTestimonials] = useState();
-  const jwtExample =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
+
   //Callback for testimonials data
   const axiosApi = async () => {
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + jwtExample,
-      },
-    });
-    setTestimonials(response.data);
+    setTestimonials(await getRequest(REACT_APP_BACKEND_TESTIMONIALS));
   };
 
   //React hook for update page data
@@ -43,8 +37,10 @@ const BackofficeTestimonials = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Testimonios</Breadcrumb.Item>
       </Breadcrumb>
-      <CreateTestimony />
-      <div className="list-group container rounded mb-5">
+      <CreateTestimony axiosApi={axiosApi}/>
+      <div 
+      className="list-group container justify-content-center rounded mb-5"
+      style={{paddingRight: '0'}}>
         {!testimonials ? (
           <div className="d-flex justify-content-center">
             <strong className="">Loading...</strong>
