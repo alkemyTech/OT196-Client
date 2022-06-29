@@ -39,7 +39,7 @@ export default function Testimonials(){
                           <Card.Body>
                             <Card.Title>{x.name}</Card.Title>
                             <Card.Text>
-                              <p dangerotuslySetInnerHTML={{ __html: x.content }}/>
+                              <p dangerouslySetInnerHTML={{ __html: x.content }}/>
                             </Card.Text>
                           </Card.Body>
                         </Card> 
