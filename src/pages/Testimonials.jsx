@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Avatar from "react-avatar";
-import { Card, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./testimonials.css";
 import { motion } from "framer-motion";
 
@@ -51,7 +51,9 @@ export default function Testimonials() {
                   <Avatar src={x.image} round={true} />
                   <Card.Body>
                     <Card.Title>{x.name}</Card.Title>
-                    <Card.Text>{x.content}</Card.Text>
+                    <Card.Text>
+                      <p dangerouslySetInnerHTML={{ __html: x.content }}/>
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </div>
