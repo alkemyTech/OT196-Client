@@ -15,7 +15,7 @@ export default function TestimonialForm({ existingTestimony, axiosApi }){
     //WITH THIS STATES YOU CAN CAPTURE THE DATA OF THE NAME OF THE TESTIMONIAL AUTHOR, THE CONTENT AND IMAGE
     const [name, setName] = useState(existingTestimony ? existingTestimony.name : '');
     const [content, setContent] = useState(existingTestimony ? existingTestimony.content : '');
-    const [image, setImage] = useState(existingTestimony ? existingTestimony.image : '')
+    const [image, setImage] = useState(existingTestimony ? existingTestimony.image : 'https://alkemy196.s3.sa-east-1.amazonaws.com/images/np7-whj-2x4x-image-placeholder.jpg')
 
     //FUNCTION FOR CAPTURE THE NAME IN THE LOCAL STATE 
     const handleName = (e) => {
@@ -132,14 +132,7 @@ export default function TestimonialForm({ existingTestimony, axiosApi }){
                     />
                     <br/>
                     <label>Imagen</label>
-                    <input
-                        className='form-control'
-                        type='text'                  
-                        id='img'
-                        onChange={handleImg}
-                        value={image}
-                        placeholder='Añade la URL de tu imagen'
-                    />
+                    <ImageInput image={image} setImage={setImage}/>
                     <br/>
                     <button 
                     onClick={handleSubmitCreate} 

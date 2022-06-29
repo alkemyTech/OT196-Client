@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Avatar from "react-avatar";
-import { Card } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import "./testimonials.css";
 import { motion } from "framer-motion";
 
@@ -30,12 +30,12 @@ export default function Testimonials(){
       }}
       >
         <h1> Testimonios </h1>
-        <div className="testimonials_container mx-auto" style={{backgrondColor: 'red'}}>
+        <div className="testimonials_container mx-auto">
             { testimonials && testimonials.length ? 
             testimonials.map(x=> {
                 return     <div>
-                <Card style={{ width: '14rem', backgroundColor: 'rgb(181 217 255)' }} className='card'>
-                          <Avatar className="mx-auto my-2" src={x.image} round={true}/>
+                <Card style={{ width: '14rem', backgroundColor: 'rgb(181 217 255)' }} className='card h-75 shadow-lg p-3 mb-5 rounded'>
+                          <Image className="mx-auto my-2" src={x.image} roundedCircle style={{height: '100px', width: '100px', objectFit: 'cover'}}/>
                           <Card.Body>
                             <Card.Title>{x.name}</Card.Title>
                             <Card.Text>
