@@ -21,6 +21,8 @@ import BackofficeUserList from "./BackofficeUserList";
 import Testimonials from "./Testimonials";
 import ProtectedRoute from "../components/utils/ProtectedRoute";
 import MyProfile from "./MyProfile";
+import Donations from "./Donations";
+import DonationSucess from "./DonationSucess";
 
 export default function Router() {
   const location = useLocation();
@@ -35,7 +37,8 @@ export default function Router() {
         <Route path="/testimonials" element={<Testimonials /> } />
         <Route path="/contact-us" element={<ScreenContact />} />
         <Route path="/about-us" element={<h1>About Us</h1>} />
-        <Route path="/donations" element={<h1>Donations</h1>} />
+        <Route path="/donations" element={<Donations /> } />
+        <Route path="thanks" element={<DonationSucess /> } /> 
         <Route path="/activities/:id" element={<ActivityDetails />} />
         <Route path="/news/" element={<ListNews />} />
         <Route path="/news/:id" element={<ViewNews />} />
@@ -52,7 +55,7 @@ export default function Router() {
           <Route path="news" element={<BackofficeNews />} />
           <Route path="categories" element={<BackofficeCategories />} />
           <Route path="users" element={<BackofficeUserList />} />
-          <Route path="testimonials" element={<BackofficeTestimonials />} />
+          <Route path="testimonials" element={<BackofficeTestimonials />} />          
         </Route>
 
         {/* Routes available for users only */}
