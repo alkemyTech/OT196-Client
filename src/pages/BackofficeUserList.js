@@ -12,7 +12,7 @@ function BackofficeUserList() {
       animate={{ opacity: 1 }}
       transition={customTransition}
     >
-      <h1>User List</h1>
+      <h1>Lista de Usuarios</h1>
       <Breadcrumb className="mt-3 ms-3">
         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
           Inicio

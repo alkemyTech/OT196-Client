@@ -41,7 +41,7 @@ function EditUserModal({
               handleClose();
             }}
           >
-            <Form.Label>First name</Form.Label>
+            <Form.Label>Nombre</Form.Label>
             <InputGroup className="mb-3">
               <FormControl
                 value={firstName}
@@ -49,7 +49,7 @@ function EditUserModal({
                 aria-describedby="basic-addon1"
               />
             </InputGroup>
-            <Form.Label>Last name</Form.Label>
+            <Form.Label>Apellido</Form.Label>
             <InputGroup className="mb-3">
               <FormControl
                 value={lastName}
@@ -57,7 +57,7 @@ function EditUserModal({
                 aria-describedby="basic-addon1"
               />
             </InputGroup>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Correo</Form.Label>
             <Form.Control
               className="mb-3"
               type="email"
@@ -70,10 +70,10 @@ function EditUserModal({
                 variant="secondary"
                 onClick={handleClose}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button type="submit" variant="success">
-                Save
+                Guardar
               </Button>
             </div>
           </Form>

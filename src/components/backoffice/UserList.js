@@ -58,9 +58,9 @@ const UserList = () => {
       <Table borderless hover responsive className="mb-5">
         <thead>
           <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
             <th></th>
             <th></th>
           </tr>
