@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Avatar from "react-avatar";
-import { Card, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./testimonials.css";
 import { motion } from "framer-motion";
 
@@ -39,14 +39,17 @@ export default function Testimonials(){
                           <Card.Body>
                             <Card.Title>{x.name}</Card.Title>
                             <Card.Text>
-                              {x.content}
+                              <p dangerotuslySetInnerHTML={{ __html: x.content }}/>
                             </Card.Text>
                           </Card.Body>
                         </Card> 
                      </div>                  
-            }) : 
-            <h1 className='testimonials_message'> Aun no hay testimonios cargados </h1>   
-        }
+            }) : (
+              <h1 className="testimonials_message">
+                {" "}
+                Aun no hay testimonios cargados{" "}
+              </h1>
+            )}
         </div>
       </motion.div>
     )
