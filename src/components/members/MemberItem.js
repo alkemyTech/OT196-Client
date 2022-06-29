@@ -10,7 +10,7 @@ export const MemberItem = ({ member }) => {
                     <img 
                     className="ms-4 img-circle ratio ratio-1x1" 
                     src={member.image || imgDefault } 
-                    style={{ borderRadius:'50%' ,maxHeight: '100px', maxWidth: '100px' }}
+                    style={{ borderRadius:'50%' ,maxHeight: '100px', maxWidth: '100px', objectFit: 'cover' }}
                     />
                 </Col>
                 <Col xs={8}>
