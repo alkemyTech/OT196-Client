@@ -6,6 +6,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useDispatch } from "react-redux";
 import { editTestimonialForm, submitTestimonialForm } from "../../app/slice";
 import Swal from "sweetalert2";
+import ImageInput from "../ImageInput"
 
 export default function TestimonialForm({ existingTestimony, axiosApi }){
     //FOR USING THE HOOK USEDISPATCH IN THE BELOW 
@@ -14,7 +15,7 @@ export default function TestimonialForm({ existingTestimony, axiosApi }){
     //WITH THIS STATES YOU CAN CAPTURE THE DATA OF THE NAME OF THE TESTIMONIAL AUTHOR, THE CONTENT AND IMAGE
     const [name, setName] = useState(existingTestimony ? existingTestimony.name : '');
     const [content, setContent] = useState(existingTestimony ? existingTestimony.content : '');
-    const [image, setImage] = useState(existingTestimony ? existingTestimony.img : '')
+    const [image, setImage] = useState(existingTestimony ? existingTestimony.image : '')
 
     //FUNCTION FOR CAPTURE THE NAME IN THE LOCAL STATE 
     const handleName = (e) => {
@@ -97,14 +98,7 @@ export default function TestimonialForm({ existingTestimony, axiosApi }){
                     />
                     <br/>
                     <label>Imagen</label>
-                    <input
-                        className='form-control'
-                        type='text'                  
-                        id='img'
-                        onChange={handleImg}
-                        value={image}                      
-                        placeholder={image || 'añade la URL de tu imagen'}
-                    />
+                    <ImageInput image={image} setImage={setImage}/>
                     <br/>
                     <button 
                         onClick={handleSubmitEdit} 
