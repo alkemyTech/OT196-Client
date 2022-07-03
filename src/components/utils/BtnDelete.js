@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
 import { warningAlert, successAlert } from "../../setupAlerts";
-import axios from "axios";
+import { deleteRequest } from "../../services/RequestService";
 
 const BtnDelete = ({
   btnLabel = "Eliminar",
@@ -14,7 +14,7 @@ const BtnDelete = ({
   const triggerDelete = async (result, id) => {
     try {
       if (result.isConfirmed) {
-        await axios.delete(`${apiRoute}${id}`);
+        await deleteRequest(`${apiRoute}/${id}`);
         successAlert({});
         // execute every function on the array
         for (let i = 0; i < arrFunc.length; i++) {

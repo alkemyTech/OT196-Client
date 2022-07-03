@@ -1,20 +1,48 @@
-import React from 'react'
-import { Row, Button, Col, Badge } from 'react-bootstrap';
-import { FaEdit, FaRegTrashAlt } from 'react-icons/fa'
-import ModalButton from "./ModalButton"
+import React from "react";
+import { Row, Accordion, Col, Badge } from "react-bootstrap";
+import { FaEdit } from "react-icons/fa";
+import ModalButton from "./ModalButton";
+import BtnDeleteCategory from "./BtnDeleteCategory";
+import "./CategoriesListItem.css";
 
-function CategoriesListItem(props){
-    const {name, id} = props.itemData
-    return(
-        <Row className='border border-1 rounded-2 border-dark justify-content-center align-items-center py-2 mb-3 mx-auto w-75'> 
-            <Col xs={8} className="flex-grow-1">
-                <div><span className='fs-4 '>{name}</span> <Badge bg="info" className="h5 ms-2">ID {id}</Badge></div>
+function CategoriesListItem(props) {
+  const { name, id, description } = props.itemData;
+  return (
+    <Accordion className="w-auto mw-75 mx-auto">
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>
+          <Row className="mx-auto w-100">
+            <Col
+              md={10}
+              className="d-flex justify-content-center justify-content-md-start overflow-auto px-0"
+            >
+              <div>
+                <span className="accordion-name">{name}</span>
+                <Badge bg="info" className="h5 ms-2">
+                  ID {id}
+                </Badge>
+              </div>
             </Col>
-            <Col xs={4}>
-                <ModalButton categoryData={props.itemData} variant="primary" text={<FaEdit/>} lastUpdate={props.lastUpdate}/>
-                <Button variant="danger" className='me-4'><FaRegTrashAlt/></Button>
+            <Col
+              md={2}
+              className="d-flex justify-content-center justify-content-md-end px-2"
+            >
+              <ModalButton
+                categoryData={props.itemData}
+                variant="primary"
+                text={<FaEdit />}
+                lastUpdate={props.lastUpdate}
+              />
+              <BtnDeleteCategory
+                categoryId={id}
+                refreshCategories={props.lastUpdate}
+              />
             </Col>
-        </Row>
-    );
+          </Row>
+        </Accordion.Header>
+        <Accordion.Body>{description}</Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  );
 }
-export default CategoriesListItem
+export default CategoriesListItem;
