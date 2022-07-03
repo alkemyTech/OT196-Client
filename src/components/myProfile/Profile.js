@@ -1,9 +1,14 @@
 import React from "react";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Button } from "react-bootstrap";
 import CustomModal from "./CustomModal";
 import { getRequest } from "../../services/RequestService";
 import "./Profile.css";
 import BtnDelete from "../utils/BtnDelete";
+import ImageInput from "../ImageInput"
+import { FaSave } from "react-icons/fa"
+import { signOff, updateUserLogged } from "../../app/slice";
+import { useDispatch } from "react-redux";
+import { errorAlert, successAlert } from "../../setupAlerts";
 
 const Profile = () => {
   const [firstName, setFirstName] = React.useState("");
@@ -11,6 +16,7 @@ const Profile = () => {
   const [email, setEmail] = React.useState("");
   const [image, setImage] = React.useState("");
   const [id, setId] = React.useState("");
+  const dispatch = useDispatch();
 
   const { REACT_APP_BACKEND_AUTHME } = process.env;
 
@@ -31,17 +37,20 @@ const Profile = () => {
   //   delete the profile currently logged in
   const deleteProfile = async (id) => {
     try {
-      //   await deleteRequest(${REACT_APP_BACKEND_AUTHME)
-      // logout and redirect to Home
+      // Remove data from store
+      dispatch(signOff());
+      // Remove data from localstorage
+      localStorage.removeItem("userData");
+      // Redirect to index
+      successAlert({titleSuccess: "Su cuenta ha sido borrada!", msgSuccess: "Todos tus datos han sido eliminados."})
+      window.location.replace("/");
     } catch (e) {
+      errorAlert({titleError: "Error al eliminar tu cuenta!", msgError: "Lo sentimos! Ha surgido un error al intentar borrar sus datos."})
       console.error(e);
     }
   };
-
   const updateProfile = async (input, property) => {
     try {
-      // fetch url (api) with update
-
       // fake update:
       if (property === "firstName") {
         setFirstName(input);
@@ -56,6 +65,17 @@ const Profile = () => {
       console.error(e);
     }
   };
+
+  const sendUpdate = async (data) => {
+    try{
+      dispatch(updateUserLogged({firstName, lastName, email, image}))
+      successAlert({titleSuccess: "Perfil actualizado!", msgSuccess: "Los cambios han sido guardados con exito."})
+    }
+    catch(e){
+      console.log(e)
+      errorAlert({titleError: "Error al actualizar!", msgError: "Lo sentimos! Ha surgido un error al intentar actualizar sus datos."})
+    }
+  }
 
   React.useEffect(() => {
     getProfile();
@@ -83,14 +103,7 @@ const Profile = () => {
       onSubmitData: updateProfile,
       property: "email",
       inputClass: "email",
-    },
-    {
-      text: "Imagen:",
-      item: image,
-      onSubmitData: updateProfile,
-      property: "image",
-      inputClass: "image",
-    },
+    }
   ];
 
   //   starting point for the value that will be unique key for each child in the list
@@ -134,15 +147,32 @@ const Profile = () => {
         ))}
       <Row>
         <Col
+          sm={2}
+          md={3}
+          className="d-flex justify-content-center justify-content-sm-start justify-content-lg-center"
+        >
+          <h4>{"Imagen:"}</h4>
+        </Col>
+        <Col sm={7} md={6} className="d-flex justify-content-center mb-2">
+          <ImageInput image={image} setImage={setImage} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col
           lg={{ offset: 9 }}
           className="d-flex justify-content-center justify-content-sm-end justify-content-lg-center"
         >
           <div className="mb-3 mt-3">
+            <Button onClick={sendUpdate} className="me-2 my-2">
+              <FaSave /> Guardar cambios
+            </Button>
             <BtnDelete
               btnLabel="Eliminar mi cuenta"
-              apiRoute="#"
-              id={id}
+              apiRoute={REACT_APP_BACKEND_AUTHME}
+              id=""
               msgWarning="¿Desea eliminar su cuenta?"
+              arrFunc={[deleteProfile]}
             />
           </div>
         </Col>

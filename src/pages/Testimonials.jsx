@@ -8,17 +8,10 @@ import {motion} from 'framer-motion'
 export default function Testimonials(){
 
     //Get testimonials information 
-    const { REACT_APP_BACKEND_URL } = process.env
+    const { REACT_APP_BACKEND_TESTIMONIALS } = process.env
     const [testimonials, setTestimonials] = useState([])
-    const jwtExample =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjF9.MhiM6mndt0mBUmjGWiEcAW_oDNIsr5dyN9pwUT9HK8o";
-    const url = `${REACT_APP_BACKEND_URL}testimonials`
     const axiosApi = async () => {
-        const response = await axios.get(url, {
-          headers: {
-            Authorization: "Bearer " + jwtExample,
-          },
-        });
+        const response = await axios.get(REACT_APP_BACKEND_TESTIMONIALS);
         setTestimonials(response.data);
       };
 
@@ -37,12 +30,12 @@ export default function Testimonials(){
       }}
       >
         <h1> Testimonios </h1>
-        <div className="testimonials_container" style={{backgrondColor: 'red'}}>
+        <div className="testimonials_container mx-auto" style={{backgrondColor: 'red'}}>
             { testimonials && testimonials.length ? 
             testimonials.map(x=> {
                 return     <div>
-                <Card style={{ width: '14rem', backgroundColor: 'rgb(236, 245, 66)' }} className='card'>
-                          <Avatar src={x.image} round={true}/>
+                <Card style={{ width: '14rem', backgroundColor: 'rgb(181 217 255)' }} className='card'>
+                          <Avatar className="mx-auto my-2" src={x.image} round={true}/>
                           <Card.Body>
                             <Card.Title>{x.name}</Card.Title>
                             <Card.Text>

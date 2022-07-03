@@ -2,7 +2,9 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
 import { warningAlert, successAlert } from "../../setupAlerts";
+import axios from "axios";
 import { deleteRequest } from "../../services/RequestService";
+
 
 const BtnDelete = ({
   btnLabel = "Eliminar",
