@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import { FaTimes, FaRegEdit } from "react-icons/fa";
-import axios from "axios";
-import TestimonialForm from '../testimonials/TestimonialForm'
+import { FaRegEdit } from "react-icons/fa";
+import BtnDelete from '../utils/BtnDelete'
+import TestimonialForm from '../testimonials/TestimonialForm';
+
 
 const TestimonyItem = ({ testimony, axiosApi }) => {
-    //function for delete button
-    const onDelete = async (id) => {
-        await axios.delete(`http://localhost:3000/testimonials/${id}`);
-        axiosApi()
-    };
     const [edit, setEdit] = useState(false)
     const onEdit = () => {
-        //Form of gerardo
         setEdit(!edit)
     };
 
@@ -36,14 +31,12 @@ const TestimonyItem = ({ testimony, axiosApi }) => {
                     <button onClick={() => onEdit()} className="btn m-1 btn-dark">
                       Editar <FaRegEdit />
                     </button>
-                 
-
-                    <button
-                      onClick={() => onDelete(testimony.id)}
-                      className="btn m-1 btn-danger"
-                    >
-                      Borrar <FaTimes />
-                    </button>
+                    <BtnDelete 
+                    apiRoute={url} 
+                    id={testimony.id} 
+                    msgWarning='¿Desea eliminar este testimonio?' 
+                    arrFunc={[axiosApi]}
+              />
                 </div>
             </div>
         </ul>
